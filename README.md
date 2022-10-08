@@ -1,16 +1,18 @@
 ### Hi there 👋
 
-<!--
-**jvTeixeira/jvTeixeira** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=ghenriquec&label=Views&color=blue&style=plastic" alt="" /> </p>
 
-Here are some ideas to get you started:
+<strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+- 🌱 I’m currently learning JavaScript, CSS, React and Node
+- 👯 I’m looking to collaborate on React projects
+- 💬 Ask me about about Javascript, Java and PHP
+- 😄 Pronouns: He/Him
+- ⚡ Fun fact: I'm a guitarist and boxer fighter, so i love speak about this stuff
+
+- 📫 How to reach me:
+<div>
+  <a href = "mailto:contatojoaovteixeira@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white"        target="_blank"></a>
+  <a href = "https://www.instagram.com/tx_jao/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
+  <a href = "https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  </div>
