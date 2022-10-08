@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=blue&style=plastic" alt="" /> </p>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=FFF000&style=plastic" alt="" /> </p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
@@ -16,3 +16,5 @@
   <a href = "https://www.instagram.com/tx_jao/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
   <a href = "https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
   </div>
+  
+  
