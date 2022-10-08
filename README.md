@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=FFF000&style=plastic" alt="" /> </p>
+<p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=FFF000&style=for-the-badge" alt="" /> </p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
