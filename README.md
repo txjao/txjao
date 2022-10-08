@@ -1,6 +1,6 @@
 ### Hi there 👋
 
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=ghenriquec&label=Views&color=blue&style=plastic" alt="" /> </p>
+<p align="left"> <img src="https://(https://komarev.com/ghpvc/?username=jvTeixeira)" alt="" /> </p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
