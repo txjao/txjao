@@ -1,5 +1,4 @@
-### Hi there 👋
-
+### <p>Hi there 👋</p>
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=009FE8&style=for-the-badge" alt="" /> </p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
