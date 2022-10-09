@@ -49,10 +49,6 @@
         <a href="https://github.com/txjao">
             <img height="185px"
                 src="https://github-readme-stats.vercel.app/api/top-langs/?username=txjao&layout=compact&theme=discord_old_blurple">
-        </a>
-    </p>
-    <p align="center">
-        <a href="https://github.com/txjao">
             <img height="185px"
                 src="https://github-readme-stats.vercel.app/api?username=txjao&show_icons=true&theme=radical">
         </a>
