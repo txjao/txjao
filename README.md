@@ -18,8 +18,7 @@
   
   <p align="left">
   <a href="https://github.com/ghenriquec">
-  
-    <img height="185px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=txjao&layout=compact&theme=discord_old_blurple"/>
+    <img height="185px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=txjao&layout=compact&theme=discord_old_blurple">
     </a>
   </a>
 </p>
