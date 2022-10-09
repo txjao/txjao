@@ -45,7 +45,7 @@
 <span></span>
 
 <div>
-    <p align="center" display="flex">
+    <p align="left">
         <a href="https://github.com/txjao">
             <img height="185px"
                 src="https://github-readme-stats.vercel.app/api/top-langs/?username=txjao&layout=compact&theme=discord_old_blurple">
