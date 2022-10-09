@@ -1,5 +1,5 @@
 ### <p>Hi there 👋</p>
-<p align="left"> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=009FE8&style=for-the-badge" alt="" /> </p>
+<p> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=009FE8&style=for-the-badge" alt="" /> </p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
@@ -20,7 +20,8 @@
             src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 </div>
 
-<div style="margin-top: 24px, margin-bottom:24px;">
+
+<div style="margin-top: 24px; margin-bottom:24px;">
 <img  src="https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white">
 <img  src="https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white">
 <img  src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=white">
