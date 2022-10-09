@@ -11,9 +11,15 @@
 
 - 📫 How to reach me:
 <div>
+    <a href = "https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
   <a href = "mailto:contatojoaovteixeira@gmail.com"><img src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white"        target="_blank"></a>
-  <a href = "https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
   <a href = "https://www.instagram.com/tx_jao/"><img src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
   </div>
   
+  p align="left">
+  <a href="https://github.com/ghenriquec">
   
+    <img height="185px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=&layout=compact&theme=discord_old_blurple"/>
+    </a>
+  </a>
+</p>
