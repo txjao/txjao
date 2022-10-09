@@ -47,7 +47,7 @@
 <div dir="auto">
     <p align="left">
         <a href="https://github.com/txjao">
-            <img height="185px" width="449px"
+            <img height="185px"
                 src="https://github-readme-stats.vercel.app/api/top-langs/?username=txjao&layout=compact&theme=discord_old_blurple">
             <img height="185px" width="449px"
                 src="https://github-readme-stats.vercel.app/api?username=txjao&show_icons=true&theme=radical">
