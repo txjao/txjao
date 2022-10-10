@@ -53,13 +53,9 @@
                 src="https://github-readme-stats.vercel.app/api?username=txjao&show_icons=true&theme=radical">
         </a>
     </p>
-    <a href="https://github.com/txjao">
-  <img align="center" src="https://github.com/txjao/github-stats/blob/master/generated/languages.svg" />
-</a>
-
-<a href="https://github.com/txjao">
- <img align="center" src="https://github.com/txjao/github-stats/blob/master/generated/overview.svg"/>
-</a>
 </div>
-
+<img src="https://raw.githubusercontent.com/username/github-stats/master/generated/overview.svg#gh-dark-mode-only">
+<a href="https://github.com/txjao">
+ <img align="center" src="https://raw.githubusercontent.com/username/github-stats/master/generated/languages.svg"/>
+</a>
 
