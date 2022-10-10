@@ -55,11 +55,6 @@
     </p>
 </div> -->
 
-<a href="https://github.com/txjao">
-  <img align="center" src="https://github.com/txjao/github-stats/blob/master/generated/languages.svg" />
-</a>
-
-<a href="https://github.com/txjao">
- <img align="center" src="https://github.com/txjao/github-stats/blob/master/generated/overview.svg"/>
-</a>
+![](https://raw.githubusercontent.com/txjao/github-stats/master/generated/overview.svg#gh-dark-mode-only)
+![](https://raw.githubusercontent.com/txjao/github-stats/master/generated/languages.svg#gh-dark-mode-only)
 
