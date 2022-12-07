@@ -23,8 +23,9 @@
 <span></span>
 <span></span>
 
+
 <strong> ⚡Stacks and Technologies⚡ </strong>
-<div style="display: inline_block"><br>
+<div>
   <img align="center" height="40" width="40"  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" />
   <img align="center" height="40" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-plain.svg" />
   <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg" />
