@@ -1,5 +1,5 @@
 ### <p>Hi there! <img src="https://raw.githubusercontent.com/kaueMarques/kaueMarques/master/hi.gif" height="30px"></p>
-<p> <img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=009FE8&style=for-the-badge" alt="" /> </p>
+<p><img src="https://komarev.com/ghpvc/?username=jvTeixera&label=Views&color=009FE8&style=for-the-badge" alt="" /></p>
 
 <strong>My name is João, a i'm a software engenieering studant and a full stack developer</strong>
 
