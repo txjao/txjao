@@ -11,12 +11,12 @@
 
 - 📫 How to reach me:
 <div>
-    <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"><img
+    <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/" target="_blank"><img
             src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
-    <a href="mailto:contatojoaovteixeira@gmail.com"><img
+    <a href="mailto:contatojoaovteixeira@gmail.com" target="_blank"><img
             src="https://img.shields.io/badge/-Gmail-%23333?style=for-the-badge&logo=gmail&logoColor=white"
             target="_blank"></a>
-    <a href="https://www.instagram.com/tx_jao/"><img
+    <a href="https://www.instagram.com/tx.jsx/" target="_blank"><img
             src="https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white"></a>
 </div>
 
