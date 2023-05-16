@@ -3,9 +3,9 @@
 
 <strong>My name is João, a i'm a software engenieering studant and a front end developer</strong>
 
-- 🌱 I’m currently learning JavaScript, CSS, React and Node
-- 👯 I’m looking to collaborate on React projects
-- 💬 Ask me about about Javascript, Java and PHP
+- 🌱 I’m currently learning JavaScript, CSS, React and Node.
+- 👯 I’m looking to collaborate on React projects.
+- 💬 Ask me about about Javascript, Java and PHP.
 - 😄 Pronouns: He/Him
 - ⚡ Fun fact: I'm a guitarist and boxer fighter, so i love speak about this stuff
 
