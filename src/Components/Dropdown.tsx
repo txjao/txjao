@@ -19,10 +19,18 @@ const Container = styled.div`
     }
 
     .dropdown-content{
-
+        width: 140px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+        background-color: #FAFAFA;
         position: absolute;
-        top: 100px;
-        transition: ease-in 0.5s;
+        top: 60px;
+        transition: height 0.2s ease-in;
+        border: solid 1px #000;
+        border-top: 0px;
     }
 
     :hover{
@@ -30,7 +38,7 @@ const Container = styled.div`
             transform: rotate(90deg);
         }
         .dropdown-content{
-            transform: ease-in 0.5s;
+            height: auto;
         }
     }
 `
@@ -44,12 +52,13 @@ export function Dropdown() {
         onMouseLeave={() => setIsDropdownOpen(false)}
         >
             <div className="dropdown-label">
-                Social Medias
+                Contact Me
                 <ChevronRightIcon className="icon" />
             </div>
             {isDropdownOpen == true && (
                 <div className="dropdown-content">
-                    <a href="#">Facebook</a>
+                    <a href="https://wa.me/31995985251" target="_blank">Whatsapp</a>
+                    <a onClick={() => alert("navegar para a página do email")}>Email</a>
                 </div>
             )}
         </Container>
