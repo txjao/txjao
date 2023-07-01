@@ -18,7 +18,13 @@ const Container = styled.div`
         transition: transform 0.2s;
     }
 
+    .dropdown-disabled{
+        height: 0px;
+        transition: height 0.5s ease;
+    }
+
     .dropdown-content{
+        height: 80px;    
         width: 140px;
         display: flex;
         align-items: center;
@@ -28,38 +34,42 @@ const Container = styled.div`
         background-color: #FAFAFA;
         position: absolute;
         top: 60px;
-        transition: height 0.2s ease-in;
         border: solid 1px #000;
         border-top: 0px;
-    }
+        }
 
     :hover{
         .icon{
             transform: rotate(90deg);
         }
-        .dropdown-content{
-            height: auto;
-        }
+        
     }
 `
 
 export function Dropdown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    
+    const [isDropdownDisabled, setIsDropdownDisabled] = useState(true);
+
     return (
-        <Container className="dropdown" 
-        onMouseEnter={() => setIsDropdownOpen(true)}
-        onMouseLeave={() => setIsDropdownOpen(false)}
+        <Container className="dropdown"
+            onMouseEnter={() => {
+                setIsDropdownOpen(true)
+                setIsDropdownDisabled(false)
+            }}
+            onMouseLeave={() => {
+                setIsDropdownDisabled(true)
+                setIsDropdownOpen(false)
+            }}
         >
             <div className="dropdown-label">
                 Contact Me
                 <ChevronRightIcon className="icon" />
             </div>
-            {isDropdownOpen == true && (
-                <div className="dropdown-content">
-                    <a href="https://wa.me/31995985251" target="_blank">Whatsapp</a>
-                    <a onClick={() => alert("navegar para a página do email")}>Email</a>
-                </div>
+            {isDropdownOpen && (
+                    <div className={isDropdownDisabled ? "dropdown-disabled" : "dropdown-content"}>
+                        <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
+                        <a onClick={() => alert("navegar para a página do email")}>Email</a>
+                    </div>
             )}
         </Container>
     );
