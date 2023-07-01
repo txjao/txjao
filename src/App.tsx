@@ -1,4 +1,5 @@
 import { Header } from "./Components/Header"
+import { Lettering } from "./Components/Lettering"
 import { GlobalStyle } from "./Styles/global"
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
     <GlobalStyle/>
     <Header/>
+    <Lettering/>
     </>
   )
 }
