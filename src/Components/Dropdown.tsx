@@ -18,13 +18,8 @@ const Container = styled.div`
         transition: transform 0.2s;
     }
 
-    .dropdown-disabled{
-        height: 0px;
-        transition: height 0.5s ease;
-    }
-
     .dropdown-content{
-        height: 80px;    
+        height: 0px;    
         width: 140px;
         display: flex;
         align-items: center;
@@ -36,29 +31,32 @@ const Container = styled.div`
         top: 60px;
         border: solid 1px #000;
         border-top: 0px;
+        transition: height 0.5s ease;
         }
 
-    :hover{
+    &:hover{
         .icon{
             transform: rotate(90deg);
         }
-        
+        .dropdown-content{
+            height: 80px;
+        }
     }
 `
 
 export function Dropdown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [isDropdownDisabled, setIsDropdownDisabled] = useState(true);
+    const [onHover, setOnHover] = useState(true);
 
     return (
         <Container className="dropdown"
             onMouseEnter={() => {
                 setIsDropdownOpen(true)
-                setIsDropdownDisabled(false)
+                setOnHover(true)
             }}
             onMouseLeave={() => {
-                setIsDropdownDisabled(true)
                 setIsDropdownOpen(false)
+                setOnHover(false)
             }}
         >
             <div className="dropdown-label">
@@ -66,7 +64,7 @@ export function Dropdown() {
                 <ChevronRightIcon className="icon" />
             </div>
             {isDropdownOpen && (
-                    <div className={isDropdownDisabled ? "dropdown-disabled" : "dropdown-content"}>
+                    <div className="dropdown-content">
                         <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
                         <a onClick={() => alert("navegar para a página do email")}>Email</a>
                     </div>
