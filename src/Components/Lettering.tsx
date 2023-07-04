@@ -25,11 +25,6 @@ export function Lettering() {
     const line3 = 'this is typed really fast, but errors are slow';
     const line4 = 'this line is fast forwarded. No errors will be made';
 
-
-
-
-    useEffect(() => {
-
         const typed = new Typed({
             callback: text => {
                 setText(text)
@@ -52,7 +47,6 @@ export function Lettering() {
             typed.type(line4);
             await typed.run();
         }
-    }, [])
 
     return (
         <Container>
