@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
+import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 import { Typed } from "typed.ts";
+import { Age } from "./Age";
 
 const Container = styled.div`
    h1, h2{
@@ -18,48 +20,39 @@ const Container = styled.div`
 
 
 export function Lettering() {
-    const [text, setText] = useState('');
 
-    const line1 = 'Hello, World!';
-    const line2 = 'slow';
-    const line3 = 'this is typed really fast, but errors are slow';
-    const line4 = 'this line is fast forwarded. No errors will be made';
-
-
-
-
-    useEffect(() => {
-
-        const typed = new Typed({
-            callback: text => {
-                setText(text)
-                console.log(text)
-            }
-        });
-
-        async () => {
-            typed
-                .type(line1)
-                .backspace(line1.length)
-                .type(line2, { perLetterDelay: { min: 200, max: 400 } })
-                .backspace(line2.length)
-                .type(line3, { eraseDelay: { min: 40, max: 80 }, perLetterDelay: { min: 200, max: 400 } })
-                .backspace(line3.length);
-
-            typed.fastForward();
-            await typed.run();
-            await typed.reset(true);
-            typed.type(line4);
-            await typed.run();
+    function handleAge() {
+        const age = new Date();
+        if(Date.now() < Date.parse("2002-10-09")){
+            return age.getFullYear() - 2002;
         }
-    }, [])
+        return age;
+    }
 
     return (
         <Container>
             <div style={{ display: "inline-flex" }}>
                 <h1>Hi there!</h1><p>👋</p>
             </div>
-            <h2>My name is João, im {text}</h2>
+            <div>
+                <TypeAnimation
+                    sequence={[
+                        // Same substring at the start will only be typed out once, initially
+                        `My name is João, ${handleAge()} im years old`,
+                        1000, // wait 1s before replacing "Mice" with "Hamsters"
+                        'My name is João, im',
+                        1000,
+                        'My name is João, im mariana is cool',
+                        1000,
+                        'My name is João, im Chinchillas',
+                        1000
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    style={{ fontSize: '40px', display: 'inline-block', background: '-webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontFamily: 'Inter', fontWeight: 700 }}
+                    repeat={Infinity}
+                />
+            </div>
         </Container>
     );
 }
