@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
-import { Typed } from "typed.ts";
-import { Age } from "./Age";
 
 const Container = styled.div`
    h1, h2{
@@ -17,7 +15,6 @@ const Container = styled.div`
     font-size: 30px;
    }
 `
-
 
 export function Lettering() {
 
