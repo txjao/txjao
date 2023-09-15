@@ -19,10 +19,10 @@ const Container = styled.div`
 export function Lettering() {
 
     function handleAge() {
-        const age = new Date();
-        if(Date.now() < Date.parse("2002-10-09")){
-            return age.getFullYear() - 2002;
-        }
+        const date = new Date();
+        let age;
+        date.getMonth() < 10 ? age = new Date().getFullYear() - 2003 : age = new Date().getFullYear() - 2002;
+
         return age;
     }
 
@@ -34,15 +34,18 @@ export function Lettering() {
             <div>
                 <TypeAnimation
                     sequence={[
-                        // Same substring at the start will only be typed out once, initially
-                        `My name is João, ${handleAge()} im years old`,
-                        1000, // wait 1s before replacing "Mice" with "Hamsters"
-                        'My name is João, im',
+                        `My name is João, im ${handleAge()} years old!`,
                         1000,
-                        'My name is João, im mariana is cool',
+                        'My name is João, im muay thai fighter!',
                         1000,
-                        'My name is João, im Chinchillas',
-                        1000
+                        'My name is João, im brazilian jiu jitsu fighter!',
+                        1000,
+                        'My name is João, im guitarist!',
+                        1000,
+                        'My name is João, im dog person!',
+                        1000,
+                        'My name is João, im e-sports enthusiast!',
+                        1000,
                     ]}
                     wrapper="span"
                     speed={50}
