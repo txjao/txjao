@@ -11,9 +11,6 @@ const Container = styled.div`
     font-weight: 700;
     font-size: 40px;
    }
-   p{
-    font-size: 30px;
-   }
 `
 
 export function Lettering() {
@@ -21,8 +18,11 @@ export function Lettering() {
     function handleAge() {
         const date = new Date();
         let age;
-        date.getMonth() < 10 ? age = new Date().getFullYear() - 2003 : age = new Date().getFullYear() - 2002;
-
+        if (date.getDate() >= 9 && date.getUTCMonth() + 1 >= 10 && date.getHours() >= 8) {
+            age = date.getFullYear() - 2002
+        } else {
+            age = date.getFullYear() - 2003
+        }
         return age;
     }
 
@@ -34,17 +34,17 @@ export function Lettering() {
             <div>
                 <TypeAnimation
                     sequence={[
-                        `My name is João, im ${handleAge()} years old!`,
+                        `My name is João, i'm ${handleAge()} years old.`,
                         1000,
-                        'My name is João, im muay thai fighter!',
+                        "My name is João, i'm muay thai fighter.",
                         1000,
-                        'My name is João, im brazilian jiu jitsu fighter!',
+                        "My name is João, i'm brazilian jiu jitsu fighter.",
                         1000,
-                        'My name is João, im guitarist!',
+                        "My name is João, i'm guitarist.",
                         1000,
-                        'My name is João, im dog person!',
+                        "My name is João, i'm dog person.",
                         1000,
-                        'My name is João, im e-sports enthusiast!',
+                        "My name is João, i'm e-sports enthusiast.",
                         1000,
                     ]}
                     wrapper="span"

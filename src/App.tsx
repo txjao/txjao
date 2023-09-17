@@ -1,5 +1,5 @@
 import { Header } from "./Components/Header"
-import { Lettering } from "./Components/Lettering"
+import { Info } from "./Components/Info"
 import { GlobalStyle } from "./Styles/global"
 
 function App() {
@@ -7,7 +7,9 @@ function App() {
     <>
     <GlobalStyle/>
     <Header/>
-    <Lettering/>
+    <div style={{display: "flex", flexDirection: "column", alignItems: "center", }}>
+    <Info/>
+    </div>
     </>
   )
 }
