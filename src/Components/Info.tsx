@@ -5,6 +5,7 @@ import linkedin from '../assets/linkedin.svg'
 import github from '../assets/github.svg'
 import instagram from '../assets/instagram.svg'
 import spotify from '../assets/spotify.svg'
+import twitter from '../assets/twitter.svg'
 import discord from '../assets/discord.svg'
 
 function handleWidth(){
@@ -20,10 +21,10 @@ function handleWidth(){
 function handleHeight(){
     if (window.innerHeight > 1366) {
         return 'auto'
-    } else if(window.innerHeight >= 1024 && window.innerHeight <= 1366){
-        return '150px' 
+    } else if(window.innerHeight >= 768 && window.innerHeight <= 1366){
+        return '120px' 
     } else if(window.innerHeight >= 768 && window.innerHeight < 1024){
-        return 'auto'
+        return '120px'
     }
 }
 
@@ -34,9 +35,10 @@ const Container = styled.div`
     margin-top: 80px;
     width: ${handleWidth()};
     padding: 16px;
+    height: ${handleHeight()};
 
     img{
-        width: 100px;
+        max-width: 100px;
         border-radius: 50%;
         margin-right: 16px;
     }
