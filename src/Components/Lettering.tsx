@@ -1,15 +1,31 @@
-import { useEffect, useState } from "react";
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 
+let flexAlign;
+function handleFontSize(){
+    if (window.innerWidth > 1366) {
+        flexAlign = 'center'
+        return '40px'
+    } else if(window.innerWidth < 1366 && window.innerWidth > 1024){
+        flexAlign = 'flex-start'
+        return '32px' 
+    }else{
+        return '32px'
+    }
+}
+
 const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: ${flexAlign};
+
    h1, h2{
     background: -webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: 40px;
+    font-size: ${handleFontSize()};
    }
 `
 
@@ -49,7 +65,7 @@ export function Lettering() {
                     ]}
                     wrapper="span"
                     speed={50}
-                    style={{ fontSize: '40px', display: 'inline-block', background: '-webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontFamily: 'Inter', fontWeight: 700 }}
+                    style={{ fontSize: handleFontSize(), display: 'inline-block', background: '-webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontFamily: 'Inter', fontWeight: 700 }}
                     repeat={Infinity}
                 />
             </div>

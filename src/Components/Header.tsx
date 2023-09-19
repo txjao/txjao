@@ -3,7 +3,6 @@ import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
 
 const Container = styled.header`
-
     display: flex;
     justify-content: space-between;
     align-items: center;
