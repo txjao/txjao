@@ -2,14 +2,14 @@ import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 
 let flexAlign;
-function handleFontSize(){
+function handleFontSize() {
     if (window.innerWidth > 1366) {
         flexAlign = 'center'
         return '40px'
-    } else if(window.innerWidth < 1366 && window.innerWidth > 1024){
+    } else if (window.innerWidth < 1366 && window.innerWidth > 1024) {
         flexAlign = 'flex-start'
-        return '32px' 
-    }else{
+        return '32px'
+    } else {
         return '32px'
     }
 }
