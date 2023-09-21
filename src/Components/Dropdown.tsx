@@ -19,7 +19,20 @@ const Container = styled.div`
     }
 
     .dropdown-content{
-        height: 0px;    
+        height: 40px;    
+        width: 140px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px 0;
+        background-color: #FAFAFA;
+        position: absolute;
+        top: 60px;
+        border-top: 0px;
+        }
+
+    .dropdown-content-open{  
         width: 140px;
         display: flex;
         align-items: center;
@@ -31,44 +44,59 @@ const Container = styled.div`
         top: 60px;
         border: solid 1px #000;
         border-top: 0px;
+        height: 80px;
         transition: height 0.5s ease;
-        }
+        transition: border 0.5s ease,;
+    }
+
+    .labels{
+        opacity: 0;
+        position: relative;
+        top: -20px;
+    }
+
+    .labels-when-open{
+        opacity: 1;
+        position: relative;
+        top: 0px;
+        transition: opacity 0.5s;
+        transition: top 0.5s;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     &:hover{
         .icon{
             transform: rotate(90deg);
-        }
-        .dropdown-content{
-            height: 80px;
         }
     }
 `
 
 export function Dropdown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const [onHover, setOnHover] = useState(true);
+
+    const aux = document.querySelector(".dropdown-content-open")
 
     return (
         <Container className="dropdown"
             onMouseEnter={() => {
                 setIsDropdownOpen(true)
-                setOnHover(true)
             }}
             onMouseLeave={() => {
                 setIsDropdownOpen(false)
-                setOnHover(false)
             }}
         >
             <div className="dropdown-label">
                 Contact Me
                 <ChevronRightIcon className="icon" />
             </div>
-            {isDropdownOpen && (
-                    <div className="dropdown-content">
-                        <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
-                        <a onClick={() => alert("navegar para a página do email")}>Email</a>
-                    </div>
-            )}
+            <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
+                <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
+                    <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
+                    <a onClick={() => alert("navegar para a página do email")}>Email</a>
+                </div>
+            </div>
         </Container>
     );
 }

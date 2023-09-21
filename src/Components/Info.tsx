@@ -9,22 +9,22 @@ import twitter from '../assets/twitter.svg'
 import discord from '../assets/discord.svg'
 import { useState } from "react";
 
-function handleWidth(){
+function handleWidth() {
     if (window.innerWidth > 1366) {
         return 'auto'
-    } else if(window.innerWidth >= 1024 && window.innerWidth <= 1366){
-        return '80%' 
-    } else if(window.innerWidth >= 768 && window.innerWidth < 1024){
+    } else if (window.innerWidth >= 1024 && window.innerWidth <= 1366) {
+        return '80%'
+    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
         return '80%'
     }
 }
 
-function handleHeight(){
+function handleHeight() {
     if (window.innerHeight > 1366) {
         return 'auto'
-    } else if(window.innerHeight >= 768 && window.innerHeight <= 1366){
-        return '120px' 
-    } else if(window.innerHeight >= 768 && window.innerHeight < 1024){
+    } else if (window.innerHeight >= 768 && window.innerHeight <= 1366) {
+        return '120px'
+    } else if (window.innerHeight >= 768 && window.innerHeight < 1024) {
         return '120px'
     }
 }
@@ -55,20 +55,23 @@ const Container = styled.div`
         gap: 24px;
         a{
             height: 24px;
+            position: relative; 
+            top: 0;
+            transition: top 0.2s; 
         }
         a:hover{
-            position: relative;
             top: -2px;
         }
     }
+
 `
 
 export function Info() {
     const [easterEgg, setEasterEgg] = useState(0)
 
-    function handleEasterEgg(){
+    function handleEasterEgg() {
         setEasterEgg(easterEgg + 1)
-        if(easterEgg === 5){
+        if (easterEgg === 5) {
             alert("You found me! 🐰")
         }
     }
@@ -76,8 +79,8 @@ export function Info() {
     return (
         <>
             <Container>
-                <div style={{ display: "flex", height: handleHeight()}}>
-                    <img src="/eu.jpg" onClick={handleEasterEgg}/>
+                <div style={{ display: "flex", height: handleHeight() }}>
+                    <img src="/eu.jpg" onClick={handleEasterEgg} />
                     <Lettering />
                 </div>
                 <p>Im a software engineer learning full-stack development, currently working as a Front-end Developer.</p>
@@ -86,7 +89,7 @@ export function Info() {
                     <a target="_blank" href="https://github.com/txjao"> <ReactSVG src={github} /></a>
                     <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG src={instagram} /></a>
                     <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG src={spotify} /></a>
-                    { easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG src={twitter} /></a>)}
+                    {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG src={twitter} /></a>)}
                     <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG src={discord} /></a>
                 </div>
             </Container>
