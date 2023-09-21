@@ -53,13 +53,14 @@ const Container = styled.div`
         opacity: 0;
         position: relative;
         top: -20px;
+        z-index: -1;
     }
 
     .labels-when-open{
         opacity: 1;
         position: relative;
         top: 0px;
-        transition: opacity 0.5s;
+        transition: display 0.5s;
         transition: top 0.5s;
         display: flex;
         flex-direction: column;
