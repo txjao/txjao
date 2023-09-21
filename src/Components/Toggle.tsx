@@ -40,10 +40,7 @@ const Container = styled.button`
 
 `
 
-interface ToggleProps {
-}
-
-export function Toggle(props: ToggleProps) {
+export function Toggle() {
     const [darkMode, setDarkMode] = useState(false)
 
     function handleDarkMode() {

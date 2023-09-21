@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const Container = styled.div`
 
@@ -75,8 +75,6 @@ const Container = styled.div`
 
 export function Dropdown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-
-    const aux = document.querySelector(".dropdown-content-open")
 
     return (
         <Container className="dropdown"
