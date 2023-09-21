@@ -33,15 +33,11 @@ const Container = styled.header`
         width: 100%;
     }
 `
-interface ToggleProps {
-    isDarkMode: boolean;
-}
-
 export function Header() {
 
     return (
         <Container>
-            <Toggle>Toggle</Toggle>
+            <Toggle/>
             <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
             <a href="https://github.com/txjao">Github</a>
             <img src="/favicon.png" />
