@@ -26,6 +26,8 @@ function handleHeight(){
         return '120px' 
     } else if(window.innerHeight >= 768 && window.innerHeight < 1024){
         return '120px'
+    } else if(window.innerHeight < 768){
+        return '104px'
     }
 }
 
@@ -35,7 +37,7 @@ function handleFontSize() {
     } else if ( window.innerWidth > 1024 && window.innerWidth < 1366) {
         return '20px'
     } else {
-        return '20px'
+        return '16px'
     }
 }
 

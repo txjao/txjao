@@ -46,7 +46,7 @@ const ContainerMobile = styled.header`
     align-items: center;
     background-color: #FAFAFA;
     height: 96px;
-    padding: 0 60px;
+    padding: 0 32px;
 
     a{
         font-family: 'Poppins', sans-serif;
