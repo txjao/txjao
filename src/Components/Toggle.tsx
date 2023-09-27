@@ -41,8 +41,21 @@ const Container = styled.button`
 `
 
 export function Toggle() {
+    const [darkMode, setDarkMode] = useState(false)
+
+    function handleDarkMode() {
+        if (darkMode) {
+            return sun
+        } else {
+            return moon
+        }
+    }
+
     return (
-        <Container>
+        <Container
+            onClick={() => {
+                setDarkMode(darkMode)
+            }}>
             <ReactSVG src={handleDarkMode()} />
         </Container>
     );
