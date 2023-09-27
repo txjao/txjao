@@ -12,7 +12,7 @@ const Container = styled.button`
     height: 40px;
     background-color: #FAFAFA;
     border: none;
-    cursor: pointer;
+    cursor: auto;
     color: #000;
 
     &:hover{
@@ -52,10 +52,7 @@ export function Toggle() {
     }
 
     return (
-        <Container
-            onClick={() => {
-                setDarkMode(!darkMode)
-            }}>
+        <Container>
             <ReactSVG src={handleDarkMode()} />
         </Container>
     );
