@@ -19,7 +19,7 @@ const Container = styled.div`
     }
 
     .dropdown-content{
-        height: 40px;    
+        height: 36px;    
         width: 140px;
         display: flex;
         align-items: center;
