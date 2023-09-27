@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
 import { useEffect, useState } from "react";
-import { MenuMobile } from "./MenuMobile";
 
 const ContainerDesktop = styled.header`
     display: flex;
