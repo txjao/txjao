@@ -61,7 +61,7 @@ const ContainerMobile = styled.header`
         content: '';
         display: block;
         width: 0;
-        height: 1px;
+        height: 0.5px;
         background: #000;
         transition: width .2s ease-in;
     }
