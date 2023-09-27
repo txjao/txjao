@@ -102,7 +102,6 @@ export function Header() {
             { isMobile && (
                     <ContainerMobile>
                         <img src="/favicon.png" />
-                        <MenuMobile />
                     </ContainerMobile >
                 )
             }
