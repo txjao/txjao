@@ -7,5 +7,6 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0px;
         box-sizing: border-box;
         max-width: 100vw;
+        background-color: #fff;
     }
     `

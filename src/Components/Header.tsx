@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
 import { useEffect, useState } from "react";
+import { MenuMobile } from "./MenuMobile";
 
 const ContainerDesktop = styled.header`
     display: flex;
@@ -52,7 +53,6 @@ const ContainerMobile = styled.header`
         font-family: 'Poppins', sans-serif;
         text-decoration: none;
         color: #000;
-        transition: font-weight 0.2s ease;
     }
 
     img{
@@ -72,9 +72,6 @@ const ContainerMobile = styled.header`
         width: 100%;
     }
 
-    #language-button:hover{
-        font-weight: 500;
-    }
 `
 
 export function Header() {
@@ -105,8 +102,7 @@ export function Header() {
             { isMobile && (
                     <ContainerMobile>
                         <img src="/favicon.png" />
-
-
+                        <MenuMobile />
                     </ContainerMobile >
                 )
             }
