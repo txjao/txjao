@@ -36,7 +36,6 @@ const ContainerDesktop = styled.header`
     }
 
     #language-button:hover{
-        font-weight: 500;
     }
 `
 
