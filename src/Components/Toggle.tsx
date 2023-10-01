@@ -64,7 +64,7 @@ export function Toggle() {
     return (
         <Container
             onClick={() => {
-                setDarkMode(!darkMode)
+                setDarkMode(darkMode)
                 notify()
             }}>
             <ReactSVG src={handleDarkMode()} />
