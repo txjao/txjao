@@ -2,7 +2,8 @@ import styled from "styled-components"
 import moon from '../assets/Moon.svg'
 import sun from '../assets/sun.svg'
 import { ReactSVG } from 'react-svg'
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import toast from 'react-hot-toast'
 
 const Container = styled.button`
     display: flex;
@@ -12,7 +13,7 @@ const Container = styled.button`
     height: 40px;
     background-color: #FAFAFA;
     border: none;
-    cursor: auto;
+    cursor: pointer;
     color: #000;
 
     &:hover{
@@ -43,20 +44,33 @@ const Container = styled.button`
 export function Toggle() {
     const [darkMode, setDarkMode] = useState(false)
 
-    function handleDarkMode() {
+    /**
+     * function handleDarkMode() {
         if (darkMode) {
             return sun
         } else {
             return moon
         }
     }
+     */
+
+    const notify = () => toast('Dark mode is not available yet', {
+        icon: '🚧',
+        duration: 3000,
+        position: "top-right",
+        style: {
+            fontFamily: 'Poppins',
+        }
+    })
 
     return (
         <Container
             onClick={() => {
-                setDarkMode(darkMode)
+                setDarkMode(!darkMode)
+                notify()
             }}>
-            <ReactSVG src={handleDarkMode()} />
+            <ReactSVG src={moon} />
+
         </Container>
     );
 }
