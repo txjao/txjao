@@ -15,7 +15,6 @@ const ContainerDesktop = styled.header`
         font-family: 'Poppins', sans-serif;
         text-decoration: none;
         color: #000;
-        transition: font-weight 0.2s ease;
     }
 
     img{
@@ -29,6 +28,7 @@ const ContainerDesktop = styled.header`
         height: 1px;
         background: #000;
         transition: width .2s ease-in;
+        font-weight: 400;
     }
 
     a:hover::after {
@@ -61,7 +61,7 @@ const ContainerMobile = styled.header`
         content: '';
         display: block;
         width: 0;
-        height: 0.5px;
+        height: 1px;
         background: #000;
         transition: width .2s ease-in;
     }
