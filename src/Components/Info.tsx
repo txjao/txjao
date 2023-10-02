@@ -148,6 +148,14 @@ export function Info() {
                         style={{
                             backgroundColor: '#FAFAFA',
                         }}>
+                        <Button onClick={() => handleClose()}
+                            style={{
+                                fontFamily: 'Poppins',
+                                color: '#000',
+                                textDecoration: 'none',
+                            }}>
+                            close
+                        </Button>
                         <Button onClick={() => handleClose()}>
                             <CopyToClipboard text="jao5626">
                                 <a href="https://discord.com/channels/@me"
