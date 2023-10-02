@@ -19,7 +19,7 @@ const Container = styled.div`
     }
 
     .dropdown-content{
-        height: 40px;    
+        height: 36px;    
         width: 140px;
         display: flex;
         align-items: center;
@@ -46,7 +46,6 @@ const Container = styled.div`
         border-top: 0px;
         height: 80px;
         transition: height 0.5s ease;
-        transition: border 0.5s ease,;
     }
 
     .labels{
@@ -60,7 +59,6 @@ const Container = styled.div`
         opacity: 1;
         position: relative;
         top: 0px;
-        transition: display 0.5s;
         transition: top 0.5s;
         display: flex;
         flex-direction: column;

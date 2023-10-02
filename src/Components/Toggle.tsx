@@ -3,6 +3,7 @@ import moon from '../assets/Moon.svg'
 import sun from '../assets/sun.svg'
 import { ReactSVG } from 'react-svg'
 import { useState } from "react";
+import toast from 'react-hot-toast'
 
 const Container = styled.button`
     display: flex;
@@ -51,12 +52,23 @@ export function Toggle() {
         }
     }
 
+    const notify = () => toast('Dark mode is not available yet', {
+        icon: '🚧',
+        duration: 3000,
+        position: "top-right",
+        style: {
+            fontFamily: 'Poppins',
+        }
+    })
+
     return (
         <Container
             onClick={() => {
-                setDarkMode(!darkMode)
+                setDarkMode(darkMode)
+                notify()
             }}>
             <ReactSVG src={handleDarkMode()} />
+
         </Container>
     );
 }
