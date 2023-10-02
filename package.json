@@ -16,8 +16,10 @@
     "@mui/material": "^5.13.6",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.9",
+    "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",
+    "react-modal": "^3.16.1",
     "react-svg": "^16.1.25",
     "react-type-animation": "^3.1.0",
     "styled-components": "^6.0.1",
@@ -27,6 +29,7 @@
   "devDependencies": {
     "@types/react": "^18.0.37",
     "@types/react-burger-menu": "^2.8.3",
+    "@types/react-copy-to-clipboard": "^5.0.5",
     "@types/react-dom": "^18.0.11",
     "@types/styled-components": "^5.1.26",
     "@typescript-eslint/eslint-plugin": "^5.59.0",
