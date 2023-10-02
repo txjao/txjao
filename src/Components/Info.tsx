@@ -13,6 +13,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
+import { Button } from "@mui/material";
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 function handleWidth() {
     if (window.innerWidth > 1366) {
@@ -67,18 +69,15 @@ const Container = styled.div`
         font-size: ${handleFontSize()};
     }
 
-    span{
-        cursor: copy;
-    }
-
     .icons{
         display: flex;
         gap: 24px;
+        cursor: pointer;
         a{
             height: 24px;
             position: relative;
             top: 0px;
-            transition: top 0.8;
+            transition: top 0.1s;
         }
         a:hover{
             top: -2px;
@@ -119,23 +118,49 @@ export function Info() {
                     <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG src={instagram} /></a>
                     <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG src={spotify} /></a>
                     {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG src={twitter} /></a>)}
-                    <span onClick={() => handleOpen()}>
-                        <ReactSVG src={discord}/>
-                    </span>
-                    <Dialog
-                        open={isModalOpen}
-                    >
-                        <DialogTitle>
-                            {"Add me!"}
-                        </DialogTitle>
-                        <DialogContent>
-                            
-                        </DialogContent>
-                        <DialogActions>
-                            <a onClick={() => handleClose()}>Disagree</a>
-                        </DialogActions>
-                    </Dialog>
+                    <a onClick={() => handleOpen()}>
+                        <ReactSVG src={discord} />
+                    </a>
                 </div>
+                <Dialog
+                    open={isModalOpen}
+                >
+                    <DialogTitle
+                        style={{
+                            fontFamily: 'Poppins',
+                            backgroundColor: '#FAFAFA',
+                        }}
+                    >
+                        {"Add me!"}
+                    </DialogTitle>
+                    <DialogContent
+                        style={{
+                            backgroundColor: '#FAFAFA',
+                        }}>
+                        <DialogContentText style={{
+                            fontFamily: 'Poppins',
+                            color: '#000'
+                        }}>
+                            Click to copy my user!
+                        </DialogContentText>
+                    </DialogContent>
+                    <DialogActions
+                        style={{
+                            backgroundColor: '#FAFAFA',
+                        }}>
+                        <Button onClick={() => handleClose()}>
+                            <CopyToClipboard text="jao5626">
+                                <a href="https://discord.com/channels/@me"
+                                    target="_blank"
+                                    style={{
+                                        fontFamily: 'Poppins',
+                                        color: '#000',
+                                        textDecoration: 'none',
+                                    }}>Copy</a>
+                            </CopyToClipboard>
+                        </Button>
+                    </DialogActions>
+                </Dialog>
             </Container>
         </>
     );
