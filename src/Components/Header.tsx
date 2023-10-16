@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
+import { DropdownResume } from "./DropdownResume";
 import { useEffect, useState } from "react";
 
 const ContainerDesktop = styled.header`
@@ -71,7 +72,6 @@ const ContainerMobile = styled.header`
     }
 
 `
-
 export function Header() {
     const [isMobile, setIsMobile] = useState(false);
 
@@ -85,24 +85,22 @@ export function Header() {
 
     return (
         <>
-            { !isMobile && (
-                    <ContainerDesktop>
-                        <Toggle />
-                        <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
-                        <a href="https://github.com/txjao">Github</a>
-                        <img src="/favicon.png" />
-                        <Dropdown />
-                        <a href="/">Resume</a>
-                        <a href="/" id="language-button">PT</a>
-                    </ContainerDesktop >
-                )
-            }
-            { isMobile && (
-                    <ContainerMobile>
-                        <img src="/favicon.png" />
-                    </ContainerMobile >
-                )
-            }
+            {!isMobile && (
+                <ContainerDesktop>
+                    <Toggle />
+                    <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
+                    <a href="https://github.com/txjao">Github</a>
+                    <img src="/favicon.png" />
+                    <Dropdown />
+                    <DropdownResume/>
+                    <a href="/" id="language-button">PT</a>
+                </ContainerDesktop >
+            )}
+            {isMobile && (
+                <ContainerMobile>
+                    <img src="/favicon.png" />
+                </ContainerMobile >
+            )}
         </>
     );
 }
