@@ -7,7 +7,7 @@ function App() {
   return (
     <>
     <GlobalStyle/>
-    <Header lang="en"/>
+    <Header/>
     <Toaster />
     <div style={{display: "flex", flexDirection: "column", alignItems: "center", }}>
     <Info/>

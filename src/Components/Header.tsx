@@ -72,13 +72,7 @@ const ContainerMobile = styled.header`
     }
 
 `
-
-interface HeaderProps {
-    onToggleTheme: () => void;
-    lang: string;
-}
-
-export function Header(props: HeaderProps) {
+export function Header() {
     const [isMobile, setIsMobile] = useState(false);
 
     useEffect(() => {
