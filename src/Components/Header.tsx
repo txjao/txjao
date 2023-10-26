@@ -53,6 +53,7 @@ const ContainerMobile = styled.header`
         font-family: 'Poppins', sans-serif;
         text-decoration: none;
         color: #000;
+        cursor: pointer;
     }
 
     img{
