@@ -91,7 +91,7 @@ export function Dropdown() {
             <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
                 <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
                     <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
-                    <a onClick={() => alert("navegar para a página do email")}>Email</a>
+                    <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
                 </div>
             </div>
         </Container>

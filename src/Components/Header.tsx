@@ -3,6 +3,7 @@ import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
 import { DropdownResume } from "./DropdownResume";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 const ContainerDesktop = styled.header`
     display: flex;
@@ -83,6 +84,15 @@ export function Header() {
         }
     }, [])
 
+    const notify = () => toast('Language PT-BR is not available yet', {
+        icon: '🚧',
+        duration: 3000,
+        position: "top-right",
+        style: {
+            fontFamily: 'Poppins',
+        }
+    })
+
     return (
         <>
             {!isMobile && (
@@ -93,7 +103,9 @@ export function Header() {
                     <img src="/favicon.png" />
                     <Dropdown />
                     <DropdownResume/>
-                    <a href="/" id="language-button">PT</a>
+                    <a id="language-button" onClick={()=>{
+                        notify()
+                    }}>PT</a>
                 </ContainerDesktop >
             )}
             {isMobile && (
