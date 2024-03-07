@@ -32,6 +32,7 @@
   <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" />
   <img align="center" height="30" width="40" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" />
   <img align="center" height="30" width="40" src="https://devicons.dev.br/icons?icon=NextJS&theme=dark" />
+  <img align="center" height="30" width="40" src="https://devicons.dev.br/icons?icon=TailwindCSS&theme=dark" />
   <img align="center" height="30" width="40" src="https://devicons.dev.br/icons?icon=StyledComponents&theme=dark" />
 </div>
 
