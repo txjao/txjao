@@ -16,27 +16,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-function handleWidth() {
-    if (window.innerWidth > 1366) {
-        return 'auto'
-    } else if (window.innerWidth >= 1024 && window.innerWidth <= 1366) {
-        return '80%'
-    } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-        return '80%'
-    }
-}
-
-function handleHeight() {
-    if (window.innerHeight > 1366) {
-        return 'auto'
-    } else if (window.innerHeight >= 768 && window.innerHeight <= 1366) {
-        return '120px'
-    } else if (window.innerHeight >= 768 && window.innerHeight < 1024) {
-        return '120px'
-    } else if (window.innerHeight < 768) {
-        return '104px'
-    }
-}
 
 function handleFontSize() {
     if (window.innerWidth > 1366) {
@@ -53,9 +32,8 @@ const Container = styled.div`
     flex-direction: column;
     gap: 24px;
     margin-top: 80px;
-    width: ${handleWidth()};
-    padding: 16px;
-    height: ${handleHeight()};
+    width: auto; 
+    height: auto;
 
     img{
         max-width: 100px;
@@ -66,7 +44,7 @@ const Container = styled.div`
     p{
         font-family: 'Poppins', sans-serif;
         color: #000;
-        font-size: ${handleFontSize()};
+        font-size: 24px;
     }
 
     .icons{
@@ -82,6 +60,34 @@ const Container = styled.div`
         a:hover{
             top: -2px;
         }
+    }
+
+    .lettering-box{
+        display: flex;
+    
+    }
+
+    @media (max-width: 1440px) {
+        height: 120px;
+        width: 80%; 
+        p{
+            font-size: 20px;
+        }
+    }
+    
+    @media (max-width: 1024px) {
+        img{
+            max-width: 80px;
+            border-radius: 50%;
+            margin-right: 16px;
+        }
+        p{
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 768) {
+        height: 104px;
     }
 
 `
@@ -107,7 +113,7 @@ export function Info() {
     return (
         <>
             <Container>
-                <div style={{ display: "flex", height: handleHeight() }}>
+                <div className="lettering-box">
                     <img src="/eu.jpg" onClick={handleEasterEgg} />
                     <Lettering />
                 </div>

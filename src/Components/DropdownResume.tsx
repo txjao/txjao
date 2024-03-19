@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
-import resume from '/public/Curriculo.pdf';
+import resume from '/src/assets/Curriculo.pdf';
 import toast from "react-hot-toast";
 const Container = styled.div`
 

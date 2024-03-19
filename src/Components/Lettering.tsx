@@ -1,25 +1,21 @@
+import { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 
 let flexAlign;
 function handleFontSize() {
     if (window.innerWidth > 1366) {
-        flexAlign = 'center'
         return '40px'
-    } else if ( window.innerWidth > 1024 && window.innerWidth < 1366) {
-        flexAlign = 'flex-start'
+    }
+    if (window.innerWidth <= 1024 && window.innerWidth > 425) {
         return '32px'
-    } else if ( window.innerWidth > 450 && window.innerWidth < 1024) {
-        return '24px'
-    } else{
-        return '20px'
     }
 }
 
 function handleWidth() {
     if (window.innerWidth > 450) {
         return 'auto'
-    } else{
+    } else {
         return '220px'
     }
 }
@@ -27,7 +23,7 @@ function handleWidth() {
 function handleHeight() {
     if (window.innerWidth > 450) {
         return 'auto'
-    } else{
+    } else {
         return '110px'
     }
 }
@@ -50,9 +46,42 @@ const Container = styled.div`
         height: ${handleHeight()};
         width: ${handleWidth()};
    }
+   
+   .index-module_type__E-SaG {
+    font-size: 40px;
+    display: inline-block;
+    background: -webkit-linear-gradient(180deg, rgba(255, 240, 0, 1) 0%, rgba(0, 181, 255, 1) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Inter;
+    font-weight: 700;
+    }
+
+    @media (max-width: 1440px) {
+        .index-module_type__E-SaG {
+            font-size: 32px;
+        }
+    }
+    
+    @media (max-width: 1024px) {
+        .index-module_type__E-SaG {
+            font-size: 24px;
+        }
+    }
+
+    @media (max-width: 768) {
+        .index-module_type__E-SaG {
+            font-size: 24px;
+        }
+    }
+
 `
 
 export function Lettering() {
+
+    useEffect(() => {
+        handleFontSize()
+    })
 
     function handleAge() {
         const date = new Date();
