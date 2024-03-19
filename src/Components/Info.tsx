@@ -16,17 +16,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
-
-function handleFontSize() {
-    if (window.innerWidth > 1366) {
-        return '24px'
-    } else if (window.innerWidth > 1024 && window.innerWidth < 1366) {
-        return '20px'
-    } else {
-        return '16px'
-    }
-}
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
