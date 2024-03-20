@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { Lettering } from "./Lettering";
 import { ReactSVG } from 'react-svg'
 import socialMediaIcons from '../utils/SocialMediaIcons';
-import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -10,6 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { useState } from "react";
 
 const Container = styled.div`
     display: flex;
@@ -20,7 +20,7 @@ const Container = styled.div`
     height: auto;
 
     img{
-        max-width: 100px;
+        max-width: 120px;
         border-radius: 50%;
         margin-right: 16px;
     }
@@ -74,7 +74,10 @@ const Container = styled.div`
 
     @media (max-width: 450px) {
         img{
-            border-radius: 3%;
+            max-width: 120px;
+        }
+        img{
+            border-radius: 5%;
         }
     }
 
@@ -102,7 +105,7 @@ export function Info() {
         <>
             <Container>
                 <div className="lettering-box">
-                    <img src={"/eu.jpg"} onClick={handleEasterEgg} />
+                    <img src='/eu.jpg' onClick={handleEasterEgg} />
                     <Lettering />
                 </div>
                 <p>Im a software engineer learning full-stack development, currently working as a Front-end Developer.</p>
