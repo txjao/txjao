@@ -2,36 +2,9 @@ import { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 
-let flexAlign;
-function handleFontSize() {
-    if (window.innerWidth > 1366) {
-        return '40px'
-    }
-    if (window.innerWidth <= 1024 && window.innerWidth > 425) {
-        return '32px'
-    }
-}
-
-function handleWidth() {
-    if (window.innerWidth > 450) {
-        return 'auto'
-    } else {
-        return '220px'
-    }
-}
-
-function handleHeight() {
-    if (window.innerWidth > 450) {
-        return 'auto'
-    } else {
-        return '110px'
-    }
-}
-
 const Container = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: ${flexAlign};
 
    h1, h2{
     background: -webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%);
@@ -39,12 +12,12 @@ const Container = styled.div`
     -webkit-text-fill-color: transparent;
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    font-size: ${handleFontSize()};
+    font-size: 40px;
    }
 
    .wrapper-lettering{
-        height: ${handleHeight()};
-        width: ${handleWidth()};
+        height: auto;
+        width: auto;
    }
    
    .index-module_type__E-SaG {
@@ -61,37 +34,39 @@ const Container = styled.div`
         .index-module_type__E-SaG {
             font-size: 32px;
         }
+        h1, h2{
+            font-size: 32px;
+        }
     }
     
-    @media (max-width: 1024px) {
+    @media (max-width: 768px) {
         .index-module_type__E-SaG {
             font-size: 24px;
         }
+        h1, h2{
+            font-size: 24px;
+        }
+        .wrapper-lettering{
+            height: 48px;
+        }
     }
 
-    @media (max-width: 768) {
-        .index-module_type__E-SaG {
-            font-size: 24px;
+    @media (max-width: 450px) {
+        .wrapper-lettering{
+            height: 110px;
+            width: 220px;
         }
     }
 
 `
 
 export function Lettering() {
-
-    useEffect(() => {
-        handleFontSize()
-    })
-
     function handleAge() {
         const date = new Date();
-        let age;
-        if (date.getDate() >= 9 && date.getUTCMonth() + 1 >= 10 && date.getHours() >= 8) {
-            age = date.getFullYear() - 2002
-        } else {
-            age = date.getFullYear() - 2003
-        }
-        return age;
+
+        return date.getDate() >= 9 && date.getUTCMonth() + 1 >= 10 && date.getHours() >= 8 ? 
+        date.getFullYear() - 2002 :
+        date.getFullYear() - 2003
     }
 
     return (
@@ -117,7 +92,6 @@ export function Lettering() {
                     ]}
                     wrapper="span"
                     speed={50}
-                    style={{ fontSize: handleFontSize(), display: 'inline-block', background: '-webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontFamily: 'Inter', fontWeight: 700 }}
                     repeat={Infinity}
                 />
             </div>
