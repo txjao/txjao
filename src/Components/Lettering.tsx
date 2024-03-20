@@ -73,7 +73,7 @@ const Container = styled.div`
     @media (max-width: 325px) {
         .wrapper-lettering {
             height: 110px;
-            width: 150px;
+            width: 128px;
         }
     }
 `;
