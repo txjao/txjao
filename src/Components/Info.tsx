@@ -75,12 +75,16 @@ const Container = styled.div`
     @media (max-width: 450px) {
         img{
             max-width: 120px;
-        }
-        img{
             border-radius: 5%;
         }
     }
 
+    @media (max-width: 375px) {
+        img{
+            max-width: 104px;
+            border-radius: 5%;
+        }
+    }
 `
 
 export function Info() {
