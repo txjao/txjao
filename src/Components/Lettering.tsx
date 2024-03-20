@@ -57,6 +57,24 @@ const Container = styled.div`
             height: 110px;
             width: 220px;
         }
+        .index-module_type__E-SaG {
+            font-size: 20px;
+        }
+        h1,h2 {
+            font-size: 20px;
+        }
+    }
+    @media (max-width: 375px) {
+        .wrapper-lettering {
+            height: 110px;
+            width: 220px;
+        }
+    }
+    @media (max-width: 325px) {
+        .wrapper-lettering {
+            height: 110px;
+            width: 150px;
+        }
     }
 `;
 
