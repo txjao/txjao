@@ -95,17 +95,17 @@ export function Lettering() {
             <div className="wrapper-lettering">
                 <TypeAnimation
                     sequence={[
-                        `My name is João, i'm ${handleAge()} years old.`,
+                        `My name is João, I'm ${handleAge()} years old.`,
                         1000,
-                        "My name is João, i'm muay thai fighter.",
+                        "My name is João, I'm muay thai fighter.",
                         1000,
-                        "My name is João, i'm brazilian jiu jitsu fighter.",
+                        "My name is João, I'm brazilian jiu jitsu fighter.",
                         1000,
-                        "My name is João, i'm guitarist.",
+                        "My name is João, I'm guitarist.",
                         1000,
-                        "My name is João, i'm dog person.",
+                        "My name is João, I'm dog person.",
                         1000,
-                        "My name is João, i'm e-sports enthusiast.",
+                        "My name is João, I'm e-sports enthusiast.",
                         1000,
                     ]}
                     wrapper="span"
