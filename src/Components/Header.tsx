@@ -4,6 +4,9 @@ import { Dropdown } from "./Dropdown";
 import { DropdownResume } from "./DropdownResume";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Hamburger from 'hamburger-react'
+import { motion } from "framer-motion"
+import resume from '../assets/Curriculo.pdf';
 
 const ContainerDesktop = styled.header`
     display: flex;
@@ -73,8 +76,34 @@ const ContainerMobile = styled.header`
         width: 100%;
     }
 
+    .menu-container{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .menu{
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        top: 10px;
+    }
+    .menu-content{
+        display: flex;
+        flex-direction: column;
+        text-align: right;
+        position: absolute;
+        right: 0;
+        background-color: transparent;
+    }
+
 `
+const variants = {
+    open: { opacity: 1, x: 0 },
+    closed: { opacity: 0, x: "-100%" },
+}
+
 export function Header() {
+    const [isOpen, setOpen] = useState(false);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const breakpoint = 768;
 
@@ -101,8 +130,8 @@ export function Header() {
                     <a href="https://github.com/txjao">Github</a>
                     <img src="/favicon.png" />
                     <Dropdown />
-                    <DropdownResume/>
-                    <a id="language-button" onClick={()=>{
+                    <DropdownResume />
+                    <a id="language-button" onClick={() => {
                         notify()
                     }}>PT</a>
                 </ContainerDesktop >
@@ -110,6 +139,26 @@ export function Header() {
             {windowWidth < breakpoint ? (
                 <ContainerMobile>
                     <img src="/favicon.png" />
+
+                    <div className="menu-container">
+                        <Hamburger toggled={isOpen} size={20} toggle={setOpen} />
+                        <div className="menu">
+                        <motion.nav
+                                animate={isOpen ? "open" : "closed"}
+                                variants={variants}
+                                className="menu-content"
+                            >
+                                {isOpen && (
+                                    <>
+                                        <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
+                                        <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
+                                        <a href={resume} target="_blank" rel="noopener">Resume</a>
+                                        <a onClick={() => notify()}>Certificates</a>
+                                    </>
+                                )}
+                            </motion.nav>
+                        </div>
+                    </div>
                 </ContainerMobile >
             ) : null}
         </>
