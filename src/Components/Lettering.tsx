@@ -67,7 +67,7 @@ const Container = styled.div`
     @media (max-width: 375px) {
         .wrapper-lettering {
             height: 110px;
-            width: 220px;
+            width: 200px;
         }
     }
     @media (max-width: 325px) {
