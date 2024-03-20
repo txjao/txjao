@@ -136,7 +136,7 @@ export function Header() {
                     }}>PT</a>
                 </ContainerDesktop >
             )}
-            {windowWidth < breakpoint ? (
+            {windowWidth < breakpoint && (
                 <ContainerMobile>
                     <img src="/favicon.png" />
 
@@ -160,7 +160,7 @@ export function Header() {
                         </div>
                     </div>
                 </ContainerMobile >
-            ) : null}
+            )}
         </>
     );
 }
