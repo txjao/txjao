@@ -75,15 +75,13 @@ const ContainerMobile = styled.header`
 
 `
 export function Header() {
-    const [isMobile, setIsMobile] = useState(false);
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    const breakpoint = 768;
 
     useEffect(() => {
-        if (window.innerWidth < 768) {
-            setIsMobile(true)
-        } else {
-            setIsMobile(false)
-        }
-    }, [])
+        setWindowWidth(window.innerWidth);
+    }, [windowWidth])
+
 
     const notify = () => toast('Language PT-BR is not available yet', {
         icon: '🚧',
@@ -96,7 +94,7 @@ export function Header() {
 
     return (
         <>
-            {!isMobile && (
+            {windowWidth >= breakpoint && (
                 <ContainerDesktop>
                     <Toggle />
                     <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
@@ -109,11 +107,11 @@ export function Header() {
                     }}>PT</a>
                 </ContainerDesktop >
             )}
-            {isMobile && (
+            {windowWidth < breakpoint ? (
                 <ContainerMobile>
                     <img src="/favicon.png" />
                 </ContainerMobile >
-            )}
+            ) : null}
         </>
     );
 }
