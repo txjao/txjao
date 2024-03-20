@@ -93,13 +93,20 @@ const ContainerMobile = styled.header`
         text-align: right;
         position: absolute;
         right: 0;
-        background-color: transparent;
+        background-color: #FAFAFA;
+        border: 1px solid #000;
+        border-top: none;
+        padding: 12px;
+    }
+    .menu-content-closed{
+        position: absolute;
+        right: 0;
     }
 
 `
 const variants = {
-    open: { opacity: 1, x: 0 },
-    closed: { opacity: 0, x: "-100%" },
+    open: { opacity: 1, y: 0 },
+    closed: { opacity: 0, y: "-100%" },
 }
 
 export function Header() {
@@ -112,7 +119,7 @@ export function Header() {
     }, [windowWidth])
 
 
-    const notify = () => toast('Language PT-BR is not available yet', {
+    const notify = () => toast('This feature is not available yet', {
         icon: '🚧',
         duration: 3000,
         position: "top-right",
@@ -146,7 +153,7 @@ export function Header() {
                         <motion.nav
                                 animate={isOpen ? "open" : "closed"}
                                 variants={variants}
-                                className="menu-content"
+                                className={isOpen ? "menu-content" : "menu-content-closed"}
                             >
                                 {isOpen && (
                                     <>
