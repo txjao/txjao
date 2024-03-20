@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Lettering } from "./Lettering";
 import { ReactSVG } from 'react-svg'
 import socialMediaIcons from '../utils/SocialMediaIcons';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -83,7 +83,6 @@ const Container = styled.div`
 export function Info() {
     const [easterEgg, setEasterEgg] = useState(0)
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [img, setImg] = useState("")
 
     function handleEasterEgg() {
         setEasterEgg(easterEgg + 1)
@@ -99,15 +98,11 @@ export function Info() {
         setIsModalOpen(false)
     }
 
-    useEffect(() => {
-        window.innerWidth >= 768 ? setImg("/eu.jpg") : setImg("/selfie.jpg")
-    }, [img])
-
     return (
         <>
             <Container>
                 <div className="lettering-box">
-                    <img src={img} onClick={handleEasterEgg} />
+                    <img src={"/eu.jpg"} onClick={handleEasterEgg} />
                     <Lettering />
                 </div>
                 <p>Im a software engineer learning full-stack development, currently working as a Front-end Developer.</p>
