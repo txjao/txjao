@@ -1,64 +1,64 @@
-import { useEffect } from "react";
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
 
 const Container = styled.div`
-    display: flex;
-    flex-direction: column;
+    .display {
+        display: flex;
+        flex-direction: column;
+    }
 
-   h1, h2{
-    background: -webkit-linear-gradient(180deg, rgba(255,240,0,1) 0%, rgba(0,181,255,1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 40px;
-   }
+    h1,h2 {
+        background: -webkit-linear-gradient(180deg, rgba(255, 240, 0, 1) 0%, rgba(0, 181, 255, 1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: 'Inter', sans-serif;
+        font-weight: 700;
+        font-size: 40px;
+    }
 
-   .wrapper-lettering{
+    .wrapper-lettering {
         height: auto;
         width: auto;
-   }
-   
-   .index-module_type__E-SaG {
-    font-size: 40px;
-    display: inline-block;
-    background: -webkit-linear-gradient(180deg, rgba(255, 240, 0, 1) 0%, rgba(0, 181, 255, 1) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Inter;
-    font-weight: 700;
+    }
+
+    .index-module_type__E-SaG {
+        font-size: 40px;
+        display: inline-block;
+        background: -webkit-linear-gradient(180deg, rgba(255, 240, 0, 1) 0%, rgba(0, 181, 255, 1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-family: Inter;
+        font-weight: 700;
     }
 
     @media (max-width: 1440px) {
         .index-module_type__E-SaG {
             font-size: 32px;
         }
-        h1, h2{
+        h1,h2 {
             font-size: 32px;
         }
     }
-    
+
     @media (max-width: 768px) {
         .index-module_type__E-SaG {
             font-size: 24px;
         }
-        h1, h2{
+        h1,h2 {
             font-size: 24px;
         }
-        .wrapper-lettering{
+        .wrapper-lettering {
             height: 48px;
         }
     }
 
     @media (max-width: 450px) {
-        .wrapper-lettering{
+        .wrapper-lettering {
             height: 110px;
             width: 220px;
         }
     }
-
-`
+`;
 
 export function Lettering() {
     function handleAge() {
