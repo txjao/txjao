@@ -115,10 +115,7 @@ export function Header() {
     const breakpoint = 768;
 
     useEffect(() => {
-        function updateSize() {
-            setWindowWidth(window.innerWidth);
-        }
-        window.addEventListener('resize', updateSize);
+        window.addEventListener('resize', () => setWindowWidth(window.innerWidth));
     }, []);
 
     const notify = () => toast('This feature is not available yet', {
