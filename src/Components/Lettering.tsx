@@ -64,7 +64,7 @@ const Container = styled.div`
             font-size: 20px;
         }
     }
-    @media (max-width: 375px) {
+    @media (max-width: 400px) {
         .wrapper-lettering {
             height: 110px;
             width: 200px;
