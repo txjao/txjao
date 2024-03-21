@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Toggle } from "./Toggle";
 import { Dropdown } from "./Dropdown";
 import { DropdownResume } from "./DropdownResume";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
@@ -114,10 +114,13 @@ export function Header() {
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     const breakpoint = 768;
 
-    useEffect(() => {
-        setWindowWidth(window.innerWidth);
-    }, [windowWidth])
-
+    useLayoutEffect(() => {
+        function updateSize() {
+            setWindowWidth(window.innerWidth);
+        }
+        window.addEventListener('resize', updateSize);
+        updateSize();
+    }, []);
 
     const notify = () => toast('This feature is not available yet', {
         icon: '🚧',
