@@ -105,7 +105,7 @@ export function Dropdown() {
             </div>
             <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
                 <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
-                    <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
+                    <a href="mailto: contatojoaovteixeira@gmail.com">E-mail</a>
                     <a onClick={() => handleOpen()}>Discord</a>
                 </div>
             </div>
