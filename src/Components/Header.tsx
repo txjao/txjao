@@ -156,7 +156,7 @@ export function Header() {
                             >
                                 {isOpen && (
                                     <>
-                                        <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
+                                        <a href="mailto: contatojoaovteixeira@gmail.com">E-mail</a>
                                         <a href="https://github.com/txjao">Github</a>
                                         <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
                                         <a href={resume} target="_blank" rel="noopener">Resume</a>
