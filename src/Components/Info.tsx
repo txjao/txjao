@@ -112,7 +112,7 @@ export function Info() {
                     <img src='/eu.jpg' onClick={handleEasterEgg} />
                     <Lettering />
                 </div>
-                <p>Im a software engineer learning full-stack development, currently working as a Front-end Developer.</p>
+                <p>I am a software engineer learning full-stack development, currently working as a Back-end Developer.</p>
                 <div className="icons">
                     <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG src={socialMediaIcons.linkedin} /></a>
                     <a target="_blank" href="https://github.com/txjao"> <ReactSVG src={socialMediaIcons.github} /></a>
