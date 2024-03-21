@@ -150,15 +150,16 @@ export function Header() {
                     <div className="menu-container">
                         <Hamburger toggled={isOpen} size={20} toggle={setOpen} />
                         <div className="menu">
-                        <motion.nav
+                            <motion.nav
                                 animate={isOpen ? "open" : "closed"}
                                 variants={variants}
                                 className={isOpen ? "menu-content" : "menu-content-closed"}
                             >
                                 {isOpen && (
                                     <>
-                                        <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
                                         <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
+                                        <a href="https://github.com/txjao">Github</a>
+                                        <a href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/">Linkedin</a>
                                         <a href={resume} target="_blank" rel="noopener">Resume</a>
                                         <a onClick={() => notify()}>Certificates</a>
                                     </>
