@@ -1,6 +1,13 @@
 import styled from "styled-components";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
+import CopyToClipboard from "react-copy-to-clipboard";
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+import { Button } from "@mui/material";
 
 const Container = styled.div`
 
@@ -74,6 +81,14 @@ const Container = styled.div`
 
 export function Dropdown() {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false)
+
+    function handleOpen() {
+        setIsModalOpen(true)
+    }
+    function handleClose() {
+        setIsModalOpen(false)
+    }
 
     return (
         <Container className="dropdown"
@@ -90,10 +105,58 @@ export function Dropdown() {
             </div>
             <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
                 <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
-                    <a href="https://wa.me/31995985251" target="_blank" rel="noopener">Whatsapp</a>
                     <a href="mailto: contatojoaovteixeira@gmail.com">Email</a>
+                    <a onClick={() => handleOpen()}>Discord</a>
                 </div>
             </div>
-        </Container>
+
+            <Dialog
+                open={isModalOpen}
+            >
+                <DialogTitle
+                    style={{
+                        fontFamily: 'Poppins',
+                        backgroundColor: '#FAFAFA',
+                    }}
+                >
+                    {"Add me!"}
+                </DialogTitle>
+                <DialogContent
+                    style={{
+                        backgroundColor: '#FAFAFA',
+                    }}>
+                    <DialogContentText style={{
+                        fontFamily: 'Poppins',
+                        color: '#000'
+                    }}>
+                        Click to copy my user!
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions
+                    style={{
+                        backgroundColor: '#FAFAFA',
+                    }}>
+                    <Button onClick={() => handleClose()}
+                        style={{
+                            fontFamily: 'Poppins',
+                            color: '#000',
+                            textDecoration: 'none',
+                        }}>
+                        close
+                    </Button>
+                    <Button onClick={() => handleClose()}>
+                        <CopyToClipboard text="jao5626">
+                            <a href="https://discord.com/channels/@me"
+                                target="_blank"
+                                style={{
+                                    fontFamily: 'Poppins',
+                                    color: '#000',
+                                    textDecoration: 'none',
+                                }}>Copy</a>
+                        </CopyToClipboard>
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        </Container >
     );
 }
