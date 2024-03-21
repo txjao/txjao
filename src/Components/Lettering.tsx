@@ -40,7 +40,7 @@ const Container = styled.div`
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         .index-module_type__E-SaG {
             font-size: 24px;
         }
