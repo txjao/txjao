@@ -97,15 +97,15 @@ export function Lettering() {
                     sequence={[
                         `My name is João, I'm ${handleAge()} years old.`,
                         1000,
-                        "My name is João, I'm muay thai fighter.",
+                        "My name is João, I'm a muay thai fighter.",
                         1000,
-                        "My name is João, I'm brazilian jiu jitsu fighter.",
+                        "My name is João, I'm a brazilian jiu jitsu fighter.",
                         1000,
-                        "My name is João, I'm guitarist.",
+                        "My name is João, I'm a guitarist.",
                         1000,
-                        "My name is João, I'm dog person.",
+                        "My name is João, I'm a dog person.",
                         1000,
-                        "My name is João, I'm e-sports enthusiast.",
+                        "My name is João, I'm an e-sports enthusiast.",
                         1000,
                     ]}
                     wrapper="span"
