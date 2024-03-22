@@ -122,7 +122,7 @@ export function Info() {
                     <a onClick={() => handleOpen()}>
                         <ReactSVG src={socialMediaIcons.discord} />
                     </a>
-                    <a target="_blank" href=""> <ReactSVG src={socialMediaIcons.figma} /></a>
+                    <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1"> <ReactSVG src={socialMediaIcons.figma} /></a>
                 </div>
                 <Dialog
                     open={isModalOpen}
