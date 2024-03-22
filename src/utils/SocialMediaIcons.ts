@@ -4,6 +4,7 @@ import instagram from '../assets/instagram.svg';
 import spotify from '../assets/spotify.svg';
 import twitter from '../assets/twitter.svg';
 import discord from '../assets/discord.svg';
+import figma from '../assets/figma.svg';
 
 const socialMediaIcons = {
     linkedin,
@@ -11,7 +12,8 @@ const socialMediaIcons = {
     instagram,
     spotify,
     twitter,
-    discord
+    discord,
+    figma,
 };
 
 export default socialMediaIcons;
