@@ -81,6 +81,7 @@ const Container = styled.div`
 
     @media (max-width: 375px) {
         img{
+            object-fit: cover;
             max-width: 104px;
             border-radius: 5%;
         }
