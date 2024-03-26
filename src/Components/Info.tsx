@@ -37,12 +37,16 @@ const Container = styled.div`
         cursor: pointer;
         a{
             height: 24px;
+            width: 32px;
             position: relative;
             top: 0px;
             transition: top 0.1s;
         }
         a:hover{
             top: -2px;
+        }
+        .icon{
+            width: 100%;
         }
     }
 
@@ -80,6 +84,12 @@ const Container = styled.div`
     }
 
     @media (max-width: 375px) {
+        a{
+            width: 24px;
+        }
+        .icons{
+            width: 100%;
+        }
         img{
             object-fit: cover;
             max-width: 104px;
@@ -115,15 +125,15 @@ export function Info() {
                 </div>
                 <p>I am a software engineer learning full-stack development, currently working as a Back-end Developer.</p>
                 <div className="icons">
-                    <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG src={socialMediaIcons.linkedin} /></a>
-                    <a target="_blank" href="https://github.com/txjao"> <ReactSVG src={socialMediaIcons.github} /></a>
-                    <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG src={socialMediaIcons.instagram} /></a>
-                    <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG src={socialMediaIcons.spotify} /></a>
-                    {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG src={socialMediaIcons.twitter} /></a>)}
+                    <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG className="icon" src={socialMediaIcons.linkedin} /></a>
+                    <a target="_blank" href="https://github.com/txjao"> <ReactSVG className="icon" src={socialMediaIcons.github} /></a>
+                    <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG className="icon" src={socialMediaIcons.instagram} /></a>
+                    <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG className="icon" src={socialMediaIcons.spotify} /></a>
+                    {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG className="icon" src={socialMediaIcons.twitter} /></a>)}
                     <a onClick={() => handleOpen()}>
-                        <ReactSVG src={socialMediaIcons.discord} />
+                        <ReactSVG className="icon" src={socialMediaIcons.discord} />
                     </a>
-                    <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1"> <ReactSVG src={socialMediaIcons.figma} /></a>
+                    <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1"> <ReactSVG className="icon" src={socialMediaIcons.figma} /></a>
                 </div>
                 <Dialog
                     open={isModalOpen}
