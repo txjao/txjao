@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
-import resume from '../assets/Curriculo.pdf';
+import resume from '../assets/documents/Resume.pdf';
 
 const ContainerDesktop = styled.header`
     display: flex;
