@@ -88,5 +88,7 @@
 <span></span>
 <span></span>
 
+<div>
 <img src="https://raw.githubusercontent.com/txjao/github-stats/master/generated/overview.svg#gh-dark-mode-only" alt="Overview Stats" />
 <img src="https://raw.githubusercontent.com/txjao/github-stats/master/generated/languages.svg#gh-dark-mode-only" alt="Languages Stats" />
+</div>
