@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle<{ theme: string }>`
+export const GlobalStyle = createGlobalStyle<{ currentTheme: string }>`
 
     *{
         padding: 0px;
@@ -8,6 +8,6 @@ export const GlobalStyle = createGlobalStyle<{ theme: string }>`
         box-sizing: border-box;
     }
     body{
-        background-color: ${props => props.theme === 'light' ? '#FAFAFA' : '#050505'};
+        background-color: ${props => props.currentTheme === 'light' ? '#FAFAFA' : '#050505'};
     }
     `

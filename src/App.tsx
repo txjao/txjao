@@ -10,7 +10,7 @@ function AppContent() {
 
   return (
     <>
-      <GlobalStyle theme={theme} />
+      <GlobalStyle currentTheme={theme} />
       <Header />
       <Toaster />
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
