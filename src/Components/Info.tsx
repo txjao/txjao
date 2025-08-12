@@ -50,11 +50,6 @@ const Container = styled.div<{ theme: string }>`
         .icon{
           width: 100%;     
         }
-
-        .figma-icon * {
-          width: 100%;
-          fill: ${props => props.theme === 'light' ? '' : '#fff !important'};
-        }
     }
 
     .lettering-box{
@@ -165,11 +160,6 @@ export function Info() {
           <a onClick={() => handleOpen()}>
             <ReactSVG className="icon"
               src={theme === "light" ? socialMediaIcons.discord : socialMediaIcons.discordDark} />
-          </a>
-
-          <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1">
-            <ReactSVG className="figma-icon"
-              src={socialMediaIcons.figma} />
           </a>
         </div>
         <Dialog
