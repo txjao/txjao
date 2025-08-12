@@ -8,6 +8,9 @@ import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
 import resume from '../assets/documents/Curriculo.pdf';
 import { useTheme } from "../contexts/ThemeContext";
+import { useLanguage } from "../contexts/LanguageContext";
+import { enHeader, enMobileHeaderMenu, IHeaderTexts, IMobileHeaderMenuTexts, ptHeader, ptMobileHeaderMenu } from "../utils/LanguangeUtil";
+import { LanguageToggle } from "./LanguageToggle";
 
 const BaseContainer = styled.header<{ theme: string }>`
   display: flex;
@@ -40,6 +43,10 @@ const BaseContainer = styled.header<{ theme: string }>`
   a:hover::after {
     width: 100%;
   }
+
+  .lang-toggle{
+    width: 20px
+  }
 `;
 
 const ContainerDesktop = styled(BaseContainer)`
@@ -62,6 +69,7 @@ const ContainerMobile = styled(BaseContainer)`
   }
 
   .menu-content {
+    width: 144px;
     display: flex;
     flex-direction: column;
     text-align: right;
@@ -78,6 +86,12 @@ const ContainerMobile = styled(BaseContainer)`
     position: absolute;
     right: 0;
   }
+
+  .menu-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 `;
 
 const variants = {
@@ -90,7 +104,9 @@ const BREAKPOINT = 768;
 export function Header() {
   const [isOpen, setOpen] = useState(false);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
   const { theme } = useTheme();
+  const { language, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -108,8 +124,13 @@ export function Header() {
     }
   });
 
-
   const isDesktop = windowWidth >= BREAKPOINT;
+
+  const mobileMenuTexts: IMobileHeaderMenuTexts = language === 'EN' ? enMobileHeaderMenu : ptMobileHeaderMenu
+
+  function handleHeadertexts(): IHeaderTexts {
+    return language === 'EN' ? enHeader : ptHeader
+  }
 
   return (
     <>
@@ -127,14 +148,12 @@ export function Header() {
             Github
           </a>
           <img src="/favicon.png" alt="Logo" />
-          <Dropdown />
-          <DropdownResume />
-          <a onClick={notify}>PT</a>
+          <Dropdown texts={handleHeadertexts()} />
+          <DropdownResume texts={handleHeadertexts()} />
+          <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
         </ContainerDesktop>
       ) : (
         <ContainerMobile theme={theme}>
-          <Toggle />
-
           <img src="/favicon.png" alt="Logo" />
 
           <div className="menu-container">
@@ -165,9 +184,13 @@ export function Header() {
                     <a href={resume}
                       target="_blank"
                       rel="noopener noreferrer">
-                      Resume
+                      {mobileMenuTexts?.resume}
                     </a>
-                    <a onClick={notify}>Certificates</a>
+                    <a onClick={notify}>{mobileMenuTexts?.certificates}</a>
+                    <div className="menu-buttons">
+                      <Toggle />
+                      <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
+                    </div>
                   </>
                 )}
               </motion.nav>

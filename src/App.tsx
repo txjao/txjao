@@ -4,6 +4,7 @@ import { Info } from "./Components/Info"
 import { GlobalStyle } from "./Styles/global"
 import { ThemeProvider } from "./contexts/ThemeProvider"
 import { useTheme } from "./contexts/ThemeContext"
+import { LanguageProvider } from "./contexts/LanguageProvider"
 
 function AppContent() {
   const { theme } = useTheme()
@@ -22,9 +23,11 @@ function AppContent() {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <LanguageProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </LanguageProvider>
   )
 }
 

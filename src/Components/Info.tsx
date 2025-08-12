@@ -11,6 +11,8 @@ import { Button } from "@mui/material";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
+import { useLanguage } from "../contexts/LanguageContext";
+import { enInfo, ptInfo } from "../utils/LanguangeUtil";
 
 const Container = styled.div<{ theme: string }>`
     display: flex;
@@ -18,6 +20,7 @@ const Container = styled.div<{ theme: string }>`
     gap: 24px;
     margin-top: 80px;
     width: auto; 
+    max-width: 80%;
     height: auto;
 
     img{
@@ -105,6 +108,7 @@ export function Info() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const { theme } = useTheme();
+  const { language } = useLanguage();
 
   function handleEasterEgg() {
     setEasterEgg(easterEgg + 1)
@@ -120,6 +124,10 @@ export function Info() {
     setIsModalOpen(false)
   }
 
+  function handleLanguage(): string {
+    return language === "EN" ? enInfo : ptInfo
+  }
+
   return (
     <>
       <Container theme={theme}>
@@ -128,7 +136,7 @@ export function Info() {
           <Lettering />
         </div>
         <div>
-          <p>I am a software engineer learning full-stack development, currently working as a full-stack developer with Angular and Java.</p>
+          <p>{handleLanguage()}</p>
         </div>
         <div className="icons">
 

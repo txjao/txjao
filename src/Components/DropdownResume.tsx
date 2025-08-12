@@ -4,9 +4,10 @@ import { useState } from "react";
 import resume from '/src/assets/documents/Curriculo.pdf';
 import toast from "react-hot-toast";
 import { useTheme } from "../contexts/ThemeContext";
+import { IHeaderTexts } from "../utils/LanguangeUtil";
 
 const Container = styled.div<{ theme: string }>`
-
+    width: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,8 +77,11 @@ const Container = styled.div<{ theme: string }>`
         }
     }
 `
+interface DropdownResumeProps {
+  texts: IHeaderTexts
+}
 
-export function DropdownResume() {
+export function DropdownResume(props: DropdownResumeProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const { theme } = useTheme()
@@ -102,13 +106,13 @@ export function DropdownResume() {
       theme={theme}
     >
       <div className="dropdown-label">
-        Resume
+        <p>{props.texts.me}</p>
         <ChevronRightIcon className="icon" />
       </div>
       <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
         <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
-          <a href={resume} target="_blank" rel="noopener">Resume</a>
-          <a onClick={() => notify()}>Certificates</a>
+          <a href={resume} target="_blank" rel="noopener">{props.texts.meItens.resume}</a>
+          <a onClick={() => notify()}>{props.texts.meItens.certificates}</a>
         </div>
       </div>
     </Container>

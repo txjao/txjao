@@ -9,9 +9,10 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 import { useTheme } from "../contexts/ThemeContext";
+import { IHeaderTexts } from "../utils/LanguangeUtil";
 
 const Container = styled.div<{ theme: string }>`
-
+    width: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,8 +82,11 @@ const Container = styled.div<{ theme: string }>`
         }
     }
 `
+interface DropdownResumeProps {
+  texts: IHeaderTexts
+}
 
-export function Dropdown() {
+export function Dropdown(props: DropdownResumeProps) {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -106,7 +110,7 @@ export function Dropdown() {
       theme={theme}
     >
       <div className="dropdown-label">
-        Contact Me
+        <p>{props.texts.contactMe}</p>
         <ChevronRightIcon className="icon" />
       </div>
       <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>

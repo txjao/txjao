@@ -1,5 +1,8 @@
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
+import { enLettering, enLetteringTitle, ptLettering, ptLetteringTitle } from "../utils/LanguangeUtil";
+import { useLanguage } from "../contexts/LanguageContext";
+import { useEffect, useState } from "react";
 
 const Container = styled.div`
     .display {
@@ -79,40 +82,30 @@ const Container = styled.div`
 `;
 
 export function Lettering() {
-    function handleAge() {
-        const date = new Date();
+  const { language } = useLanguage()
+  const [lettering, setLettering] = useState(() => language === 'EN' ? enLettering : ptLettering)
+  const [key, setKey] = useState(0)
 
-        return date.getDate() >= 9 && date.getUTCMonth() + 1 >= 10 && date.getHours() >= 8 ? 
-        date.getFullYear() - 2002 :
-        date.getFullYear() - 2003
-    }
+  useEffect(() => {
+    const newLettering = language === 'EN' ? enLettering : ptLettering
+    setLettering(newLettering)
+    setKey(prev => prev + 1)
+  }, [language])
 
-    return (
-        <Container>
-            <div style={{ display: "inline-flex" }}>
-                <h1>Hi there!</h1><p>👋</p>
-            </div>
-            <div className="wrapper-lettering">
-                <TypeAnimation
-                    sequence={[
-                        `My name is João, I'm ${handleAge()} years old.`,
-                        1000,
-                        "My name is João, I'm a muay thai fighter.",
-                        1000,
-                        "My name is João, I'm a brazilian jiu jitsu fighter.",
-                        1000,
-                        "My name is João, I'm a guitarist.",
-                        1000,
-                        "My name is João, I'm a dog person.",
-                        1000,
-                        "My name is João, I'm an e-sports enthusiast.",
-                        1000,
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                />
-            </div>
-        </Container>
-    );
+  return (
+    <Container>
+      <div style={{ display: "inline-flex" }}>
+        <h1>{language === 'EN' ? enLetteringTitle : ptLetteringTitle}</h1><p>👋</p>
+      </div>
+      <div className="wrapper-lettering">
+        <TypeAnimation
+          key={key}
+          sequence={lettering}
+          wrapper="span"
+          speed={50}
+          repeat={Infinity}
+        />
+      </div>
+    </Container>
+  );
 }
