@@ -20,6 +20,13 @@ export interface IMobileHeaderMenuTexts {
   certificates: string,
 }
 
+export interface IModalTexts {
+  title: string
+  text: string
+  addButton: string
+  closeButton: string
+}
+
 // EN Transalation
 
 export const enInfo = "I am a software engineer learning full-stack development, currently working as a full-stack developer with Angular and Java."
@@ -55,6 +62,13 @@ export const enLettering = [
   1000,
 ]
 
+export const enModalTexts: IModalTexts = {
+  title: "Add me!",
+  text: "Click to copy my user!",
+  addButton: "Copy",
+  closeButton: "Close",
+}
+
 // PT Translation
 
 export const ptInfo = "Sou um engenheiro de software aprendendo desenvolvimento full-stack e, atualmente, trabalho como programador full-stack com Angular e Java."
@@ -89,4 +103,11 @@ export const ptLettering = [
   "Me chamo João, sou um entusiasta de e-sports.",
   1000,
 ]
+
+export const ptModalTexts: IModalTexts = {
+  title: "Me adicione!",
+  text: "Clique para copiar meu usuário!",
+  addButton: "Copiar",
+  closeButton: "Fechar",
+}
 

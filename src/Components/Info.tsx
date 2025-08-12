@@ -2,17 +2,11 @@ import styled from "styled-components";
 import { Lettering } from "./Lettering";
 import { ReactSVG } from 'react-svg'
 import socialMediaIcons from '../utils/SocialMediaIcons';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
-import { Button } from "@mui/material";
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import { enInfo, ptInfo } from "../utils/LanguangeUtil";
+import { DiscordModal } from "./DiscordModal";
 
 const Container = styled.div<{ theme: string }>`
     display: flex;
@@ -170,53 +164,7 @@ export function Info() {
               src={theme === "light" ? socialMediaIcons.discord : socialMediaIcons.discordDark} />
           </a>
         </div>
-        <Dialog
-          open={isModalOpen}
-        >
-          <DialogTitle
-            style={{
-              fontFamily: 'Poppins',
-              backgroundColor: '#FAFAFA',
-            }}
-          >
-            {"Add me!"}
-          </DialogTitle>
-          <DialogContent
-            style={{
-              backgroundColor: '#FAFAFA',
-            }}>
-            <DialogContentText style={{
-              fontFamily: 'Poppins',
-              color: '#000'
-            }}>
-              Click to copy my user!
-            </DialogContentText>
-          </DialogContent>
-          <DialogActions
-            style={{
-              backgroundColor: '#FAFAFA',
-            }}>
-            <Button onClick={() => handleClose()}
-              style={{
-                fontFamily: 'Poppins',
-                color: '#000',
-                textDecoration: 'none',
-              }}>
-              close
-            </Button>
-            <Button onClick={() => handleClose()}>
-              <CopyToClipboard text="jao5626">
-                <a href="https://discord.com/channels/@me"
-                  target="_blank"
-                  style={{
-                    fontFamily: 'Poppins',
-                    color: '#000',
-                    textDecoration: 'none',
-                  }}>Copy</a>
-              </CopyToClipboard>
-            </Button>
-          </DialogActions>
-        </Dialog>
+        <DiscordModal isModalOpen={isModalOpen} handleClose={handleClose} />
       </Container>
     </>
   );
