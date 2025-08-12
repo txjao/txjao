@@ -2,16 +2,15 @@ import styled from "styled-components"
 import moon from '../assets/Moon.svg'
 import sun from '../assets/sun.svg'
 import { ReactSVG } from 'react-svg'
-import { useState } from "react";
-import toast from 'react-hot-toast'
+import { useTheme } from "../contexts/ThemeContext";
 
-const Container = styled.button`
+const Container = styled.button<{ theme: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
     width: 40px;
     height: 40px;
-    background-color: #FAFAFA;
+    background-color: ${props => props.theme === 'light' ? '#FAFAFA' : '#060606'};
     border: none;
     cursor: pointer;
     color: #000;
@@ -42,33 +41,15 @@ const Container = styled.button`
 `
 
 export function Toggle() {
-    const [darkMode, setDarkMode] = useState(false)
+  const { theme, toggleTheme } = useTheme();
 
-    function handleDarkMode() {
-        if (darkMode) {
-            return sun
-        } else {
-            return moon
-        }
-    }
+  function handleThemeIcon() {
+    return theme === "light" ? moon : sun
+  }
 
-    const notify = () => toast('Dark mode is not available yet', {
-        icon: '🚧',
-        duration: 3000,
-        position: "top-right",
-        style: {
-            fontFamily: 'Poppins',
-        }
-    })
-
-    return (
-        <Container
-            onClick={() => {
-                setDarkMode(darkMode)
-                notify()
-            }}>
-            <ReactSVG src={handleDarkMode()} />
-
-        </Container>
-    );
+  return (
+    <Container onClick={toggleTheme} theme={theme}>
+      <ReactSVG src={handleThemeIcon()} />
+    </Container>
+  );
 }

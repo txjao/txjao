@@ -10,8 +10,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import { Button } from "@mui/material";
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useState } from "react";
+import { useTheme } from "../contexts/ThemeContext";
 
-const Container = styled.div`
+const Container = styled.div<{ theme: string }>`
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -27,8 +28,9 @@ const Container = styled.div`
 
     p{
         font-family: 'Poppins', sans-serif;
-        color: #000;
+        color: ${props => props.theme === 'light' ? '#000' : '#fff'};
         font-size: 24px;
+        transition: color 0.2s ease-in;
     }
 
     .icons{
@@ -36,18 +38,21 @@ const Container = styled.div`
         gap: 24px;
         cursor: pointer;
         a{
-            height: 24px;
-            width: 32px;
-            position: relative;
-            top: 0px;
-            transition: top 0.1s;
+          height: 24px;
+          width: 32px;
+          position: relative;
+          top: 0px;
+          transition: top 0.1s;
         }
         a:hover{
-            top: -2px;
+          top: -2px;
         }
         .icon{
-            width: 100%;
-        }
+          width: 100%;
+            svg * {
+              fill: ${props => props.theme === 'light' ? '' : '#fff !important'};
+            }
+          }
     }
 
     .lettering-box{
@@ -99,92 +104,94 @@ const Container = styled.div`
 `
 
 export function Info() {
-    const [easterEgg, setEasterEgg] = useState(0)
-    const [isModalOpen, setIsModalOpen] = useState(false)
+  const [easterEgg, setEasterEgg] = useState(0)
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
-    function handleEasterEgg() {
-        setEasterEgg(easterEgg + 1)
-        if (easterEgg === 5) {
-            alert("You found me! 🐰")
-        }
-    }
+  const { theme } = useTheme();
 
-    function handleOpen() {
-        setIsModalOpen(true)
+  function handleEasterEgg() {
+    setEasterEgg(easterEgg + 1)
+    if (easterEgg === 5) {
+      alert("You found me! 🐰")
     }
-    function handleClose() {
-        setIsModalOpen(false)
-    }
+  }
 
-    return (
-        <>
-            <Container>
-                <div className="lettering-box">
-                    <img src='/eu.jpg' onClick={handleEasterEgg} />
-                    <Lettering />
-                </div>
-                <div>
-                    <p>I am a software engineer learning full-stack development, currently working as a full-stack developer working with Angular and Java.</p>
-                </div>
-                <div className="icons">
-                    <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG className="icon" src={socialMediaIcons.linkedin} /></a>
-                    <a target="_blank" href="https://github.com/txjao"> <ReactSVG className="icon" src={socialMediaIcons.github} /></a>
-                    <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG className="icon" src={socialMediaIcons.instagram} /></a>
-                    <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG className="icon" src={socialMediaIcons.spotify} /></a>
-                    {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG className="icon" src={socialMediaIcons.twitter} /></a>)}
-                    <a onClick={() => handleOpen()}>
-                        <ReactSVG className="icon" src={socialMediaIcons.discord} />
-                    </a>
-                    <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1"> <ReactSVG className="icon" src={socialMediaIcons.figma} /></a>
-                </div>
-                <Dialog
-                    open={isModalOpen}
-                >
-                    <DialogTitle
-                        style={{
-                            fontFamily: 'Poppins',
-                            backgroundColor: '#FAFAFA',
-                        }}
-                    >
-                        {"Add me!"}
-                    </DialogTitle>
-                    <DialogContent
-                        style={{
-                            backgroundColor: '#FAFAFA',
-                        }}>
-                        <DialogContentText style={{
-                            fontFamily: 'Poppins',
-                            color: '#000'
-                        }}>
-                            Click to copy my user!
-                        </DialogContentText>
-                    </DialogContent>
-                    <DialogActions
-                        style={{
-                            backgroundColor: '#FAFAFA',
-                        }}>
-                        <Button onClick={() => handleClose()}
-                            style={{
-                                fontFamily: 'Poppins',
-                                color: '#000',
-                                textDecoration: 'none',
-                            }}>
-                            close
-                        </Button>
-                        <Button onClick={() => handleClose()}>
-                            <CopyToClipboard text="jao5626">
-                                <a href="https://discord.com/channels/@me"
-                                    target="_blank"
-                                    style={{
-                                        fontFamily: 'Poppins',
-                                        color: '#000',
-                                        textDecoration: 'none',
-                                    }}>Copy</a>
-                            </CopyToClipboard>
-                        </Button>
-                    </DialogActions>
-                </Dialog>
-            </Container>
-        </>
-    );
+  function handleOpen() {
+    setIsModalOpen(true)
+  }
+  function handleClose() {
+    setIsModalOpen(false)
+  }
+
+  return (
+    <>
+      <Container theme={theme}>
+        <div className="lettering-box">
+          <img src='/eu.jpg' onClick={handleEasterEgg} />
+          <Lettering />
+        </div>
+        <div>
+          <p>I am a software engineer learning full-stack development, currently working as a full-stack developer with Angular and Java.</p>
+        </div>
+        <div className="icons">
+          <a target="_blank" href="https://www.linkedin.com/in/jo%C3%A3o-victor-teixeira-4b1429195/"> <ReactSVG className="icon" src={socialMediaIcons.linkedin} /></a>
+          <a target="_blank" href="https://github.com/txjao"> <ReactSVG className="icon" src={socialMediaIcons.github} /></a>
+          <a target="_blank" href="https://www.instagram.com/tx.jsx/"> <ReactSVG className="icon" src={socialMediaIcons.instagram} /></a>
+          <a target="_blank" href="https://open.spotify.com/user/lzx7pb5mnpd5dd47m99carpk9?si=664bbc8ce7c74a69"> <ReactSVG className="icon" src={socialMediaIcons.spotify} /></a>
+          {easterEgg > 10 && (<a target="_blank" href="https://twitter.com/tttexera"> <ReactSVG className="icon" src={socialMediaIcons.twitter} /></a>)}
+          <a onClick={() => handleOpen()}>
+            <ReactSVG className="icon" src={socialMediaIcons.discord} />
+          </a>
+          <a target="_blank" href="https://www.figma.com/file/k0bpLASVcEDdoDVwMLEwfl/Personal-Site?type=design&node-id=0%3A1&mode=design&t=jdeHgyLYLegvka6q-1"> <ReactSVG className="icon" src={socialMediaIcons.figma} /></a>
+        </div>
+        <Dialog
+          open={isModalOpen}
+        >
+          <DialogTitle
+            style={{
+              fontFamily: 'Poppins',
+              backgroundColor: '#FAFAFA',
+            }}
+          >
+            {"Add me!"}
+          </DialogTitle>
+          <DialogContent
+            style={{
+              backgroundColor: '#FAFAFA',
+            }}>
+            <DialogContentText style={{
+              fontFamily: 'Poppins',
+              color: '#000'
+            }}>
+              Click to copy my user!
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions
+            style={{
+              backgroundColor: '#FAFAFA',
+            }}>
+            <Button onClick={() => handleClose()}
+              style={{
+                fontFamily: 'Poppins',
+                color: '#000',
+                textDecoration: 'none',
+              }}>
+              close
+            </Button>
+            <Button onClick={() => handleClose()}>
+              <CopyToClipboard text="jao5626">
+                <a href="https://discord.com/channels/@me"
+                  target="_blank"
+                  style={{
+                    fontFamily: 'Poppins',
+                    color: '#000',
+                    textDecoration: 'none',
+                  }}>Copy</a>
+              </CopyToClipboard>
+            </Button>
+          </DialogActions>
+        </Dialog>
+      </Container>
+    </>
+  );
 }

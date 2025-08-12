@@ -1,18 +1,22 @@
 import styled from "styled-components";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
-import resume from '/src/assets/documents/Resume.pdf';
+import resume from '/src/assets/documents/Curriculo.pdf';
 import toast from "react-hot-toast";
-const Container = styled.div`
+import { useTheme } from "../contexts/ThemeContext";
+
+const Container = styled.div<{ theme: string }>`
 
     display: flex;
     flex-direction: column;
     align-items: center;
     font-family: 'Poppins', sans-serif;
     cursor: pointer;
+    color: ${props => props.theme === 'light' ? '#000' : '#FAFAFA'};
 
     .dropdown-label{
         display: inline-flex;
+        transition: color 0.2s ease-in;
     }
 
     .icon{
@@ -27,7 +31,7 @@ const Container = styled.div`
         flex-direction: column;
         gap: 10px;
         padding: 10px 0;
-        background-color: #FAFAFA;
+        background-color: ${props => props.theme === 'light' ? '#FAFAFA' : '#060606'};
         position: absolute;
         top: 60px;
         border-top: 0px;
@@ -40,10 +44,10 @@ const Container = styled.div`
         flex-direction: column;
         gap: 10px;
         padding: 10px 0;
-        background-color: #FAFAFA;
+        background-color: ${props => props.theme === 'light' ? '#FAFAFA' : '#060606'};
         position: absolute;
         top: 60px;
-        border: solid 1px #000;
+        border: 1px solid ${props => props.theme === 'light' ? '#000' : '#fff'};
         border-top: 0px;
         height: 80px;
         transition: height 0.5s ease;
@@ -74,36 +78,39 @@ const Container = styled.div`
 `
 
 export function DropdownResume() {
-    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    const notify = () => toast('Page is not available yet', {
-        icon: '🚧',
-        duration: 3000,
-        position: "top-right",
-        style: {
-            fontFamily: 'Poppins',
-        }
-    })
+  const { theme } = useTheme()
 
-    return (
-        <Container className="dropdown"
-            onMouseEnter={() => {
-                setIsDropdownOpen(true)
-            }}
-            onMouseLeave={() => {
-                setIsDropdownOpen(false)
-            }}
-        >
-            <div className="dropdown-label">
-                Resume
-                <ChevronRightIcon className="icon" />
-            </div>
-            <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
-                <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
-                    <a href={resume} target="_blank" rel="noopener">Resume</a>
-                    <a onClick={() => notify() }>Certificates</a>
-                </div>
-            </div>
-        </Container>
-    );
+  const notify = () => toast('Page is not available yet', {
+    icon: '🚧',
+    duration: 3000,
+    position: "top-right",
+    style: {
+      fontFamily: 'Poppins',
+    }
+  })
+
+  return (
+    <Container className="dropdown"
+      onMouseEnter={() => {
+        setIsDropdownOpen(true)
+      }}
+      onMouseLeave={() => {
+        setIsDropdownOpen(false)
+      }}
+      theme={theme}
+    >
+      <div className="dropdown-label">
+        Resume
+        <ChevronRightIcon className="icon" />
+      </div>
+      <div className={isDropdownOpen ? "dropdown-content-open" : "dropdown-content"}>
+        <div className={isDropdownOpen ? "labels-when-open" : "labels"}>
+          <a href={resume} target="_blank" rel="noopener">Resume</a>
+          <a onClick={() => notify()}>Certificates</a>
+        </div>
+      </div>
+    </Container>
+  );
 }
