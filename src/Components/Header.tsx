@@ -91,6 +91,7 @@ const ContainerMobile = styled(BaseContainer)`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 4px;
   }
 `;
 
@@ -170,6 +171,10 @@ export function Header() {
               >
                 {isOpen && (
                   <>
+                    <div className="menu-buttons">
+                      <Toggle />
+                      <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
+                    </div>
                     <a href="mailto:contatojoaovteixeira@gmail.com">E-mail</a>
                     <a href="https://github.com/txjao"
                       target="_blank"
@@ -187,10 +192,6 @@ export function Header() {
                       {mobileMenuTexts?.resume}
                     </a>
                     <a onClick={notify}>{mobileMenuTexts?.certificates}</a>
-                    <div className="menu-buttons">
-                      <Toggle />
-                      <LanguageToggle language={language} toggleLanguage={toggleLanguage} />
-                    </div>
                   </>
                 )}
               </motion.nav>
