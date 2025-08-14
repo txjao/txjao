@@ -66,6 +66,14 @@ const ContainerMobile = styled(BaseContainer)`
     flex-direction: column;
     position: relative;
     top: 10px;
+
+    a{
+      width: fit-content;
+    }
+
+    nav{
+      align-items: flex-end;
+    }
   }
 
   .menu-content {
@@ -88,6 +96,7 @@ const ContainerMobile = styled(BaseContainer)`
   }
 
   .menu-buttons{
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
