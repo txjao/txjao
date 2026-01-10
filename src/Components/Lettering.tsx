@@ -1,6 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
 import styled from "styled-components";
-import { enLettering, enLetteringTitle, ptLettering, ptLetteringTitle } from "../utils/LanguangeUtil";
+import { enLettering, enLetteringTitle, ptLettering, ptLetteringTitle } from "../consts/Languange";
 import { useLanguage } from "../contexts/LanguageContext";
 import { useEffect, useState } from "react";
 

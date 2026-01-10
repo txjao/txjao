@@ -1,7 +1,7 @@
 import { Dialog, DialogTitle, DialogContent, DialogContentText, DialogActions, Button } from "@mui/material";
 import CopyToClipboard from "react-copy-to-clipboard";
 import { useLanguage } from "../contexts/LanguageContext";
-import { enModalTexts, IModalTexts, ptModalTexts } from "../utils/LanguangeUtil";
+import { enModalTexts, IModalTexts, ptModalTexts } from "../consts/Languange";
 
 interface ModalProps {
   isModalOpen: boolean,

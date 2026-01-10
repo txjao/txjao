@@ -1,3 +1,5 @@
+import React from "react";
+
 function handleAge() {
   const date = new Date();
 
@@ -29,7 +31,7 @@ export interface IModalTexts {
 
 // EN Transalation
 
-export const enInfo = "I am a software engineer learning full-stack development, currently working as a full-stack developer with Angular and Java."
+export const enInfo = "I am a full-stack software engineer, currently working as a front-end developer with React at"
 
 export const enHeader: IHeaderTexts = {
   contactMe: "Contact Me",
@@ -71,7 +73,7 @@ export const enModalTexts: IModalTexts = {
 
 // PT Translation
 
-export const ptInfo = "Sou um engenheiro de software aprendendo desenvolvimento full-stack e, atualmente, trabalho como programador full-stack com Angular e Java."
+export const ptInfo = "Sou um engenheiro de software full-stack e, atualmente, trabalho como programador front-end com React no "
 
 export const ptHeader: IHeaderTexts = {
   contactMe: "Entre em contato",
@@ -90,17 +92,17 @@ export const ptMobileHeaderMenu: IMobileHeaderMenuTexts = {
 export const ptLetteringTitle = "Eae!"
 
 export const ptLettering = [
-  `Me chamo João, tenho ${handleAge()} anos.`,
+  `Meu nome é João, tenho ${handleAge()} anos.`,
   1000,
-  "Me chamo João, luto muay thai.",
+  "Meu nome é João, sou lutador de muay thai.",
   1000,
-  "Me chamo João, luto jiu jitsu.",
+  "Meu nome é João, sou lutador de jiu-jitsu brasileiro.",
   1000,
-  "Me chamo João, toco guitarra.",
+  "Meu nome é João, sou guitarrista.",
   1000,
-  "Me chamo João, sou uma dog person.",
+  "Meu nome é João, sou uma pessoa que gosta de cachorros.",
   1000,
-  "Me chamo João, sou um entusiasta de e-sports.",
+  "Meu nome é João, sou um entusiasta de e-sports.",
   1000,
 ]
 
@@ -110,4 +112,3 @@ export const ptModalTexts: IModalTexts = {
   addButton: "Copiar",
   closeButton: "Fechar",
 }
-

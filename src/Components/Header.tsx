@@ -6,10 +6,10 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Hamburger from 'hamburger-react'
 import { motion } from "framer-motion"
-import resume from '../assets/documents/Curriculo.pdf';
+import resume from '../assets/documents/Joao_Teixeira_Mid-level_Fullstack_Developer.pdf';
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
-import { enHeader, enMobileHeaderMenu, IHeaderTexts, IMobileHeaderMenuTexts, ptHeader, ptMobileHeaderMenu } from "../utils/LanguangeUtil";
+import { enHeader, enMobileHeaderMenu, IHeaderTexts, IMobileHeaderMenuTexts, ptHeader, ptMobileHeaderMenu } from "../consts/Languange";
 import { LanguageToggle } from "./LanguageToggle";
 
 const BaseContainer = styled.header<{ theme: string }>`

@@ -2,7 +2,7 @@ import styled from "styled-components";
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
-import { IHeaderTexts } from "../utils/LanguangeUtil";
+import { IHeaderTexts } from "../consts/Languange";
 import { DiscordModal } from "./DiscordModal";
 
 const Container = styled.div<{ theme: string }>`

@@ -5,7 +5,7 @@ import socialMediaIcons from '../utils/SocialMediaIcons';
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
-import { enInfo, ptInfo } from "../utils/LanguangeUtil";
+import { enInfo, ptInfo } from "../consts/Languange";
 import { DiscordModal } from "./DiscordModal";
 
 const Container = styled.div<{ theme: string }>`
@@ -97,6 +97,17 @@ const Container = styled.div<{ theme: string }>`
     }
 `
 
+const CompanyLink = styled.a<{ theme: string }>`
+  color: ${props => props.theme === 'light' ? '#000' : '#fff'};
+  text-decoration: none;
+  transition: all 0.2s ease-in;
+
+  &:hover {
+    color: #ea7100;
+  }
+`;
+
+
 export function Info() {
   const [easterEgg, setEasterEgg] = useState(0)
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -114,6 +125,7 @@ export function Info() {
   function handleOpen() {
     setIsModalOpen(true)
   }
+
   function handleClose() {
     setIsModalOpen(false)
   }
@@ -130,7 +142,19 @@ export function Info() {
           <Lettering />
         </div>
         <div>
-          <p>{handleLanguage()}</p>
+          <p>
+            {handleLanguage()}
+            {' '}
+            <CompanyLink
+              theme={theme}
+              href="https://inter.co/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              @Inter
+            </CompanyLink>
+
+          </p>
         </div>
         <div className="icons">
 
