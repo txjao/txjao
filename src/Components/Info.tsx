@@ -18,9 +18,11 @@ const Container = styled.div<{ theme: string }>`
     height: auto;
 
     img{
-        max-width: 120px;
-        border-radius: 50%;
-        margin-right: 16px;
+      width: 134px;
+      height: 144px;
+      border-radius: 50%;
+      margin-right: 16px;
+      object-fit: cover;
     }
 
     p{
