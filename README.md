@@ -81,7 +81,19 @@
     align="center"
     height="30"
     width="40"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nestjs/nestjs-original.svg"
+  />
+  <img
+    align="center"
+    height="30"
+    width="40"
     src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-plain.svg"
+  />
+  <img
+    align="center"
+    height="30"
+    width="40"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
   />
 </div>
 
