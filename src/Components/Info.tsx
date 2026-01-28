@@ -107,6 +107,10 @@ const CompanyLink = styled.a<{ theme: string }>`
   &:hover {
     color: #ea7100;
   }
+
+  @media (max-width: 1440px) {
+    color: #ea7100;
+  }
 `;
 
 
@@ -140,20 +144,20 @@ export function Info() {
     <>
       <Container theme={theme}>
         <div className="lettering-box">
-          <img src='/eu.jpg' onClick={handleEasterEgg} />
+          <img src='/eu-2.jpg' onClick={handleEasterEgg} />
           <Lettering />
         </div>
         <div>
           <p>
             {handleLanguage()}
-            {' '}
+
             <CompanyLink
               theme={theme}
               href="https://inter.co/"
               target="_blank"
               rel="noopener noreferrer"
             >
-              @Inter
+              {' '}@Inter
             </CompanyLink>
 
           </p>
