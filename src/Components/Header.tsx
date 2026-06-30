@@ -4,7 +4,7 @@ import { Dropdown } from "./Dropdown";
 import { DropdownResume } from "./DropdownResume";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import Hamburger from 'hamburger-react'
+import { Squash as Hamburger } from 'hamburger-react'
 import { motion } from "framer-motion"
 import resume from '../assets/documents/Joao_Teixeira_Mid-level_Fullstack_Developer.pdf';
 import { useTheme } from "../contexts/ThemeContext";
