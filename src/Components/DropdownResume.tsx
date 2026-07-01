@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { useState } from "react";
 import resume from '/src/assets/documents/Joao_Teixeira_Mid-level_Fullstack_Developer.pdf';
 import toast from "react-hot-toast";
