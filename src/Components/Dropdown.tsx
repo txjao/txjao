@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import { ChevronRight as ChevronRightIcon } from '@mui/icons-material';
 import { useState } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { IHeaderTexts } from "../consts/Languange";
