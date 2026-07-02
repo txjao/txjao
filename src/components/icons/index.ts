@@ -1,2 +1,14 @@
+export { ArrowIcon } from "./arrow-icon";
 export { ChevronIcon } from "./chevron-icon";
+export { CloseIcon } from "./close-icon";
+export { DiscordIcon } from "./discord-icon";
+export { FigmaIcon } from "./figma-icon";
+export { GithubIcon } from "./github-icon";
 export { HamburgerIcon } from "./hamburger-icon";
+export { InstagramIcon } from "./instagram-icon";
+export { LinkedinIcon } from "./linkedin-icon";
+export { MoonIcon } from "./moon-icon";
+export { SpotifyIcon } from "./spotify-icon";
+export { SunIcon } from "./sun-icon";
+export { TwitterIcon } from "./twitter-icon";
+export type { IconProps } from "./types";

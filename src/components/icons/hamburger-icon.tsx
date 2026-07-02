@@ -1,6 +1,14 @@
-export function HamburgerIcon({ isOpen }: { isOpen: boolean }) {
+interface HamburgerIconProps {
+  className?: string;
+  isOpen: boolean;
+}
+
+export function HamburgerIcon({ className = "", isOpen }: HamburgerIconProps) {
   return (
-    <span aria-hidden="true" className="relative block size-5">
+    <span
+      aria-hidden="true"
+      className={`relative block size-5${className ? ` ${className}` : ""}`}
+    >
       <span
         className={`absolute left-0 top-[4px] h-0.5 w-5 bg-current transition-transform ${
           isOpen ? "translate-y-[6px] rotate-45" : ""
