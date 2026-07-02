@@ -3,38 +3,40 @@
 import { Toast } from "radix-ui";
 import { useState } from "react";
 import type {
+  IHeaderControlTexts,
   IHeaderTexts,
   IMobileHeaderMenuTexts,
+  Locale,
   IModalTexts,
-} from "@/src/consts/Languange";
+  IToastTexts,
+} from "@/src/types/language-types";
 import { DesktopHeader } from "./components/desktop/desktop-header";
-import { DiscordDialog } from "./components/discord-dialog";
+import { DiscordDialog } from "../discord-dialog/discord-dialog";
 import { MobileHeader } from "./components/mobile/mobile-header";
-import { UnavailableToast } from "./components/unavailable-toast";
-import { useUnavailableToast } from "./hooks/use-unavailable-toast";
-import { Locale } from "./types/header.types";
+import { UnavailableToast } from "../toast/unavailable-toast";
+import { useUnavailableToast } from "../toast/hooks/use-toast";
 
 
 interface HeaderClientProps {
+  headerControlTexts: IHeaderControlTexts;
   headerTexts: IHeaderTexts;
   locale: Locale;
   mobileTexts: IMobileHeaderMenuTexts;
   modalTexts: IModalTexts;
+  toastTexts: IToastTexts;
 }
 
 export function HeaderClient({
+  headerControlTexts,
   headerTexts,
   locale,
   mobileTexts,
   modalTexts,
+  toastTexts,
 }: HeaderClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDiscordOpen, setIsDiscordOpen] = useState(false);
-  const {
-    isToastOpen,
-    setIsToastOpen,
-    showUnavailableToast,
-  } = useUnavailableToast();
+  const { isToastOpen, setIsToastOpen, showUnavailableToast, } = useUnavailableToast();
 
   function handleMobileMenuToggle() {
     setIsMobileMenuOpen((current) => !current);
@@ -48,6 +50,7 @@ export function HeaderClient({
     <Toast.Provider duration={3000} swipeDirection="right">
       <header className="relative h-24 bg-white-secondary text-black transition-colors dark:bg-black-secondary dark:text-white">
         <DesktopHeader
+          headerControlTexts={headerControlTexts}
           headerTexts={headerTexts}
           locale={locale}
           onCertificatesClick={showUnavailableToast}
@@ -55,6 +58,7 @@ export function HeaderClient({
         />
 
         <MobileHeader
+          headerControlTexts={headerControlTexts}
           isMenuOpen={isMobileMenuOpen}
           locale={locale}
           mobileTexts={mobileTexts}
@@ -70,10 +74,10 @@ export function HeaderClient({
       />
       <UnavailableToast
         isOpen={isToastOpen}
-        locale={locale}
         onOpenChange={setIsToastOpen}
+        toastTexts={toastTexts}
       />
-      <Toast.Viewport className="fixed right-6 top-32 z-[100] flex w-[min(360px,calc(100vw-32px))] flex-col gap-2 outline-none" />
+      <Toast.Viewport className="fixed right-6 top-8 z-[100] flex w-[min(360px,calc(100vw-32px))] flex-col gap-2 outline-none" />
     </Toast.Provider>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import { Dialog } from "radix-ui";
-import type { IModalTexts } from "@/src/consts/Languange";
-import { DISCORD_USER } from "../consts/header.constants";
+import { DISCORD_URL, DISCORD_USER } from "@/src/consts/url.consts";
+import type { IModalTexts } from "@/src/types/language-types";
 
 interface DiscordDialogProps {
   isOpen: boolean;
@@ -15,10 +15,12 @@ export function DiscordDialog({
   modalTexts,
   onOpenChange,
 }: DiscordDialogProps) {
+  const user = "jao5626";
+
   async function handleCopy() {
-    await navigator.clipboard.writeText(DISCORD_USER);
+    await navigator.clipboard.writeText(user);
     onOpenChange(false);
-    window.open("https://discord.com/channels/@me", "_blank", "noopener,noreferrer");
+    window.open(DISCORD_URL, "_blank", "noopener,noreferrer");
   }
 
   return (
@@ -35,14 +37,14 @@ export function DiscordDialog({
           <div className="mt-6 flex justify-end gap-4">
             <Dialog.Close asChild>
               <button
-                className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white"
+                className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white dark:hover:text-yellow"
                 type="button"
               >
                 {modalTexts.closeButton}
               </button>
             </Dialog.Close>
             <button
-              className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white"
+              className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white dark:hover:text-yellow"
               type="button"
               onClick={handleCopy}
             >

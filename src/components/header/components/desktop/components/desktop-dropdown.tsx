@@ -27,7 +27,7 @@ export function DesktopDropdown({
         <NavigationMenu.Item className="relative flex justify-center">
           <NavigationMenu.Trigger className="group inline-flex cursor-pointer items-center gap-1 bg-transparent font-sans text-base text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white">
             {label}
-            <ChevronIcon />
+            <ChevronIcon className="nav-chevron size-5 transition-transform duration-200 group-data-[state=open]:rotate-90" />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content forceMount className={dropdownContentClass}>
             <div className={dropdownItemsClass}>{children}</div>

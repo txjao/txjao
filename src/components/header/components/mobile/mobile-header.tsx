@@ -1,15 +1,16 @@
 "use client";
 
-import { IMobileHeaderMenuTexts } from "@/src/consts/Languange";
-import { LOGO_IMAGE, HEADER_LINKS, RESUME_URL } from "../../consts/header.constants";
+import Image from "next/image";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
+import type { IHeaderControlTexts, IMobileHeaderMenuTexts, Locale } from "@/src/types/language-types";
 import { HamburgerIcon } from "../../../icons";
 import { menuPanelClass } from "../../styles/mobile-menu.styles";
 import { navLinkClass } from "../../styles/nav-link.styles";
-import { Locale } from "../../types/header.types";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
 
 interface MobileHeaderProps {
+  headerControlTexts: IHeaderControlTexts;
   isMenuOpen: boolean;
   locale: Locale;
   mobileTexts: IMobileHeaderMenuTexts;
@@ -18,6 +19,7 @@ interface MobileHeaderProps {
 }
 
 export function MobileHeader({
+  headerControlTexts,
   isMenuOpen,
   locale,
   mobileTexts,
@@ -26,11 +28,17 @@ export function MobileHeader({
 }: MobileHeaderProps) {
   return (
     <nav className="flex h-full items-center justify-between px-8 md:hidden">
-      <img alt="Logo" className="h-12 w-auto" src={LOGO_IMAGE} />
+      <Image
+        alt={headerControlTexts.logoAlt}
+        className="h-12 w-auto"
+        height={74}
+        src={LOGO_IMAGE_URL}
+        width={70}
+      />
       <div className="relative flex flex-col items-end">
         <button
           aria-expanded={isMenuOpen}
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+          aria-label={isMenuOpen ? headerControlTexts.closeMenuLabel : headerControlTexts.openMenuLabel}
           className="flex size-10 items-center justify-center text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white"
           type="button"
           onClick={onMenuToggle}
@@ -40,15 +48,21 @@ export function MobileHeader({
         {isMenuOpen ? (
           <div className={menuPanelClass}>
             <div className="mb-1 flex w-full items-center justify-between">
-              <ThemeToggle />
-              <LanguageToggle locale={locale} />
+              <ThemeToggle
+                switchToDarkLabel={headerControlTexts.switchToDarkThemeLabel}
+                switchToLightLabel={headerControlTexts.switchToLightThemeLabel}
+              />
+              <LanguageToggle
+                label={headerControlTexts.languageToggleLabel}
+                locale={locale}
+              />
             </div>
-            <a className={navLinkClass} href={HEADER_LINKS.email}>
+            <a className={navLinkClass} href={EMAIL}>
               E-mail
             </a>
             <a
               className={navLinkClass}
-              href={HEADER_LINKS.github}
+              href={GITHUB_URL}
               rel="noopener noreferrer"
               target="_blank"
             >
@@ -56,7 +70,7 @@ export function MobileHeader({
             </a>
             <a
               className={navLinkClass}
-              href={HEADER_LINKS.linkedin}
+              href={LINKEDIN_URL}
               rel="noopener noreferrer"
               target="_blank"
             >

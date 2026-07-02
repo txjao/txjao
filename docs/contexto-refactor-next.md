@@ -46,7 +46,7 @@ Foi escolhido `next-themes`, nao uma implementacao manual.
 
 O provider esta em:
 
-- `src/components/providers/theme-provider.tsx`
+- `src/providers/theme-provider.tsx`
 
 Ele usa:
 
@@ -146,6 +146,25 @@ Dependencias adicionadas:
 - `next-themes`
 - `radix-ui`
 
+### Pastas Compartilhadas
+
+As regras genericas ficam fora dos dominios de componentes. Os dominios consomem essas camadas, mas nao devem ser donos delas.
+
+- `src/lang/`: dicionarios/textos por idioma.
+- `src/types/`: tipos compartilhados, incluindo `Locale` e tipos de textos.
+- `src/consts/`: constantes compartilhadas, como URLs, e-mail, logo e usuario Discord.
+- `src/utils/`: utilitarios compartilhados, como resolucao de locale.
+- `src/providers/`: providers globais da aplicacao.
+
+Arquivos atuais:
+
+- `src/lang/en-us.lang.ts`
+- `src/lang/pt-br.lang.ts`
+- `src/types/language-types.ts`
+- `src/consts/url.consts.ts`
+- `src/utils/handle-locale.ts`
+- `src/providers/theme-provider.tsx`
+
 ## Header
 
 O Header foi portado da branch `dev` para Next + Tailwind.
@@ -160,9 +179,15 @@ Status:
 - Mobile implementado com botao hamburger acessivel.
 - Dropdowns desktop usam Radix `NavigationMenu`.
 - Modal Discord usa Radix `Dialog`.
-- Toast de certificados usa Radix `Toast`.
+- Toast de certificados usa Radix `Toast`, mas o componente e o hook ficam fora do dominio `header`.
 - Toggle de tema usa `next-themes`.
 - Curriculo aponta para asset publico estavel.
+
+Componentes externos compostos pelo Header:
+
+- `src/components/discord-dialog/discord-dialog.tsx`
+- `src/components/toast/unavailable-toast.tsx`
+- `src/components/toast/hooks/use-toast.ts`
 
 Asset do curriculo:
 
@@ -213,8 +238,16 @@ Arquivos alterados:
 
 Arquivos/pastas criados:
 
-- `src/components/providers/theme-provider.tsx`
+- `src/providers/theme-provider.tsx`
 - `src/components/header/header.tsx`
+- `src/components/discord-dialog/discord-dialog.tsx`
+- `src/components/toast/unavailable-toast.tsx`
+- `src/components/toast/hooks/use-toast.ts`
+- `src/consts/url.consts.ts`
+- `src/lang/en-us.lang.ts`
+- `src/lang/pt-br.lang.ts`
+- `src/types/language-types.ts`
+- `src/utils/handle-locale.ts`
 - `public/documents/`
 - `public/images/`
 - `src/components/icons/`
@@ -223,11 +256,9 @@ Possivel arquivo utilitario existente/criado durante o processo:
 
 - `src/utils/handle-age.ts`
 
-Constantes de idioma reaproveitadas:
+Constantes de idioma reaproveitadas e reorganizadas:
 
-- `src/consts/Languange.ts`
-
-Observacao: o nome do arquivo `Languange.ts` parece ter typo, mas nao foi renomeado nesta etapa para evitar escopo extra.
+- `src/consts/Languange.ts` foi dividido entre `src/lang/` e `src/types/language-types.ts`.
 
 ## Pontos Importantes Para O Proximo Chat
 

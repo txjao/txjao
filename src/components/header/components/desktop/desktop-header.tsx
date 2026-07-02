@@ -1,17 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import { IHeaderTexts } from "@/src/consts/Languange";
-import { HEADER_LINKS, LOGO_IMAGE, RESUME_URL } from "../../consts/header.constants";
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
+import type { IHeaderControlTexts, IHeaderTexts, Locale } from "@/src/types/language-types";
+
 import { dropdownItemClass } from "../../styles/dropdown-item.styles";
 import { navLinkClass } from "../../styles/nav-link.styles";
-import { Locale } from "../../types/header.types";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
 import { DesktopDropdown } from "./components/desktop-dropdown";
 
-
 interface DesktopHeaderProps {
+  headerControlTexts: IHeaderControlTexts;
   headerTexts: IHeaderTexts;
   locale: Locale;
   onCertificatesClick: () => void;
@@ -19,19 +19,23 @@ interface DesktopHeaderProps {
 }
 
 export function DesktopHeader({
+  headerControlTexts,
   headerTexts,
   locale,
   onCertificatesClick,
   onDiscordOpen,
 }: DesktopHeaderProps) {
   return (
-    <nav className="hidden h-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-[60px] md:grid">
-      <div className="flex items-center justify-between pr-20">
-        <ThemeToggle />
+    <nav className="hidden h-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-8 md:grid lg:px-16">
+      <div className="flex items-center justify-between pr-0 lg:pr-20">
+        <ThemeToggle
+          switchToDarkLabel={headerControlTexts.switchToDarkThemeLabel}
+          switchToLightLabel={headerControlTexts.switchToLightThemeLabel}
+        />
         <div className="w-[200px] text-center">
           <a
             className={navLinkClass}
-            href={HEADER_LINKS.linkedin}
+            href={LINKEDIN_URL}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -42,7 +46,7 @@ export function DesktopHeader({
 
           <a
             className={navLinkClass}
-            href={HEADER_LINKS.github}
+            href={GITHUB_URL}
             rel="noopener noreferrer"
             target="_blank"
           >
@@ -52,15 +56,15 @@ export function DesktopHeader({
       </div>
 
       <Image
-        alt="Logo"
+        alt={headerControlTexts.logoAlt}
         height={48}
-        src={LOGO_IMAGE}
+        src={LOGO_IMAGE_URL}
         width={48}
       />
 
-      <div className="flex items-center justify-between pl-20">
+      <div className="flex items-center justify-between pl-0 lg:pl-20">
         <DesktopDropdown label={headerTexts.contactMe} widthClassName="w-[200px]">
-          <a className={dropdownItemClass} href={HEADER_LINKS.email}>
+          <a className={dropdownItemClass} href={EMAIL}>
             E-mail
           </a>
           <button
@@ -88,7 +92,10 @@ export function DesktopHeader({
             {headerTexts.meItens.certificates}
           </button>
         </DesktopDropdown>
-        <LanguageToggle locale={locale} />
+        <LanguageToggle
+          label={headerControlTexts.languageToggleLabel}
+          locale={locale}
+        />
       </div>
     </nav>
   );
