@@ -1,14 +1,10 @@
 import type { IconProps } from "./types";
 
-export function ChevronIcon({ className = "", ...props }: IconProps) {
-  const classes = `nav-chevron size-5 transition-transform duration-200 group-data-[state=open]:rotate-90${
-    className ? ` ${className}` : ""
-  }`;
-
+export function ChevronIcon({ className, ...props }: IconProps) {
   return (
     <svg
       aria-hidden="true"
-      className={classes}
+      className={className}
       fill="none"
       focusable="false"
       height="1em"

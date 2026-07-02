@@ -68,14 +68,65 @@ Configuradas via `next/font/google` em `src/app/layout.tsx`.
 
 ### Icones
 
-Decisao: manter os icones proprios do projeto.
+Decisao: manter os icones proprios do projeto como componentes React/SVG.
 
 Nao adicionar biblioteca externa de icones.
 
-Assets copiados para `public`:
+Todos os icones de UI ficam em:
 
-- `public/icons/Moon.svg`
-- `public/icons/sun.svg`
+- `src/components/icons/`
+
+Export central:
+
+- `src/components/icons/index.ts`
+
+Componentes existentes:
+
+- `ArrowIcon`
+- `ChevronIcon`
+- `CloseIcon`
+- `DiscordIcon`
+- `FigmaIcon`
+- `GithubIcon`
+- `HamburgerIcon`
+- `InstagramIcon`
+- `LinkedinIcon`
+- `MoonIcon`
+- `SpotifyIcon`
+- `SunIcon`
+- `TwitterIcon`
+
+Regras de implementacao:
+
+- cada icone deve ser um componente especifico
+- cada componente deve aceitar props de SVG via `IconProps`
+- cada SVG deve usar `currentColor` em `fill` ou `stroke`
+- cada SVG deve usar `aria-hidden="true"` e `focusable="false"` por padrao
+- o tamanho deve ser controlado pelo consumidor com classes como `size-4`, `size-5` ou `size-8`
+- a cor e o Dark Mode devem ser controlados pelo container com classes de texto, por exemplo `text-black dark:text-white`
+- comportamento especifico do lugar de uso deve ficar no consumidor, nao dentro do icone generico
+- exemplo: a rotacao do `ChevronIcon` do dropdown fica em `DesktopDropdown`, nao em `ChevronIcon`
+- o `HamburgerIcon` e excecao parcial porque representa estado visual e recebe `isOpen`
+
+Exemplo de uso:
+
+```tsx
+<button className="text-black hover:text-blue dark:text-white dark:hover:text-yellow">
+  <CloseIcon className="size-4" />
+</button>
+```
+
+O que evitar:
+
+- nao usar `next/image` para icones de UI
+- nao referenciar icones de UI por URL publica como `/icons/name.svg`
+- nao recriar variantes `*-dark.svg`
+- nao importar SVG diretamente de `src/assets`
+- nao recriar utilitarios antigos como `SocialMediaIcons` baseado em arquivo SVG
+- nao adicionar biblioteca externa de icones para o set atual
+
+Assets estaticos copiados para `public`:
+
 - `public/images/favicon.png`
 
 ### UI Primitives
@@ -165,8 +216,8 @@ Arquivos/pastas criados:
 - `src/components/providers/theme-provider.tsx`
 - `src/components/header/header.tsx`
 - `public/documents/`
-- `public/icons/`
 - `public/images/`
+- `src/components/icons/`
 
 Possivel arquivo utilitario existente/criado durante o processo:
 
@@ -237,7 +288,7 @@ pnpm build
 - Ir por etapas.
 - Nao fazer mudancas fora do escopo combinado.
 - Manter visual atual do portfolio como referencia.
-- Manter icones proprios.
+- Manter icones proprios como componentes React/SVG.
 - Usar apenas Radix como UI primitive nova.
 - Nao usar Sonner.
 - Pensar em SDUI e i18n sem transformar a aplicacao inteira em client-side.
