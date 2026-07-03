@@ -40,6 +40,60 @@ Classes esperadas:
 - `bg-white-secondary`
 - `dark:bg-black-secondary`
 
+Utilities globais em `src/app/globals.css`:
+
+- `focus-ring`: padrao acessivel de foco para elementos interativos.
+- `hover-highlight`: padrao de hover com destaque visual do projeto.
+
+Essas utilities seguem as cores de destaque atuais:
+
+- tema claro: `blue`
+- tema dark: `yellow`
+
+### Padrao De Estilizacao
+
+O projeto usa Tailwind no JSX para classes pequenas e obvias.
+
+Quando uma classe fica extensa, ou quando a mesma composicao aparece mais de uma vez no mesmo componente, ela deve ser extraida para um arquivo `.styles.ts` no mesmo dominio do componente.
+
+Padrao para componente simples:
+
+```txt
+component-name/
+  component-name.tsx
+  component-name.styles.ts
+```
+
+Padrao para dominio com subcomponentes:
+
+```txt
+component-name/
+  component-name.tsx
+  components/
+  styles/
+    shared-style.styles.ts
+```
+
+Regras atuais:
+
+- estilos especificos de um componente ficam ao lado do `.tsx` que os consome.
+- estilos compartilhados por varios subcomponentes do mesmo dominio ficam em `styles/` dentro do dominio.
+- utilities realmente globais ficam em `src/app/globals.css` dentro de `@layer utilities`.
+- classes curtas e autoexplicativas podem continuar no JSX, por exemplo `mt-1`, `size-4`, `font-medium`.
+- evitar criar uma pasta `styles/` quando ela teria apenas um arquivo de estilo especifico.
+- evitar colocar estilos especificos de componente em `globals.css`.
+- usar `focus-ring` para foco visual de elementos interativos.
+- usar `hover-highlight` para hover com cor de destaque.
+
+Exemplos atuais:
+
+- `src/components/header/styles/nav-link.styles.ts`: estilo compartilhado no dominio do Header.
+- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`: estilo especifico do `DesktopDropdown`.
+- `src/components/header/components/desktop/desktop-header.styles.ts`: estilo especifico do `DesktopHeader`.
+- `src/components/header/components/mobile/mobile-header.styles.ts`: estilo especifico do `MobileHeader`.
+- `src/components/discord-dialog/discord-dialog.styles.ts`: estilo especifico do `DiscordDialog`.
+- `src/components/toast/unavailable-toast.styles.ts`: estilo especifico do `UnavailableToast`.
+
 ### Dark Mode
 
 Foi escolhido `next-themes`, nao uma implementacao manual.
@@ -111,7 +165,7 @@ Regras de implementacao:
 Exemplo de uso:
 
 ```tsx
-<button className="text-black hover:text-blue dark:text-white dark:hover:text-yellow">
+<button className="focus-ring hover-highlight text-black dark:text-white">
   <CloseIcon className="size-4" />
 </button>
 ```
@@ -162,7 +216,7 @@ Arquivos atuais:
 - `src/lang/pt-br.lang.ts`
 - `src/types/language-types.ts`
 - `src/consts/url.consts.ts`
-- `src/utils/handle-locale.ts`
+- `src/utils/handle-lang.ts`
 - `src/providers/theme-provider.tsx`
 
 ## Header
@@ -208,23 +262,19 @@ Site de referencia:
 
 - `https://www.txjao.dev/`
 
-### Transicoes Do Dropdown
+### Estilos Do Dropdown
 
-Valores consultados da branch `dev`:
+Os estilos especificos do dropdown desktop ficam em:
 
-- Label: `transition: color 0.2s ease-in`
-- Icone: `transition: transform 0.2s`
-- Conteudo: `transition: height 0.5s ease`
-- Labels internas: `transition: top 0.5s`
+- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`
 
-No Header atual, o dropdown usa:
+Padroes atuais:
 
-- `duration-500`
-- `ease-[ease]`
-- transicao de `height`, `opacity` e `transform`
-- `gap-2.5` para reproduzir o espacamento de `10px` da branch antiga
-
-Observacao: houve uma tentativa de trocar `gap-2.5` por `margin-bottom`, mas ela foi desfeita a pedido do usuario.
+- o container do conteudo usa `clip-path`, `transform` e `opacity` para abrir/fechar.
+- os itens internos usam transicao de `opacity`.
+- o espacamento interno entre itens usa `gap-2.5`.
+- o gatilho do dropdown usa `focus-ring`.
+- a rotacao do `ChevronIcon` continua no consumidor, nao no icone generico.
 
 ## Arquivos Alterados/Criados
 
@@ -240,14 +290,26 @@ Arquivos/pastas criados:
 
 - `src/providers/theme-provider.tsx`
 - `src/components/header/header.tsx`
+- `src/components/header/header-client.tsx`
+- `src/components/header/styles/nav-link.styles.ts`
+- `src/components/header/components/desktop/desktop-header.tsx`
+- `src/components/header/components/desktop/desktop-header.styles.ts`
+- `src/components/header/components/desktop/components/desktop-dropdown.tsx`
+- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`
+- `src/components/header/components/mobile/mobile-header.tsx`
+- `src/components/header/components/mobile/mobile-header.styles.ts`
+- `src/components/header/components/language-toggle.tsx`
+- `src/components/header/components/theme-toggle.tsx`
 - `src/components/discord-dialog/discord-dialog.tsx`
+- `src/components/discord-dialog/discord-dialog.styles.ts`
 - `src/components/toast/unavailable-toast.tsx`
+- `src/components/toast/unavailable-toast.styles.ts`
 - `src/components/toast/hooks/use-toast.ts`
 - `src/consts/url.consts.ts`
 - `src/lang/en-us.lang.ts`
 - `src/lang/pt-br.lang.ts`
 - `src/types/language-types.ts`
-- `src/utils/handle-locale.ts`
+- `src/utils/handle-lang.ts`
 - `public/documents/`
 - `public/images/`
 - `src/components/icons/`

@@ -3,6 +3,7 @@
 import { Dialog } from "radix-ui";
 import { DISCORD_URL, DISCORD_USER } from "@/src/consts/url.consts";
 import type { IModalTexts } from "@/src/types/language-types";
+import { dialogActionButtonClass, dialogContentClass } from "./discord-dialog.styles";
 
 interface DiscordDialogProps {
   isOpen: boolean;
@@ -15,10 +16,8 @@ export function DiscordDialog({
   modalTexts,
   onOpenChange,
 }: DiscordDialogProps) {
-  const user = "jao5626";
-
   async function handleCopy() {
-    await navigator.clipboard.writeText(user);
+    await navigator.clipboard.writeText(DISCORD_USER);
     onOpenChange(false);
     window.open(DISCORD_URL, "_blank", "noopener,noreferrer");
   }
@@ -27,7 +26,7 @@ export function DiscordDialog({
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-50 bg-black/35" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-50 w-[min(360px,calc(100vw-32px))] -translate-x-1/2 -translate-y-1/2 bg-white-secondary p-6 text-black shadow-xl outline-none dark:bg-black-secondary dark:text-white">
+        <Dialog.Content className={dialogContentClass}>
           <Dialog.Title className="font-sans text-xl font-medium">
             {modalTexts.title}
           </Dialog.Title>
@@ -37,14 +36,14 @@ export function DiscordDialog({
           <div className="mt-6 flex justify-end gap-4">
             <Dialog.Close asChild>
               <button
-                className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white dark:hover:text-yellow"
+                className={dialogActionButtonClass}
                 type="button"
               >
                 {modalTexts.closeButton}
               </button>
             </Dialog.Close>
             <button
-              className="font-sans text-base text-black transition-colors hover:text-blue focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white dark:hover:text-yellow"
+              className={dialogActionButtonClass}
               type="button"
               onClick={handleCopy}
             >

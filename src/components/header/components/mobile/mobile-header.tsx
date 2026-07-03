@@ -4,10 +4,10 @@ import Image from "next/image";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
 import type { IHeaderControlTexts, IMobileHeaderMenuTexts, Locale } from "@/src/types/language-types";
 import { HamburgerIcon } from "../../../icons";
-import { menuPanelClass } from "../../styles/mobile-menu.styles";
 import { navLinkClass } from "../../styles/nav-link.styles";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
+import { menuPanelClass } from "./mobile-header.styles";
 
 interface MobileHeaderProps {
   headerControlTexts: IHeaderControlTexts;
@@ -39,7 +39,7 @@ export function MobileHeader({
         <button
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? headerControlTexts.closeMenuLabel : headerControlTexts.openMenuLabel}
-          className="flex size-10 items-center justify-center text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:text-white"
+          className="focus-ring flex size-10 items-center justify-center text-black dark:text-white"
           type="button"
           onClick={onMenuToggle}
         >

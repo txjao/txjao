@@ -44,6 +44,16 @@ body {
   color: var(--color-white);
 }
 
+@layer utilities {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:focus-visible:ring-yellow;
+  }
+
+  .hover-highlight {
+    @apply transition-colors hover:text-blue dark:hover:text-yellow;
+  }
+}
+
 @keyframes theme-toggle-wiggle {
   25% {
     transform: rotate(10deg);

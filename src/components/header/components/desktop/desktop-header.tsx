@@ -4,10 +4,10 @@ import Image from "next/image";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
 import type { IHeaderControlTexts, IHeaderTexts, Locale } from "@/src/types/language-types";
 
-import { dropdownItemClass } from "../../styles/dropdown-item.styles";
 import { navLinkClass } from "../../styles/nav-link.styles";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
+import { dropdownItemClass } from "./desktop-header.styles";
 import { DesktopDropdown } from "./components/desktop-dropdown";
 
 interface DesktopHeaderProps {
