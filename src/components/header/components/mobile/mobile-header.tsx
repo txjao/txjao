@@ -30,10 +30,10 @@ export function MobileHeader({
     <nav className="flex h-full items-center justify-between px-8 md:hidden">
       <Image
         alt={headerControlTexts.logoAlt}
-        className="h-12 w-auto"
-        height={74}
+        height={48}
+        width={48}
         src={LOGO_IMAGE_URL}
-        width={70}
+        preload
       />
       <div className="relative flex flex-col items-end">
         <button
@@ -48,10 +48,7 @@ export function MobileHeader({
         {isMenuOpen ? (
           <div className={menuPanelClass}>
             <div className="mb-1 flex w-full items-center justify-between">
-              <ThemeToggle
-                switchToDarkLabel={headerControlTexts.switchToDarkThemeLabel}
-                switchToLightLabel={headerControlTexts.switchToLightThemeLabel}
-              />
+              <ThemeToggle />
               <LanguageToggle
                 label={headerControlTexts.languageToggleLabel}
                 locale={locale}

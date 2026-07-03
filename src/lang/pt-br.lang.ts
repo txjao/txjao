@@ -23,8 +23,6 @@ export const ptHeaderControlTexts: IHeaderControlTexts = {
     languageToggleLabel: "EN",
     logoAlt: "Logo",
     openMenuLabel: "Abrir menu",
-    switchToDarkThemeLabel: "Alternar para tema escuro",
-    switchToLightThemeLabel: "Alternar para tema claro",
 }
 
 export const ptLetteringTitle = "Eae!"

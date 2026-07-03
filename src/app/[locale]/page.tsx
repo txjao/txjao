@@ -1,4 +1,3 @@
-import { Header } from "@/src/components/header/header";
 import {
     ArrowIcon,
     ChevronIcon,
@@ -18,7 +17,6 @@ import {
 export default function Home() {
     return (
         <>
-            <Header locale="en-US" />
             <div className="mt-24 flex justify-center text-black dark:text-white">
                 <div className="grid grid-cols-4 gap-6">
                     <ArrowIcon className="hover-highlight size-8" />

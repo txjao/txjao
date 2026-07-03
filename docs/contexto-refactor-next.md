@@ -109,7 +109,68 @@ Ele usa:
 - `enableSystem`
 - `disableTransitionOnChange`
 
-O `layout.tsx` envolve a aplicacao com esse provider.
+O `src/app/[locale]/layout.tsx` envolve a aplicacao com esse provider.
+
+### Rotas E Locale
+
+A aplicacao usa rotas localizadas no App Router:
+
+- `/en-US`
+- `/pt-BR`
+
+Arquivos principais:
+
+- `src/app/[locale]/layout.tsx`
+- `src/app/[locale]/page.tsx`
+
+Regras:
+
+- o `lang` do HTML deve ser definido no layout localizado com base no `locale` da rota.
+- `generateStaticParams` deve usar `SUPPORTED_LOCALES`.
+- `dynamicParams = false` deve impedir rotas de locale nao suportado.
+- `isLocale` deve validar valores dinamicos antes de usa-los como `Locale`.
+- `notFound()` deve ser usado quando o parametro de rota nao for um locale valido.
+- novas linguagens devem ser adicionadas em `src/consts/language.consts.ts`.
+
+### SEO E Metadados
+
+O dominio canonico do portfolio fica centralizado em:
+
+- `src/consts/site.consts.ts`
+
+Metadados por locale ficam no layout localizado:
+
+- `src/app/[locale]/layout.tsx`
+
+Padroes atuais:
+
+- `metadataBase` usa `https://www.txjao.dev`.
+- `alternates.languages` gera `hreflang` para `/en-US`, `/pt-BR` e `x-default`.
+- `alternates.canonical` deve apontar para a rota do locale atual.
+- `robots.txt` e gerado por `src/app/robots.ts`.
+- `sitemap.xml` e gerado por `src/app/sitemap.ts`.
+
+Regras:
+
+- nao escrever manualmente tags `<link rel="alternate">` no JSX.
+- preferir Metadata API do Next para canonical, hreflang, robots e sitemap.
+- novas rotas indexaveis devem ser adicionadas ao sitemap quando forem criadas.
+- URLs absolutas devem usar `SITE_URL`, evitando string duplicada em varios arquivos.
+- novas linguagens devem ser adicionadas em `SUPPORTED_LOCALES`; isso alimenta rotas estaticas, `hreflang` e sitemap.
+
+Responsabilidades:
+
+- `robots.ts`: gera `/robots.txt`, libera o rastreamento do site e aponta para `/sitemap.xml`.
+- `sitemap.ts`: gera `/sitemap.xml` com as rotas publicas indexaveis.
+- `generateMetadata` no layout localizado: gera title, description, canonical e alternates por locale.
+- `site.consts.ts`: centraliza dominio, titulo e descricao base do portfolio.
+
+Observacoes:
+
+- `robots.txt` nao e mecanismo de seguranca; ele apenas orienta crawlers.
+- `sitemap.xml` ajuda buscadores a descobrirem URLs importantes, mas nao garante indexacao.
+- `lastModified: new Date()` e aceitavel nesta fase, mas pode ser trocado no futuro por uma data real de atualizacao do conteudo.
+- `priority` e `changeFrequency` sao sugestoes para buscadores, nao garantias de ranking ou frequencia de crawl.
 
 ### Fontes
 
@@ -118,7 +179,25 @@ Foram mantidas as fontes do projeto antigo na branch `dev`:
 - Poppins: pesos `400` e `500`
 - Inter: peso `700`
 
-Configuradas via `next/font/google` em `src/app/layout.tsx`.
+Configuradas via `next/font/google` em `src/app/[locale]/layout.tsx`.
+
+### Icone Do Site E Logo
+
+Icone de aba/favicon:
+
+- `src/app/icon.svg`
+
+Logo usada na interface:
+
+- `public/images/logo.svg`
+
+Regras:
+
+- favicon/icon do site deve ficar no App Router como `src/app/icon.svg`, para o Next gerar os metadados automaticamente.
+- logo de UI deve ficar em `public/images/` e ser consumida pelos componentes com URL publica.
+- manter dimensoes quadradas para evitar warning de proporcao no Lighthouse.
+- se o asset for SVG, preferir SVG vetorial real; SVG com imagem base64 embutida funciona, mas tem menos beneficio que vetor puro.
+- evitar manter favicon antigo duplicado em `public/favicon.ico` ou `public/images/favicon.png` quando ele nao for mais usado.
 
 ### Icones
 
@@ -181,7 +260,8 @@ O que evitar:
 
 Assets estaticos copiados para `public`:
 
-- `public/images/favicon.png`
+- `public/images/logo.svg`
+- `public/documents/Joao_Teixeira_Mid-level_Fullstack_Developer.pdf`
 
 ### UI Primitives
 
@@ -215,8 +295,11 @@ Arquivos atuais:
 - `src/lang/en-us.lang.ts`
 - `src/lang/pt-br.lang.ts`
 - `src/types/language-types.ts`
+- `src/consts/language.consts.ts`
+- `src/consts/site.consts.ts`
 - `src/consts/url.consts.ts`
 - `src/utils/handle-lang.ts`
+- `src/utils/is-locale.ts`
 - `src/providers/theme-provider.tsx`
 
 ## Header
@@ -242,6 +325,7 @@ Componentes externos compostos pelo Header:
 - `src/components/discord-dialog/discord-dialog.tsx`
 - `src/components/toast/unavailable-toast.tsx`
 - `src/components/toast/hooks/use-toast.ts`
+- `src/components/header/types/header.types.ts`
 
 Asset do curriculo:
 
@@ -278,19 +362,32 @@ Padroes atuais:
 
 ## Arquivos Alterados/Criados
 
-Arquivos alterados:
+Arquivos principais alterados/criados ate agora:
 
 - `package.json`
 - `pnpm-lock.yaml`
 - `src/app/globals.css`
-- `src/app/layout.tsx`
-- `src/app/page.tsx`
-
-Arquivos/pastas criados:
-
+- `src/app/[locale]/layout.tsx`
+- `src/app/[locale]/page.tsx`
+- `src/app/icon.svg`
+- `src/app/robots.ts`
+- `src/app/sitemap.ts`
+- `src/consts/url.consts.ts`
+- `src/consts/language.consts.ts`
+- `src/consts/site.consts.ts`
+- `src/lang/en-us.lang.ts`
+- `src/lang/pt-br.lang.ts`
+- `src/types/language-types.ts`
+- `src/utils/handle-lang.ts`
+- `src/utils/is-locale.ts`
 - `src/providers/theme-provider.tsx`
+
+Dominios/pastas criados ou reorganizados:
+
+- `src/app/[locale]/`
 - `src/components/header/header.tsx`
 - `src/components/header/header-client.tsx`
+- `src/components/header/types/header.types.ts`
 - `src/components/header/styles/nav-link.styles.ts`
 - `src/components/header/components/desktop/desktop-header.tsx`
 - `src/components/header/components/desktop/desktop-header.styles.ts`
@@ -305,11 +402,6 @@ Arquivos/pastas criados:
 - `src/components/toast/unavailable-toast.tsx`
 - `src/components/toast/unavailable-toast.styles.ts`
 - `src/components/toast/hooks/use-toast.ts`
-- `src/consts/url.consts.ts`
-- `src/lang/en-us.lang.ts`
-- `src/lang/pt-br.lang.ts`
-- `src/types/language-types.ts`
-- `src/utils/handle-lang.ts`
 - `public/documents/`
 - `public/images/`
 - `src/components/icons/`
@@ -320,7 +412,7 @@ Possivel arquivo utilitario existente/criado durante o processo:
 
 Constantes de idioma reaproveitadas e reorganizadas:
 
-- `src/consts/Languange.ts` foi dividido entre `src/lang/` e `src/types/language-types.ts`.
+- `src/consts/Languange.ts` foi dividido entre `src/lang/`, `src/types/language-types.ts`, `src/consts/language.consts.ts` e `src/utils/is-locale.ts`.
 
 ## Pontos Importantes Para O Proximo Chat
 
@@ -368,12 +460,11 @@ pnpm build
 
 1. Refinar o Header ate ficar 1:1 com producao.
 2. Portar Hero/Info/Lettering/social links da branch `dev`.
-3. Estruturar rotas de idioma `/pt-BR` e `/en-US`.
-4. Adaptar textos para dicionarios server-side por locale.
-5. Criar base para SDUI no server.
-6. Adicionar carrossel de projetos pessoais.
-7. Adicionar secao de artigos consumindo Medium inicialmente.
-8. Avaliar no futuro ferramenta propria de escrita/artigos.
+3. Adaptar textos para dicionarios server-side por locale.
+4. Criar base para SDUI no server.
+5. Adicionar carrossel de projetos pessoais.
+6. Adicionar secao de artigos consumindo Medium inicialmente.
+7. Avaliar no futuro ferramenta propria de escrita/artigos.
 
 ## Preferencias Do Usuario
 

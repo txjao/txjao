@@ -19,8 +19,6 @@ export interface IHeaderControlTexts {
     languageToggleLabel: string
     logoAlt: string
     openMenuLabel: string
-    switchToDarkThemeLabel: string
-    switchToLightThemeLabel: string
 }
 
 export interface IModalTexts {

@@ -36,6 +36,7 @@ export function HeaderClient({
 }: HeaderClientProps) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isDiscordOpen, setIsDiscordOpen] = useState(false);
+
   const { isToastOpen, setIsToastOpen, showUnavailableToast, } = useUnavailableToast();
 
   function handleMobileMenuToggle() {
@@ -48,20 +49,20 @@ export function HeaderClient({
 
   return (
     <Toast.Provider duration={3000} swipeDirection="right">
-      <header className="relative h-24 bg-white-secondary text-black transition-colors dark:bg-black-secondary dark:text-white">
+      <header className="relative h-24 bg-white-secondary text-black transition-colors border-b-[0.5px] dark:bg-black-secondary dark:text-white">
         <DesktopHeader
-          headerControlTexts={headerControlTexts}
-          headerTexts={headerTexts}
           locale={locale}
+          headerTexts={headerTexts}
+          headerControlTexts={headerControlTexts}
           onCertificatesClick={showUnavailableToast}
           onDiscordOpen={handleDiscordOpen}
         />
 
         <MobileHeader
-          headerControlTexts={headerControlTexts}
           isMenuOpen={isMobileMenuOpen}
           locale={locale}
           mobileTexts={mobileTexts}
+          headerControlTexts={headerControlTexts}
           onCertificatesClick={showUnavailableToast}
           onMenuToggle={handleMobileMenuToggle}
         />

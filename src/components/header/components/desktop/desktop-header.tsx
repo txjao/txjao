@@ -28,10 +28,7 @@ export function DesktopHeader({
   return (
     <nav className="hidden h-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-8 md:grid lg:px-16">
       <div className="flex items-center justify-between pr-0 lg:pr-20">
-        <ThemeToggle
-          switchToDarkLabel={headerControlTexts.switchToDarkThemeLabel}
-          switchToLightLabel={headerControlTexts.switchToLightThemeLabel}
-        />
+        <ThemeToggle />
         <div className="w-[200px] text-center">
           <a
             className={navLinkClass}
@@ -43,7 +40,6 @@ export function DesktopHeader({
           </a>
         </div>
         <div className="w-[200px] text-center">
-
           <a
             className={navLinkClass}
             href={GITHUB_URL}
@@ -57,9 +53,10 @@ export function DesktopHeader({
 
       <Image
         alt={headerControlTexts.logoAlt}
-        height={48}
+        height={64}
+        width={64}
         src={LOGO_IMAGE_URL}
-        width={48}
+        preload
       />
 
       <div className="flex items-center justify-between pl-0 lg:pl-20">

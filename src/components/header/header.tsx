@@ -1,5 +1,6 @@
 import { enHeader, enHeaderControlTexts, enMobileHeaderMenu, enModalTexts, enToastTexts } from "@/src/lang/en-us.lang";
 import { ptHeader, ptHeaderControlTexts, ptMobileHeaderMenu, ptModalTexts, ptToastTexts } from "@/src/lang/pt-br.lang";
+import { DEFAULT_LOCALE } from "@/src/consts/language.consts";
 import type {
   IHeaderControlTexts,
   IHeaderTexts,
@@ -32,12 +33,12 @@ function getToastTexts(locale: Locale): IToastTexts {
   return handleLang(locale) ? ptToastTexts : enToastTexts;
 }
 
-export function Header({ locale = "en-US" }: HeaderProps) {
+export function Header({ locale = DEFAULT_LOCALE }: HeaderProps) {
   return (
     <HeaderClient
+      locale={locale}
       headerControlTexts={getHeaderControlTexts(locale)}
       headerTexts={getHeaderTexts(locale)}
-      locale={locale}
       mobileTexts={getMobileTexts(locale)}
       modalTexts={getModalTexts(locale)}
       toastTexts={getToastTexts(locale)}
