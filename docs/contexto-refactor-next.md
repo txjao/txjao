@@ -18,6 +18,20 @@ O refactor esta sendo feito por etapas. Nesta fase, o foco foi a infraestrutura 
 - O SDUI futuro deve ser resolvido no server a partir do `locale`, nao por um `LanguageContext` global client-side.
 - Textos devem caminhar para props/dicionarios por rota quando a estrutura i18n for criada.
 
+### Padrao De Logica JS/TS
+
+Ao escrever logica em JavaScript/TypeScript, preferir condicionais declarativas nomeadas antes de blocos `if`.
+
+Regras:
+
+- evitar condicionais compostas diretamente no `if` quando a intencao de negocio nao estiver imediata.
+- extrair condicoes para `consts` com nomes que expliquem a regra, como `hasScrolledUp`, `shouldHideHeader` ou `shouldSkipVisibilityUpdate`.
+- preferir nomes que expressem a decisao ou estado real, nao apenas a comparacao tecnica.
+- manter comparacoes triviais inline quando elas forem obvias e nao reduzirem legibilidade.
+- early returns devem ser inline quando a unica acao for `return`, por exemplo `if (shouldSkipUpdate) return;`.
+- condicionais com uma unica acao devem ser inline, mantendo a condicao declarativa nomeada antes do `if` quando a regra nao for trivial.
+- em hooks, deixar `useEffect` focado em assinar/limpar efeitos quando possivel; regras de decisao podem ficar em funcoes nomeadas e consts declarativas.
+
 ## Decisoes Tomadas
 
 ### Tailwind
