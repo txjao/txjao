@@ -57,12 +57,12 @@ export function HeaderClient({
   })
   return (
     <Toast.Provider duration={3000} swipeDirection="right">
-      {isHeaderHidden ? (
+      {isHeaderHidden && (
         <div
           aria-hidden="true"
           className="header-hover-trigger fixed inset-x-0 top-0 z-40 h-24"
         />
-      ) : null}
+      )}
       <header
         className="site-header fixed inset-x-0 top-0 z-50 h-24 border-b-[0.5px] bg-white-secondary text-black transition-colors duration-200 dark:bg-black-secondary dark:text-white"
         data-header-animated={hasHeaderVisibilityChanged}

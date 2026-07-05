@@ -55,6 +55,7 @@ body {
 }
 
 @layer components {
+
   .site-header,
   .site-header[data-header-hidden="false"] {
     opacity: 1;
@@ -72,9 +73,10 @@ body {
     animation: header-slide-up 180ms ease-in forwards;
   }
 
+  /* TODO: this style is broken the default behavior of mobile header animation, evaluate if this selector is necessary */
   .site-header[data-header-hidden="true"]:hover,
   .site-header[data-header-hidden="true"]:focus-within,
-  .header-hover-trigger:hover + .site-header {
+  .header-hover-trigger:hover+.site-header {
     pointer-events: auto;
     opacity: 1;
     transform: translateY(0);
@@ -82,11 +84,12 @@ body {
   }
 
   @media (prefers-reduced-motion: reduce) {
+
     .site-header[data-header-hidden="false"][data-header-animated="true"],
     .site-header[data-header-hidden="true"],
     .site-header[data-header-hidden="true"]:hover,
     .site-header[data-header-hidden="true"]:focus-within,
-    .header-hover-trigger:hover + .site-header {
+    .header-hover-trigger:hover+.site-header {
       animation: none;
     }
   }
