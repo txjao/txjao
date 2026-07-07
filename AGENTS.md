@@ -481,7 +481,7 @@ pnpm build
 7. Avaliar no futuro ferramenta propria de escrita/artigos.
 
 ## Preferencias Do Usuario
-
+- Explicar as mudancas antes de executa-las, após explicar o usuário irá avalia-las e explicar o que deve ser feito em sequencia
 - Responder em portugues.
 - Ir por etapas.
 - Nao fazer mudancas fora do escopo combinado.

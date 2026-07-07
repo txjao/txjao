@@ -73,8 +73,6 @@ body {
     animation: header-slide-up 180ms ease-in forwards;
   }
 
-  /* TODO: this style is broken the default behavior of mobile header animation, evaluate if this selector is necessary */
-  .site-header[data-header-hidden="true"]:hover,
   .site-header[data-header-hidden="true"]:focus-within,
   .header-hover-trigger:hover+.site-header {
     pointer-events: auto;
@@ -87,7 +85,6 @@ body {
 
     .site-header[data-header-hidden="false"][data-header-animated="true"],
     .site-header[data-header-hidden="true"],
-    .site-header[data-header-hidden="true"]:hover,
     .site-header[data-header-hidden="true"]:focus-within,
     .header-hover-trigger:hover+.site-header {
       animation: none;
