@@ -66,13 +66,6 @@ export function useHideHeader({
 
     if (isPinned) updateHeaderVisibility("visible");
 
-    //TODO: Debbug and understand why the header state is desincronyzed with hook state
-    //the console.log show the desyncronizing
-    console.log("hook-state: ", {
-      isPinned,
-      headerVisibility
-    })
-
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {

@@ -73,7 +73,7 @@ body {
     animation: header-slide-up 180ms ease-in forwards;
   }
 
-  .site-header[data-header-hidden="true"]:focus-within,
+  .site-header[data-header-hidden="true"]:has(:focus-visible),
   .header-hover-trigger:hover+.site-header {
     pointer-events: auto;
     opacity: 1;
@@ -85,7 +85,7 @@ body {
 
     .site-header[data-header-hidden="false"][data-header-animated="true"],
     .site-header[data-header-hidden="true"],
-    .site-header[data-header-hidden="true"]:focus-within,
+    .site-header[data-header-hidden="true"]:has(:focus-visible),
     .header-hover-trigger:hover+.site-header {
       animation: none;
     }

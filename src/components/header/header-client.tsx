@@ -51,10 +51,6 @@ export function HeaderClient({
     setIsDiscordOpen(true);
   }
 
-  console.log("component-hook-state: ", {
-    hasHeaderVisibilityChanged,
-    isHeaderHidden,
-  })
   return (
     <Toast.Provider duration={3000} swipeDirection="right">
       {isHeaderHidden && (
