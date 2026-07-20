@@ -4,10 +4,12 @@ import Image from "next/image";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
 import type { IHeaderControlTexts, IMobileHeaderMenuTexts, Locale } from "@/src/types/language-types";
 import { HamburgerIcon } from "../../../icons";
-import { navLinkClass } from "../../styles/nav-link.styles";
+import navLinkStyles from "../../styles/nav-link.module.css";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
-import { menuPanelClass } from "./mobile-header.styles";
+import styles from "./styles/mobile-header.module.css";
+
+const navLinkClassName = `${navLinkStyles.link} focus-ring`;
 
 interface MobileHeaderProps {
   headerControlTexts: IHeaderControlTexts;
@@ -47,7 +49,7 @@ export function MobileHeader({
         </button>
         <div
           aria-hidden={!isMenuOpen}
-          className={menuPanelClass}
+          className={styles.menuPanel}
           data-menu-open={isMenuOpen}
           inert={!isMenuOpen}
         >
@@ -58,11 +60,11 @@ export function MobileHeader({
               locale={locale}
             />
           </div>
-          <a className={navLinkClass} href={EMAIL}>
+          <a className={navLinkClassName} href={EMAIL}>
             E-mail
           </a>
           <a
-            className={navLinkClass}
+            className={navLinkClassName}
             href={GITHUB_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -70,7 +72,7 @@ export function MobileHeader({
             Github
           </a>
           <a
-            className={navLinkClass}
+            className={navLinkClassName}
             href={LINKEDIN_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -78,7 +80,7 @@ export function MobileHeader({
             Linkedin
           </a>
           <a
-            className={navLinkClass}
+            className={navLinkClassName}
             href={RESUME_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -86,7 +88,7 @@ export function MobileHeader({
             {mobileTexts.resume}
           </a>
           <button
-            className={`${navLinkClass} self-end text-right`}
+            className={`${navLinkClassName} self-end text-right`}
             type="button"
             onClick={onCertificatesClick}
           >

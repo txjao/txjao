@@ -16,7 +16,7 @@ import { MobileHeader } from "./components/mobile/mobile-header";
 import { UnavailableToast } from "../toast/unavailable-toast";
 import { useUnavailableToast } from "../toast/hooks/use-toast";
 import { useHideHeader } from "./hooks/use-hide-header";
-import { headerFrameClass, headerHoverHitboxClass, headerShellClass } from "./styles/header-client.styles";
+import styles from "./styles/header-client.module.css";
 
 interface HeaderClientProps {
   headerControlTexts: IHeaderControlTexts;
@@ -58,10 +58,10 @@ export function HeaderClient({
 
   return (
     <Toast.Provider duration={3000} swipeDirection="right">
-      <div className={headerFrameClass}>
-        <div aria-hidden="true" className={headerHoverHitboxClass} />
+      <div className={styles.frame}>
+        <div aria-hidden="true" className={styles.hoverHitbox} />
         <header
-          className={headerShellClass}
+          className={styles.shell}
           data-header-visibility={headerVisibility}
         >
           <DesktopHeader

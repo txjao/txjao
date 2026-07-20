@@ -4,11 +4,13 @@ import Image from "next/image";
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/src/consts/url.consts";
 import type { IHeaderControlTexts, IHeaderTexts, Locale } from "@/src/types/language-types";
 
-import { navLinkClass } from "../../styles/nav-link.styles";
+import navLinkStyles from "../../styles/nav-link.module.css";
 import { LanguageToggle } from "../language-toggle";
 import { ThemeToggle } from "../theme-toggle";
-import { dropdownItemClass } from "./desktop-header.styles";
 import { DesktopDropdown } from "./components/desktop-dropdown";
+
+const navLinkClassName = `${navLinkStyles.link} focus-ring`;
+const dropdownItemClassName = `${navLinkClassName} text-center`;
 
 interface DesktopHeaderProps {
   headerControlTexts: IHeaderControlTexts;
@@ -31,7 +33,7 @@ export function DesktopHeader({
         <ThemeToggle />
         <div className="w-[200px] text-center">
           <a
-            className={navLinkClass}
+            className={navLinkClassName}
             href={LINKEDIN_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -41,7 +43,7 @@ export function DesktopHeader({
         </div>
         <div className="w-[200px] text-center">
           <a
-            className={navLinkClass}
+            className={navLinkClassName}
             href={GITHUB_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -61,11 +63,11 @@ export function DesktopHeader({
 
       <div className="flex items-center justify-between pl-0 lg:pl-20">
         <DesktopDropdown label={headerTexts.contactMe} widthClassName="w-[200px]">
-          <a className={dropdownItemClass} href={EMAIL}>
+          <a className={dropdownItemClassName} href={EMAIL}>
             E-mail
           </a>
           <button
-            className={dropdownItemClass}
+            className={dropdownItemClassName}
             type="button"
             onClick={onDiscordOpen}
           >
@@ -74,7 +76,7 @@ export function DesktopHeader({
         </DesktopDropdown>
         <DesktopDropdown label={headerTexts.me} widthClassName="w-[200px]">
           <a
-            className={dropdownItemClass}
+            className={dropdownItemClassName}
             href={RESUME_URL}
             rel="noopener noreferrer"
             target="_blank"
@@ -82,7 +84,7 @@ export function DesktopHeader({
             {headerTexts.meItens.resume}
           </a>
           <button
-            className={dropdownItemClass}
+            className={dropdownItemClassName}
             type="button"
             onClick={onCertificatesClick}
           >

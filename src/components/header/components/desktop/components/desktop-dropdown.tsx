@@ -3,7 +3,7 @@
 import { NavigationMenu } from "radix-ui";
 import type { ReactNode } from "react";
 import { ChevronIcon } from "../../../../icons";
-import { dropdownContentClass, dropdownItemsClass } from "./desktop-dropdown.styles";
+import styles from "./styles/desktop-dropdown.module.css";
 
 interface DesktopDropdownProps {
   label: string;
@@ -28,8 +28,8 @@ export function DesktopDropdown({
             {label}
             <ChevronIcon className="nav-chevron size-5 transition-transform duration-200 group-data-[state=open]:rotate-90" />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content forceMount className={dropdownContentClass}>
-            <div className={dropdownItemsClass}>{children}</div>
+          <NavigationMenu.Content forceMount className={styles.content}>
+            <div className={styles.items}>{children}</div>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
       </NavigationMenu.List>

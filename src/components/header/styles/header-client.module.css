@@ -1,0 +1,84 @@
+.frame {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 50;
+  height: 6rem;
+  pointer-events: none;
+}
+
+.hoverHitbox {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  display: none;
+  height: 6rem;
+  pointer-events: auto;
+  background-color: transparent;
+}
+
+.shell {
+  position: relative;
+  z-index: 10;
+  height: 6rem;
+  color: var(--color-black);
+  pointer-events: auto;
+  background-color: var(--color-white-secondary);
+  border-bottom: 0.5px solid currentColor;
+  opacity: 1;
+  translate: 0;
+  transition:
+    background-color 200ms ease-in-out,
+    color 200ms ease-in-out,
+    translate 200ms ease-in-out,
+    opacity 200ms ease-in-out;
+}
+
+:global(.dark) .shell {
+  color: var(--color-white);
+  background-color: var(--color-black-secondary);
+}
+
+.shell[data-header-visibility="hidden"] {
+  pointer-events: none;
+  opacity: 0;
+  translate: 0 -100%;
+}
+
+.shell[data-header-visibility="pinned"],
+.shell[data-header-visibility="visible"] {
+  opacity: 1;
+  translate: 0;
+}
+
+.shell[data-header-visibility="hidden"]:has(:focus-visible) {
+  pointer-events: auto;
+  opacity: 1;
+  translate: 0;
+}
+
+@media (width >= 48rem) {
+  .frame {
+    pointer-events: auto;
+  }
+
+  .hoverHitbox {
+    display: block;
+  }
+}
+
+@media (width >= 48rem) and (hover: hover) {
+  .frame:hover .shell[data-header-visibility="hidden"] {
+    pointer-events: auto;
+    opacity: 1;
+    translate: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .shell {
+    transition: none;
+  }
+}
