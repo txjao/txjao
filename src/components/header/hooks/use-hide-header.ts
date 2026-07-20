@@ -3,11 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface UseHideHeaderOptions {
-  isPinned?: boolean;
   scrollDelta?: number;
 }
 
-type HeaderVisibility = "hidden" | "initial" | "visible";
+type HeaderVisibility = "hidden" | "initial" | "pinned" | "visible";
 type HeaderVisibilityUpdate = Exclude<HeaderVisibility, "initial">;
 
 // Minimum sensitivity for intentional scroll movement.
@@ -16,7 +15,6 @@ const DEFAULT_SCROLL_DELTA = 6;
 const TOP_SCROLL_POSITION = 0;
 
 export function useHideHeader({
-  isPinned = false,
   scrollDelta = DEFAULT_SCROLL_DELTA,
 }: UseHideHeaderOptions = {}) {
   const [headerVisibility, setHeaderVisibility] = useState<HeaderVisibility>("initial");
@@ -38,6 +36,22 @@ export function useHideHeader({
     setHeaderVisibility(nextHeaderVisibility);
   }, []);
 
+  const hideHeader = useCallback(() => {
+    updateHeaderVisibility("hidden");
+  }, [updateHeaderVisibility]);
+
+  const pinHeader = useCallback(() => {
+    updateHeaderVisibility("pinned");
+  }, [updateHeaderVisibility]);
+
+  const unpinHeader = useCallback(() => {
+    updateHeaderVisibility("visible");
+  }, [updateHeaderVisibility]);
+
+  const showHeader = useCallback(() => {
+    updateHeaderVisibility("visible");
+  }, [updateHeaderVisibility]);
+
   const handleScroll = useCallback(() => {
     if (scrollFrameRef.current !== null) return;
 
@@ -49,22 +63,21 @@ export function useHideHeader({
 
       const hasScrolledUp = scrollDistance < -scrollDelta;
       const hasScrolledDown = scrollDistance > scrollDelta;
+      const isHeaderPinned = headerVisibilityRef.current === "pinned";
 
-      const shouldShowHeader = hasReachedTop || hasScrolledUp;
-      const shouldHideHeader = !isPinned && hasScrolledDown;
+      const shouldShowHeader = !isHeaderPinned && (hasReachedTop || hasScrolledUp);
+      const shouldHideHeader = !isHeaderPinned && hasScrolledDown;
 
-      if (shouldShowHeader) updateHeaderVisibility("visible");
-      else if (shouldHideHeader) updateHeaderVisibility("hidden");
+      if (shouldShowHeader) showHeader();
+      else if (shouldHideHeader) hideHeader();
 
       lastScrollYRef.current = currentScrollY;
       scrollFrameRef.current = null;
     });
-  }, [isPinned, scrollDelta, updateHeaderVisibility]);
+  }, [hideHeader, scrollDelta, showHeader]);
 
   useEffect(() => {
     lastScrollYRef.current = window.scrollY;
-
-    if (isPinned) updateHeaderVisibility("visible");
 
     window.addEventListener("scroll", handleScroll, { passive: true });
 
@@ -75,10 +88,12 @@ export function useHideHeader({
         window.cancelAnimationFrame(scrollFrameRef.current);
       }
     };
-  }, [handleScroll, isPinned, updateHeaderVisibility, headerVisibility]);
+  }, [handleScroll]);
 
   return {
-    hasHeaderVisibilityChanged: headerVisibility !== "initial",
-    isHeaderHidden: headerVisibility === "hidden"
+    headerVisibility,
+    hideHeader,
+    pinHeader,
+    unpinHeader,
   };
 }

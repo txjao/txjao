@@ -16,6 +16,7 @@ import { MobileHeader } from "./components/mobile/mobile-header";
 import { UnavailableToast } from "../toast/unavailable-toast";
 import { useUnavailableToast } from "../toast/hooks/use-toast";
 import { useHideHeader } from "./hooks/use-hide-header";
+import { headerFrameClass, headerHoverHitboxClass, headerShellClass } from "./styles/header-client.styles";
 
 interface HeaderClientProps {
   headerControlTexts: IHeaderControlTexts;
@@ -39,11 +40,15 @@ export function HeaderClient({
 
   const { isToastOpen, setIsToastOpen, showUnavailableToast } = useUnavailableToast();
 
-  const { hasHeaderVisibilityChanged, isHeaderHidden } = useHideHeader({
-    isPinned: isMobileMenuOpen,
-  });
+  const { headerVisibility, pinHeader, unpinHeader } = useHideHeader();
 
   function handleMobileMenuToggle() {
+    const shouldOpenMobileMenu = !isMobileMenuOpen;
+    const shouldCloseMobileMenu = isMobileMenuOpen;
+
+    if (shouldOpenMobileMenu) pinHeader();
+    if (shouldCloseMobileMenu) unpinHeader();
+
     setIsMobileMenuOpen((currentIsMobileMenuOpen) => !currentIsMobileMenuOpen);
   }
 
@@ -53,34 +58,30 @@ export function HeaderClient({
 
   return (
     <Toast.Provider duration={3000} swipeDirection="right">
-      {isHeaderHidden && (
-        <div
-          aria-hidden="true"
-          className="header-hover-trigger fixed inset-x-0 top-0 z-40 h-24"
-        />
-      )}
-      <header
-        className="site-header fixed inset-x-0 top-0 z-50 h-24 border-b-[0.5px] bg-white-secondary text-black transition-colors duration-200 dark:bg-black-secondary dark:text-white"
-        data-header-animated={hasHeaderVisibilityChanged}
-        data-header-hidden={isHeaderHidden}
-      >
-        <DesktopHeader
-          locale={locale}
-          headerTexts={headerTexts}
-          headerControlTexts={headerControlTexts}
-          onCertificatesClick={showUnavailableToast}
-          onDiscordOpen={handleDiscordOpen}
-        />
+      <div className={headerFrameClass}>
+        <div aria-hidden="true" className={headerHoverHitboxClass} />
+        <header
+          className={headerShellClass}
+          data-header-visibility={headerVisibility}
+        >
+          <DesktopHeader
+            locale={locale}
+            headerTexts={headerTexts}
+            headerControlTexts={headerControlTexts}
+            onCertificatesClick={showUnavailableToast}
+            onDiscordOpen={handleDiscordOpen}
+          />
 
-        <MobileHeader
-          isMenuOpen={isMobileMenuOpen}
-          locale={locale}
-          mobileTexts={mobileTexts}
-          headerControlTexts={headerControlTexts}
-          onCertificatesClick={showUnavailableToast}
-          onMenuToggle={handleMobileMenuToggle}
-        />
-      </header>
+          <MobileHeader
+            isMenuOpen={isMobileMenuOpen}
+            locale={locale}
+            mobileTexts={mobileTexts}
+            headerControlTexts={headerControlTexts}
+            onCertificatesClick={showUnavailableToast}
+            onMenuToggle={handleMobileMenuToggle}
+          />
+        </header>
+      </div>
       <div className="h-24" aria-hidden="true" />
 
       <DiscordDialog

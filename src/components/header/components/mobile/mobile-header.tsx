@@ -45,51 +45,54 @@ export function MobileHeader({
         >
           <HamburgerIcon isOpen={isMenuOpen} />
         </button>
-        {isMenuOpen ? (
-          <div className={menuPanelClass}>
-            <div className="mb-1 flex w-full items-center justify-between">
-              <ThemeToggle />
-              <LanguageToggle
-                label={headerControlTexts.languageToggleLabel}
-                locale={locale}
-              />
-            </div>
-            <a className={navLinkClass} href={EMAIL}>
-              E-mail
-            </a>
-            <a
-              className={navLinkClass}
-              href={GITHUB_URL}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Github
-            </a>
-            <a
-              className={navLinkClass}
-              href={LINKEDIN_URL}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Linkedin
-            </a>
-            <a
-              className={navLinkClass}
-              href={RESUME_URL}
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              {mobileTexts.resume}
-            </a>
-            <button
-              className={`${navLinkClass} self-end text-right`}
-              type="button"
-              onClick={onCertificatesClick}
-            >
-              {mobileTexts.certificates}
-            </button>
+        <div
+          aria-hidden={!isMenuOpen}
+          className={menuPanelClass}
+          data-menu-open={isMenuOpen}
+          inert={!isMenuOpen}
+        >
+          <div className="mb-1 flex w-full items-center justify-between">
+            <ThemeToggle />
+            <LanguageToggle
+              label={headerControlTexts.languageToggleLabel}
+              locale={locale}
+            />
           </div>
-        ) : null}
+          <a className={navLinkClass} href={EMAIL}>
+            E-mail
+          </a>
+          <a
+            className={navLinkClass}
+            href={GITHUB_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Github
+          </a>
+          <a
+            className={navLinkClass}
+            href={LINKEDIN_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Linkedin
+          </a>
+          <a
+            className={navLinkClass}
+            href={RESUME_URL}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {mobileTexts.resume}
+          </a>
+          <button
+            className={`${navLinkClass} self-end text-right`}
+            type="button"
+            onClick={onCertificatesClick}
+          >
+            {mobileTexts.certificates}
+          </button>
+        </div>
       </div>
     </nav>
   );
