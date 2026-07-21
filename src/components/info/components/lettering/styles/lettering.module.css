@@ -1,0 +1,104 @@
+.greeting {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.25rem;
+}
+
+.gradientText,
+.animatedText {
+    background: -webkit-linear-gradient(0deg, var(--color-blue) 0%, var(--color-yellow) 100%) text;
+    background-clip: text;
+    color: transparent;
+    font-family: var(--font-inter), sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.emoji {
+    font-size: 1.5rem;
+}
+
+.animatedTextWrapper {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+}
+
+.animatedText {
+    display: inline;
+}
+
+.animatedText::after {
+    content: "|";
+    color: var(--color-blue);
+    -webkit-text-fill-color: var(--color-blue);
+    animation: cursorBlink 0.8s step-end infinite;
+}
+
+.reducedMotionText::after {
+    content: none;
+}
+
+@keyframes cursorBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 1440px) {
+
+    .gradientText,
+    .animatedText {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 1024px) {
+
+    .gradientText,
+    .animatedText {
+        font-size: 1.5rem;
+    }
+
+    .animatedTextWrapper {
+        height: 3rem;
+    }
+}
+
+@media (max-width: 450px) {
+
+    .gradientText,
+    .animatedText {
+        font-size: 1.25rem;
+    }
+
+    .emoji {
+        font-size: 1.125rem;
+    }
+
+    .animatedTextWrapper {
+        width: 13.75rem;
+        height: 6.875rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .animatedTextWrapper {
+        width: 12.5rem;
+    }
+}
+
+@media (max-width: 325px) {
+    .animatedTextWrapper {
+        width: 8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animatedText::after {
+        animation: none;
+    }
+}

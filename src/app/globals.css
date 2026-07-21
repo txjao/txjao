@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-blue: #009fe8;
+  --color-yellow: #fff000;
+  --color-white: #ffffff;
+  --color-white-secondary: #f6f6f6;
+  --color-black: #050505;
+  --color-black-secondary: #060606;
+
+  --header-height: 96px;
+}
+
+@theme inline {
+  --font-sans: var(--font-poppins);
+  --font-heading: var(--font-inter);
+}
+
+@layer utilities {
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue dark:focus-visible:ring-yellow;
+  }
+
+  .hover-highlight {
+    @apply hover:text-blue dark:hover:text-yellow;
+  }
+}

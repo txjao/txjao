@@ -1,0 +1,36 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background-color: #05050559;
+}
+
+.content {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 50;
+  width: min(360px, calc(100vw - 32px));
+  padding: 1.5rem;
+  color: var(--color-black);
+  background-color: var(--color-white-secondary);
+  box-shadow: var(--shadow-xl);
+  translate: -50% -50%;
+  outline: none;
+}
+
+.actionButton {
+  color: var(--color-black);
+  font-family: var(--font-poppins);
+  font-size: var(--text-base);
+  line-height: var(--text-base--line-height);
+}
+
+:global(.dark) .content {
+  color: var(--color-white);
+  background-color: var(--color-black-secondary);
+}
+
+:global(.dark) .actionButton {
+  color: var(--color-white);
+}
