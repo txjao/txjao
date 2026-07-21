@@ -26,7 +26,6 @@
   color: var(--color-black);
   pointer-events: auto;
   background-color: var(--color-white-secondary);
-  border-bottom: 0.5px solid currentColor;
   opacity: 1;
   translate: 0;
   transition:
@@ -59,7 +58,7 @@
   translate: 0;
 }
 
-@media (width >= 48rem) {
+@media (width >=48rem) {
   .frame {
     pointer-events: auto;
   }
@@ -69,7 +68,7 @@
   }
 }
 
-@media (width >= 48rem) and (hover: hover) {
+@media (width >=48rem) and (hover: hover) {
   .frame:hover .shell[data-header-visibility="hidden"] {
     pointer-events: auto;
     opacity: 1;

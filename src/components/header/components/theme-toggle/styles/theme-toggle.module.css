@@ -1,0 +1,21 @@
+.toggle:hover {
+  animation: themeToggleWiggle 0.8s alternate;
+}
+
+@keyframes themeToggleWiggle {
+  25% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(20deg);
+  }
+
+  75% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}

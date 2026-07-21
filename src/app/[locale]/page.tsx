@@ -1,48 +1,47 @@
+import { notFound } from "next/navigation";
+import { Info } from "@/src/components/info/info";
 import {
-    ArrowIcon,
-    ChevronIcon,
-    CloseIcon,
-    DiscordIcon,
-    FigmaIcon,
-    GithubIcon,
-    HamburgerIcon,
-    InstagramIcon,
-    LinkedinIcon,
-    MoonIcon,
-    SpotifyIcon,
-    SunIcon,
-    TwitterIcon,
-} from "@/src/components/icons";
+    enInfo,
+    enLettering,
+    enModalTexts,
+    enProfileImageAlt,
+} from "@/src/lang/en-us.lang";
+import {
+    ptInfo,
+    ptLettering,
+    ptModalTexts,
+    ptProfileImageAlt,
+} from "@/src/lang/pt-br.lang";
+import { handleLang } from "@/src/utils/handle-lang";
+import { isLocale } from "@/src/utils/is-locale";
+import { resolveLetteringTexts } from "@/src/utils/resolve-lettering-texts";
 
+export const revalidate = 86400;
 
-function Bla() {
+export default async function Home({
+    params,
+}: Readonly<{
+    params: Promise<{ locale: string }>;
+}>) {
+    const { locale } = await params;
+
+    if (!isLocale(locale)) notFound();
+
+    const isPortuguese = handleLang(locale);
+    const letteringDictionary = isPortuguese ? ptLettering : enLettering;
+    const imageAlt = isPortuguese ? ptProfileImageAlt : enProfileImageAlt;
+    const bioText = isPortuguese ? ptInfo : enInfo;
+    const modalTexts = isPortuguese ? ptModalTexts : enModalTexts;
+    const letteringTexts = resolveLetteringTexts(letteringDictionary);
+
     return (
-        <div className="grid grid-cols-4 gap-6">
-            <ArrowIcon className="hover-highlight size-8" />
-            <ChevronIcon className="hover-highlight size-8" />
-            <CloseIcon className="hover-highlight size-8" />
-            <DiscordIcon className="hover-highlight size-8" />
-            <FigmaIcon className="hover-highlight size-8" />
-            <GithubIcon className="hover-highlight size-8" />
-            <HamburgerIcon className="hover-highlight size-8" isOpen={false} />
-            <InstagramIcon className="hover-highlight size-8" />
-            <LinkedinIcon className="hover-highlight size-8" />
-            <MoonIcon className="hover-highlight size-8" />
-            <SpotifyIcon className="hover-highlight size-8" />
-            <SunIcon className="hover-highlight size-8" />
-            <TwitterIcon className="hover-highlight size-8" />
+        <div className="flex flex-col items-center">
+            <Info
+                bioText={bioText}
+                imageAlt={imageAlt}
+                letteringTexts={letteringTexts}
+                modalTexts={modalTexts}
+            />
         </div>
-    )
-}
-
-export default function Home() {
-    return (
-        <>
-            <div className="mt-24 flex flex-col items-center text-black dark:text-white">
-                {Array.from({ length: 10 }, (_, index) => (
-                    <Bla key={index} />
-                ))}
-            </div>
-        </>
     );
 }

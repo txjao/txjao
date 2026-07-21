@@ -1,8 +1,7 @@
-import { IHeaderControlTexts, IHeaderTexts, IMobileHeaderMenuTexts, IModalTexts, IToastTexts } from "../types/language-types"
-import { handleAge } from "../utils/handle-age"
+import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IToastTexts } from "../types/language-types"
 
 
-export const enInfo = "I am a full-stack software engineer, currently working as a front-end developer with React at"
+export const enInfo = "I am a full-stack software engineer with extensive experience in front-end development. I am currently working on some AI projects and mentoring IT technical high school students."
 
 export const enHeader: IHeaderTexts = {
     contactMe: "Contact Me",
@@ -25,22 +24,19 @@ export const enHeaderControlTexts: IHeaderControlTexts = {
     openMenuLabel: "Open menu",
 }
 
-export const enLetteringTitle = "Hi There!"
+export const enProfileImageAlt = "Portrait of João Teixeira"
 
-export const enLettering = [
-    `My name is João, I'm ${handleAge()} years old.`,
-    1000,
-    "My name is João, I'm a muay thai fighter.",
-    1000,
-    "My name is João, I'm a brazilian jiu jitsu fighter.",
-    1000,
-    "My name is João, I'm a guitarist.",
-    1000,
-    "My name is João, I'm a dog person.",
-    1000,
-    "My name is João, I'm an e-sports enthusiast.",
-    1000,
-]
+export const enLettering: ILetteringTexts = {
+    title: "Hi There!",
+    phrases: [
+        "My name is João, I'm {{age}} years old.",
+        "My name is João, I'm a muay thai fighter.",
+        "My name is João, I'm a brazilian jiu jitsu fighter.",
+        "My name is João, I'm a guitarist.",
+        "My name is João, I'm a dog person.",
+        "My name is João, I'm an e-sports enthusiast.",
+    ],
+}
 
 export const enModalTexts: IModalTexts = {
     title: "Add me!",

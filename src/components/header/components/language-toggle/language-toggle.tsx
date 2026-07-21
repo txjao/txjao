@@ -2,7 +2,7 @@ import Link from "next/link";
 import { EN_US_LOCALE, PT_BR_LOCALE } from "@/src/consts/language.consts";
 import type { Locale } from "@/src/types/language-types";
 import { handleLang } from "@/src/utils/handle-lang";
-import navLinkStyles from "../styles/nav-link.module.css";
+import navLinkStyles from "../../styles/nav-link.module.css";
 
 interface LanguageToggleProps {
   label: string;

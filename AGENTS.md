@@ -100,6 +100,7 @@ Regras atuais:
 - utilities realmente globais ficam em `src/app/globals.css` dentro de `@layer utilities`.
 - classes curtas e autoexplicativas podem continuar no JSX, por exemplo `mt-1`, `size-4`, `font-medium`.
 - combinar CSS Modules com utilities globais ou classes Tailwind curtas no `className` quando isso mantiver a intencao clara, por exemplo `${styles.link} focus-ring text-center`.
+- valores que representam tamanhos de tela ou breakpoints devem ser escritos em `px`, inclusive em media queries e variantes responsivas arbitrarias do Tailwind.
 - evitar colocar estilos especificos de componente em `globals.css`.
 - usar `focus-ring` para foco visual de elementos interativos.
 - usar `hover-highlight` para hover com cor de destaque.
@@ -485,6 +486,10 @@ pnpm build
 
 ## Preferencias Do Usuario
 - Explicar as mudancas antes de executa-las, após explicar o usuário irá avalia-las e explicar o que deve ser feito em sequencia
+- Antes de propor ou implementar uma mudanca, validar se ela segue as regras deste `AGENTS.md`.
+- A aprovacao do usuario autoriza somente o escopo combinado que tambem esteja de acordo com esta documentacao.
+- Se uma solucao proposta e aprovada contrariar o `AGENTS.md`, avisar explicitamente qual regra seria desrespeitada antes de executar qualquer alteracao.
+- Nao interpretar a aprovacao como autorizacao implicita para ignorar ou sobrescrever a documentacao.
 - Responder em portugues.
 - Ir por etapas.
 - Nao fazer mudancas fora do escopo combinado.

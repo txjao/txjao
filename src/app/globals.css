@@ -9,39 +9,13 @@
   --color-white-secondary: #f6f6f6;
   --color-black: #050505;
   --color-black-secondary: #060606;
-}
 
-:root {
-  color-scheme: light dark;
+  --header-height: 96px;
 }
 
 @theme inline {
   --font-sans: var(--font-poppins);
   --font-heading: var(--font-inter);
-}
-
-html {
-  min-height: 100%;
-  background-color: var(--color-white-secondary);
-}
-
-html.dark {
-  background-color: var(--color-black);
-}
-
-body {
-  min-height: 100%;
-  background-color: var(--color-white-secondary);
-  color: var(--color-black);
-  font-family: var(--font-poppins), Arial, Helvetica, sans-serif;
-  transition:
-    background-color 0.2s ease-in,
-    color 0.2s ease-in;
-}
-
-.dark body {
-  background-color: var(--color-black);
-  color: var(--color-white);
 }
 
 @layer utilities {
@@ -50,24 +24,6 @@ body {
   }
 
   .hover-highlight {
-    @apply transition-colors hover:text-blue dark:hover:text-yellow;
-  }
-}
-
-@keyframes theme-toggle-wiggle {
-  25% {
-    transform: rotate(10deg);
-  }
-
-  50% {
-    transform: rotate(20deg);
-  }
-
-  75% {
-    transform: rotate(-10deg);
-  }
-
-  100% {
-    transform: rotate(0deg);
+    @apply hover:text-blue dark:hover:text-yellow;
   }
 }

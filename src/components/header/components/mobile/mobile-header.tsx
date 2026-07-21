@@ -5,8 +5,8 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/s
 import type { IHeaderControlTexts, IMobileHeaderMenuTexts, Locale } from "@/src/types/language-types";
 import { HamburgerIcon } from "../../../icons";
 import navLinkStyles from "../../styles/nav-link.module.css";
-import { LanguageToggle } from "../language-toggle";
-import { ThemeToggle } from "../theme-toggle";
+import { LanguageToggle } from "../language-toggle/language-toggle";
+import { ThemeToggle } from "../theme-toggle/theme-toggle";
 import styles from "./styles/mobile-header.module.css";
 
 const navLinkClassName = `${navLinkStyles.link} focus-ring`;

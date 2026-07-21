@@ -1,5 +1,10 @@
 export type Locale = "en-US" | "pt-BR";
 
+export interface ILetteringTexts {
+    title: string
+    phrases: string[]
+}
+
 export interface IHeaderTexts {
     contactMe: string,
     me: string,

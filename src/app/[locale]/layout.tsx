@@ -72,7 +72,7 @@ export default async function RootLayout({
       suppressHydrationWarning
       className={`${poppins.variable} ${inter.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white-secondary text-black transition-colors dark:bg-black dark:text-white">
+      <body className="flex min-h-full flex-col bg-white text-black transition-colors dark:bg-black dark:text-white">
         <ThemeProvider>
           <Header locale={locale} />
           <main>

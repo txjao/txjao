@@ -5,8 +5,8 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL, LOGO_IMAGE_URL, RESUME_URL } from "@/s
 import type { IHeaderControlTexts, IHeaderTexts, Locale } from "@/src/types/language-types";
 
 import navLinkStyles from "../../styles/nav-link.module.css";
-import { LanguageToggle } from "../language-toggle";
-import { ThemeToggle } from "../theme-toggle";
+import { LanguageToggle } from "../language-toggle/language-toggle";
+import { ThemeToggle } from "../theme-toggle/theme-toggle";
 import { DesktopDropdown } from "./components/desktop-dropdown";
 
 const navLinkClassName = `${navLinkStyles.link} focus-ring`;
@@ -28,7 +28,7 @@ export function DesktopHeader({
   onDiscordOpen,
 }: DesktopHeaderProps) {
   return (
-    <nav className="hidden h-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-8 md:grid lg:px-16">
+    <nav className="hidden h-[var(--header-height)] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-8 md:grid lg:px-16">
       <div className="flex items-center justify-between pr-0 lg:pr-20">
         <ThemeToggle />
         <div className="w-[200px] text-center">
