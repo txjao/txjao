@@ -3,7 +3,7 @@
 import { Dialog } from "radix-ui";
 import { DISCORD_URL, DISCORD_USER } from "@/src/consts/url.consts";
 import type { IModalTexts } from "@/src/types/language-types";
-import { dialogActionButtonClass, dialogContentClass } from "./discord-dialog.styles";
+import styles from "./styles/discord-dialog.module.css";
 
 interface DiscordDialogProps {
   isOpen: boolean;
@@ -25,8 +25,8 @@ export function DiscordDialog({
   return (
     <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>
       <Dialog.Portal>
-        <Dialog.Overlay className="fixed inset-0 z-50 bg-black/35" />
-        <Dialog.Content className={dialogContentClass}>
+        <Dialog.Overlay className={styles.overlay} />
+        <Dialog.Content className={styles.content}>
           <Dialog.Title className="font-sans text-xl font-medium">
             {modalTexts.title}
           </Dialog.Title>
@@ -36,14 +36,14 @@ export function DiscordDialog({
           <div className="mt-6 flex justify-end gap-4">
             <Dialog.Close asChild>
               <button
-                className={dialogActionButtonClass}
+                className={`${styles.actionButton} focus-ring hover-highlight`}
                 type="button"
               >
                 {modalTexts.closeButton}
               </button>
             </Dialog.Close>
             <button
-              className={dialogActionButtonClass}
+              className={`${styles.actionButton} focus-ring hover-highlight`}
               type="button"
               onClick={handleCopy}
             >

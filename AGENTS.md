@@ -68,45 +68,48 @@ Essas utilities seguem as cores de destaque atuais:
 
 O projeto usa Tailwind no JSX para classes pequenas e obvias.
 
-Quando uma classe fica extensa, ou quando a mesma composicao aparece mais de uma vez no mesmo componente, ela deve ser extraida para um arquivo `.styles.ts` no mesmo dominio do componente.
+Quando o estilo fica extenso ou envolve animacoes, pseudo-elementos, seletores relacionais, media queries ou estados por atributos `data-*`, usar CSS Modules com sintaxe CSS nativa.
 
-Padrao para componente simples:
+Padrao para estilo especifico de um componente:
 
 ```txt
 component-name/
   component-name.tsx
-  component-name.styles.ts
+  styles/
+    component-name.module.css
 ```
 
-Padrao para dominio com subcomponentes:
+Padrao para estilo compartilhado por componentes em camadas diferentes do mesmo dominio:
 
 ```txt
 component-name/
   component-name.tsx
   components/
   styles/
-    shared-style.styles.ts
+    shared-style.module.css
 ```
 
 Regras atuais:
 
-- estilos especificos de um componente ficam ao lado do `.tsx` que os consome.
-- estilos compartilhados por varios subcomponentes do mesmo dominio ficam em `styles/` dentro do dominio.
+- estilos especificos de um componente ficam em `styles/` dentro da mesma camada do dominio do `.tsx` consumidor.
+- estilos compartilhados por componentes de camadas diferentes ficam no `styles/` do ancestral comum mais proximo dentro do dominio.
+- arquivos de CSS Module usam o sufixo `.module.css` e sao importados como objeto `styles` ou com um nome que identifique o dominio, como `navLinkStyles`.
+- nomes de classes dos CSS Modules devem preferir `camelCase`, permitindo acessos como `styles.menuPanel`.
+- usar CSS nativo nos modules e consumir tokens globais por CSS variables, como `var(--color-black)` e `var(--color-white-secondary)`.
+- nao criar novos arquivos `.styles.ts` apenas para agrupar strings de classes Tailwind; arquivos legados desse tipo devem ser migrados quando o respectivo dominio for refatorado.
 - utilities realmente globais ficam em `src/app/globals.css` dentro de `@layer utilities`.
 - classes curtas e autoexplicativas podem continuar no JSX, por exemplo `mt-1`, `size-4`, `font-medium`.
-- evitar criar uma pasta `styles/` quando ela teria apenas um arquivo de estilo especifico.
+- combinar CSS Modules com utilities globais ou classes Tailwind curtas no `className` quando isso mantiver a intencao clara, por exemplo `${styles.link} focus-ring text-center`.
 - evitar colocar estilos especificos de componente em `globals.css`.
 - usar `focus-ring` para foco visual de elementos interativos.
 - usar `hover-highlight` para hover com cor de destaque.
 
 Exemplos atuais:
 
-- `src/components/header/styles/nav-link.styles.ts`: estilo compartilhado no dominio do Header.
-- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`: estilo especifico do `DesktopDropdown`.
-- `src/components/header/components/desktop/desktop-header.styles.ts`: estilo especifico do `DesktopHeader`.
-- `src/components/header/components/mobile/mobile-header.styles.ts`: estilo especifico do `MobileHeader`.
-- `src/components/discord-dialog/discord-dialog.styles.ts`: estilo especifico do `DiscordDialog`.
-- `src/components/toast/unavailable-toast.styles.ts`: estilo especifico do `UnavailableToast`.
+- `src/components/header/styles/header-client.module.css`: estilo especifico do `HeaderClient`, mantido no `styles/` da raiz do dominio.
+- `src/components/header/styles/nav-link.module.css`: estilo compartilhado por varios componentes do Header.
+- `src/components/header/components/mobile/styles/mobile-header.module.css`: estilo especifico do `MobileHeader`.
+- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`: estilo especifico do `DesktopDropdown`.
 
 ### Dark Mode
 
@@ -364,13 +367,13 @@ Site de referencia:
 
 Os estilos especificos do dropdown desktop ficam em:
 
-- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`
+- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`
 
 Padroes atuais:
 
-- o container do conteudo usa `clip-path`, `transform` e `opacity` para abrir/fechar.
+- o container do conteudo usa `clip-path`, `translate` e `opacity` para abrir/fechar.
 - os itens internos usam transicao de `opacity`.
-- o espacamento interno entre itens usa `gap-2.5`.
+- o espacamento interno entre itens equivale a `gap-2.5` (`0.625rem`).
 - o gatilho do dropdown usa `focus-ring`.
 - a rotacao do `ChevronIcon` continua no consumidor, nao no icone generico.
 
@@ -402,19 +405,19 @@ Dominios/pastas criados ou reorganizados:
 - `src/components/header/header.tsx`
 - `src/components/header/header-client.tsx`
 - `src/components/header/types/header.types.ts`
-- `src/components/header/styles/nav-link.styles.ts`
+- `src/components/header/styles/header-client.module.css`
+- `src/components/header/styles/nav-link.module.css`
 - `src/components/header/components/desktop/desktop-header.tsx`
-- `src/components/header/components/desktop/desktop-header.styles.ts`
 - `src/components/header/components/desktop/components/desktop-dropdown.tsx`
-- `src/components/header/components/desktop/components/desktop-dropdown.styles.ts`
+- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`
 - `src/components/header/components/mobile/mobile-header.tsx`
-- `src/components/header/components/mobile/mobile-header.styles.ts`
+- `src/components/header/components/mobile/styles/mobile-header.module.css`
 - `src/components/header/components/language-toggle.tsx`
 - `src/components/header/components/theme-toggle.tsx`
 - `src/components/discord-dialog/discord-dialog.tsx`
-- `src/components/discord-dialog/discord-dialog.styles.ts`
+- `src/components/discord-dialog/styles/discord-dialog.module.css`
 - `src/components/toast/unavailable-toast.tsx`
-- `src/components/toast/unavailable-toast.styles.ts`
+- `src/components/toast/styles/unavailable-toast.module.css`
 - `src/components/toast/hooks/use-toast.ts`
 - `public/documents/`
 - `public/images/`

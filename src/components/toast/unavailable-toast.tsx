@@ -3,7 +3,7 @@
 import { Toast } from "radix-ui";
 import type { IToastTexts } from "@/src/types/language-types";
 import { CloseIcon } from "../icons";
-import { toastCloseButtonClass, toastRootClass } from "./unavailable-toast.styles";
+import styles from "./styles/unavailable-toast.module.css";
 
 interface UnavailableToastProps {
   isOpen: boolean;
@@ -20,7 +20,7 @@ export function UnavailableToast({
 
   return (
     <Toast.Root
-      className={toastRootClass}
+      className={styles.root}
       open={isOpen}
       onOpenChange={onOpenChange}
     >
@@ -28,7 +28,7 @@ export function UnavailableToast({
       <Toast.Description className="mt-1">{description}</Toast.Description>
       <Toast.Close
         aria-label={closeLabel}
-        className={toastCloseButtonClass}
+        className={`${styles.closeButton} focus-ring hover-highlight`}
       >
         <CloseIcon className="size-4" />
       </Toast.Close>
