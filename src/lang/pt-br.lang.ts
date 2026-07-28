@@ -1,4 +1,4 @@
-import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IToastTexts } from "../types/language-types"
+import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IProjectsTexts, IToastTexts } from "../types/language-types"
 
 
 export const ptInfo = "Sou desenvolvedor full-stack com ampla experiência em desenvolvimento front-end. Atualmente, estou trabalhando em alguns projetos de IA e mentorando alunos de ensino médio técnico em TI."
@@ -49,4 +49,17 @@ export const ptToastTexts: IToastTexts = {
     title: "Recurso indisponível",
     description: "Esta funcionalidade ainda não está disponível.",
     closeLabel: "Fechar aviso",
+}
+
+export const ptProjectsTexts: IProjectsTexts = {
+    carouselLabel: "Projetos pessoais",
+    closeDialogLabel: "Fechar projeto",
+    dialogDescription: "Visualização interativa do projeto selecionado.",
+    iframeTitlePrefix: "Aplicação do projeto",
+    loadingLabel: "Carregando projeto",
+    nextProjectLabel: "Próximo projeto",
+    openInNewTabLabel: "Abrir em nova aba",
+    openProjectLabel: "Abrir projeto",
+    previousProjectLabel: "Projeto anterior",
+    projectTitleLabel: "Projeto",
 }

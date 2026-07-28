@@ -6,7 +6,7 @@ Este portfolio esta sendo refatorado para Next.js na branch `feat/refactor`.
 
 A ideia maior do projeto e migrar a arquitetura para permitir SDUI no futuro, evitando deploys para alteracoes volateis como curriculo, links, textos, projetos pessoais e artigos.
 
-O refactor esta sendo feito por etapas. Nesta fase, o foco foi a infraestrutura visual e o Header.
+O refactor esta sendo feito por etapas. A infraestrutura visual, o Header e a secao inicial de informacoes ja foram portados. A fase atual inclui o dominio de projetos.
 
 ## Direcoes De Arquitetura
 
@@ -283,7 +283,18 @@ Assets estaticos copiados para `public`:
 
 ### UI Primitives
 
-Decisao: usar Radix como unica lib nova de UI primitive.
+Radix continua sendo a escolha preferencial para UI primitives genericas.
+
+Bibliotecas externas podem ser adicionadas quando resolverem uma necessidade especifica nao atendida pela stack atual. Devem ser modernas, mantidas, modulares e compativeis com SSR/Next.js.
+
+Regras para novas dependencias:
+
+- importar apenas os modulos e estilos necessarios.
+- evitar bibliotecas que dupliquem uma responsabilidade ja atendida pela stack.
+- preferir bibliotecas headless quando a interface precisar seguir um design proprio.
+- validar que a dependencia nao cause degradacao relevante no bundle, na hidratacao ou nas Core Web Vitals.
+- documentar o motivo da adicao e o escopo de uso.
+- manter os componentes como Server Components sempre que a dependencia client-side nao for necessaria.
 
 Nao usar Sonner.
 
@@ -291,10 +302,13 @@ Uso atual:
 
 - `NavigationMenu` para dropdowns desktop com hover/focus
 - `Dialog` para modal Discord
+- `Dialog` para visualizacao imersiva dos projetos
 - `Toast` para aviso de certificados indisponiveis
+- `Embla Carousel` como engine headless do carousel de projetos
 
 Dependencias adicionadas:
 
+- `embla-carousel-react`
 - `next-themes`
 - `radix-ui`
 
@@ -378,6 +392,47 @@ Padroes atuais:
 - o gatilho do dropdown usa `focus-ring`.
 - a rotacao do `ChevronIcon` continua no consumidor, nao no icone generico.
 
+## Projects
+
+O dominio de projetos fica em:
+
+- `src/components/projects/`
+
+Arquitetura:
+
+- `Projects` e Server Component e recebe os dados e textos ja resolvidos pelo server.
+- `ProjectsCarousel` e Client Component porque usa o hook do Embla, estado do projeto selecionado e Radix `Dialog`.
+- os dados do projeto sao serializaveis e preparados para substituicao futura por CMS/SDUI.
+- o carousel usa `embla-carousel-react` apenas como engine headless; todo o visual fica sob controle dos componentes e CSS Modules do projeto.
+- existe apenas uma instancia do dialog para todos os cards.
+
+Comportamento atual:
+
+- exibe tres projetos no desktop e no tablet.
+- exibe um projeto no mobile.
+- avanca um projeto por vez com navegacao em loop quando existem projetos suficientes.
+- nao usa autoplay.
+- usa previews estaticos no carousel; o carousel nao renderiza iframes.
+- o clique em um card abre um Radix `Dialog` imersivo.
+- o dialog monta somente o iframe do projeto selecionado e o desmonta ao fechar.
+- o dialog oferece titulo, botao de fechar e link para abrir o projeto em uma nova aba.
+- os controles usam os componentes de icone existentes em `src/components/icons/`.
+
+Estado temporario desta fase:
+
+- Tic Tac Toe e Talaria usam URLs reais e previews locais em `public/images/`.
+- todas as previews usam `object-cover` para preencher cards com as mesmas dimensoes.
+- os cards mockados restantes usam fundo `#D9D9D9` e a URL temporaria `https://github.com/txjao`.
+- a integracao com CMS/SDUI fica fora deste escopo inicial.
+
+Regras para o iframe futuro:
+
+- URLs vindas do CMS devem ser validadas no server antes de chegar ao Client Component.
+- origens permitidas devem ser refletidas na CSP `frame-src` quando uma politica for adicionada.
+- o projeto incorporado precisa permitir o portfolio em `frame-ancestors`.
+- atributos `sandbox` e `allow` devem liberar apenas as capacidades necessarias para cada aplicacao.
+- todo iframe deve possuir `title` localizado e um link externo como fallback.
+
 ## Arquivos Alterados/Criados
 
 Arquivos principais alterados/criados ate agora:
@@ -420,6 +475,12 @@ Dominios/pastas criados ou reorganizados:
 - `src/components/toast/unavailable-toast.tsx`
 - `src/components/toast/styles/unavailable-toast.module.css`
 - `src/components/toast/hooks/use-toast.ts`
+- `src/components/projects/projects.tsx`
+- `src/components/projects/styles/projects.module.css`
+- `src/components/projects/components/projects-carousel/`
+- `src/components/projects/components/project-dialog/`
+- `src/consts/project.consts.ts`
+- `src/types/project-types.ts`
 - `public/documents/`
 - `public/images/`
 - `src/components/icons/`
@@ -480,9 +541,10 @@ pnpm build
 2. Portar Hero/Info/Lettering/social links da branch `dev`.
 3. Adaptar textos para dicionarios server-side por locale.
 4. Criar base para SDUI no server.
-5. Adicionar carrossel de projetos pessoais.
-6. Adicionar secao de artigos consumindo Medium inicialmente.
-7. Avaliar no futuro ferramenta propria de escrita/artigos.
+5. Substituir os mocks do carousel por projetos reais vindos do CMS/SDUI.
+6. Avaliar o carregamento do iframe por hover apenas depois de validar a experiencia do dialog por clique.
+7. Adicionar secao de artigos consumindo Medium inicialmente.
+8. Avaliar no futuro ferramenta propria de escrita/artigos.
 
 ## Preferencias Do Usuario
 - Explicar as mudancas antes de executa-las, após explicar o usuário irá avalia-las e explicar o que deve ser feito em sequencia
@@ -495,6 +557,6 @@ pnpm build
 - Nao fazer mudancas fora do escopo combinado.
 - Manter visual atual do portfolio como referencia.
 - Manter icones proprios como componentes React/SVG.
-- Usar apenas Radix como UI primitive nova.
+- Preferir Radix para UI primitives genericas e permitir libs externas modernas, modulares e performaticas para necessidades especificas.
 - Nao usar Sonner.
 - Pensar em SDUI e i18n sem transformar a aplicacao inteira em client-side.

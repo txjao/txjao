@@ -38,3 +38,16 @@ export interface IToastTexts {
     description: string
     closeLabel: string
 }
+
+export interface IProjectsTexts {
+    carouselLabel: string
+    closeDialogLabel: string
+    dialogDescription: string
+    iframeTitlePrefix: string
+    loadingLabel: string
+    nextProjectLabel: string
+    openInNewTabLabel: string
+    openProjectLabel: string
+    previousProjectLabel: string
+    projectTitleLabel: string
+}

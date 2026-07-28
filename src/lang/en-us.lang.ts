@@ -1,4 +1,4 @@
-import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IToastTexts } from "../types/language-types"
+import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IProjectsTexts, IToastTexts } from "../types/language-types"
 
 
 export const enInfo = "I am a full-stack software engineer with extensive experience in front-end development. I am currently working on some AI projects and mentoring IT technical high school students."
@@ -49,4 +49,17 @@ export const enToastTexts: IToastTexts = {
     title: "Feature unavailable",
     description: "This feature is not available yet.",
     closeLabel: "Close notification",
+}
+
+export const enProjectsTexts: IProjectsTexts = {
+    carouselLabel: "Personal projects",
+    closeDialogLabel: "Close project",
+    dialogDescription: "Interactive preview of the selected project.",
+    iframeTitlePrefix: "Project application",
+    loadingLabel: "Loading project",
+    nextProjectLabel: "Next project",
+    openInNewTabLabel: "Open in new tab",
+    openProjectLabel: "Open project",
+    previousProjectLabel: "Previous project",
+    projectTitleLabel: "Project",
 }

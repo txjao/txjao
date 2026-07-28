@@ -1,16 +1,19 @@
 import { notFound } from "next/navigation";
 import { Info } from "@/src/components/info/info";
+import { Projects } from "@/src/components/projects/projects";
 import {
     enInfo,
     enLettering,
     enModalTexts,
     enProfileImageAlt,
+    enProjectsTexts,
 } from "@/src/lang/en-us.lang";
 import {
     ptInfo,
     ptLettering,
     ptModalTexts,
     ptProfileImageAlt,
+    ptProjectsTexts,
 } from "@/src/lang/pt-br.lang";
 import { handleLang } from "@/src/utils/handle-lang";
 import { isLocale } from "@/src/utils/is-locale";
@@ -32,6 +35,7 @@ export default async function Home({
     const imageAlt = isPortuguese ? ptProfileImageAlt : enProfileImageAlt;
     const bioText = isPortuguese ? ptInfo : enInfo;
     const modalTexts = isPortuguese ? ptModalTexts : enModalTexts;
+    const projectsTexts = isPortuguese ? ptProjectsTexts : enProjectsTexts;
     const letteringTexts = resolveLetteringTexts(letteringDictionary);
 
     return (
@@ -42,6 +46,7 @@ export default async function Home({
                 letteringTexts={letteringTexts}
                 modalTexts={modalTexts}
             />
+            <Projects texts={projectsTexts} />
         </div>
     );
 }
