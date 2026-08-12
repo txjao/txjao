@@ -1,6 +1,7 @@
-import { PROJECT_DEFINITIONS as projects } from "@/src/consts/project.consts";
+import { PROJECT_DEFINITIONS } from "@/src/consts/project.consts";
 import type { IProjectsTexts } from "@/src/types/language-types";
-import { ProjectsCarousel } from "./components/projects-carousel/projects-carousel";
+import type { Project } from "@/src/types/project-types";
+import { ProjectDeck } from "./components/project-deck/project-deck";
 import styles from "./styles/projects.module.css";
 
 interface ProjectsProps {
@@ -8,12 +9,23 @@ interface ProjectsProps {
 }
 
 export function Projects({ texts }: ProjectsProps) {
+    const projects: readonly Project[] = PROJECT_DEFINITIONS.map((project) => {
+        const content = texts.projects[project.contentKey];
+
+        return {
+            accent: project.accent,
+            applicationUrl: project.applicationUrl,
+            description: content.description,
+            id: project.id,
+            technologies: project.technologies,
+            title: content.title,
+            visual: project.visual,
+        };
+    });
+
     return (
         <section className={styles.section} aria-labelledby="projects-title">
-            <h2 className="sr-only" id="projects-title">
-                {texts.carouselLabel}
-            </h2>
-            <ProjectsCarousel projects={projects} texts={texts} />
+            <ProjectDeck projects={projects} texts={texts} />
         </section>
     );
 }

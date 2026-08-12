@@ -24,7 +24,7 @@ export function ProjectDialog({
     onOpenChange,
 }: ProjectDialogProps) {
     const shouldRenderProject = isOpen && project !== null;
-    const dialogTitle = project?.title ?? texts.carouselLabel;
+    const dialogTitle = project?.title ?? texts.sectionLabel;
 
     return (
         <Dialog.Root open={isOpen} onOpenChange={onOpenChange}>

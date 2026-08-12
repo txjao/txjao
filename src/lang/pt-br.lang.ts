@@ -52,14 +52,36 @@ export const ptToastTexts: IToastTexts = {
 }
 
 export const ptProjectsTexts: IProjectsTexts = {
-    carouselLabel: "Projetos pessoais",
     closeDialogLabel: "Fechar projeto",
+    deckLabel: "Project Deck",
     dialogDescription: "Visualização interativa do projeto selecionado.",
     iframeTitlePrefix: "Aplicação do projeto",
     loadingLabel: "Carregando projeto",
-    nextProjectLabel: "Próximo projeto",
+    nextPageLabel: "Próxima página de projetos",
     openInNewTabLabel: "Abrir em nova aba",
     openProjectLabel: "Abrir projeto",
-    previousProjectLabel: "Projeto anterior",
-    projectTitleLabel: "Projeto",
+    pageLabel: "Página",
+    previousPageLabel: "Página anterior de projetos",
+    projectInteractionHint: "Navegue pelas teclas para conhecer os projetos. Ative uma delas para explorar.",
+    projects: {
+        blockPill: {
+            description: "Uma aplicação web com uma identidade visual própria e reconhecível.",
+            title: "Block Pill",
+        },
+        talariaPrimary: {
+            description: "Uma experiência web construída em torno da identidade visual do Talaria.",
+            title: "Talaria",
+        },
+        talariaSecondary: {
+            description: "Outro projeto do universo Talaria, preparado para exploração dentro do portfólio.",
+            title: "Talaria",
+        },
+        ticTacToe: {
+            description: "Jogo da velha multiplayer em tempo real para partidas rápidas pela web.",
+            title: "Tic Tac Toe",
+        },
+    },
+    sectionLabel: "Projetos pessoais",
+    selectedProjectLabel: "Projeto em destaque",
+    technologiesLabel: "Tecnologias",
 }

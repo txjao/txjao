@@ -39,15 +39,30 @@ export interface IToastTexts {
     closeLabel: string
 }
 
+export interface IProjectContentTexts {
+    description: string
+    title: string
+}
+
 export interface IProjectsTexts {
-    carouselLabel: string
     closeDialogLabel: string
+    deckLabel: string
     dialogDescription: string
     iframeTitlePrefix: string
     loadingLabel: string
-    nextProjectLabel: string
+    nextPageLabel: string
     openInNewTabLabel: string
     openProjectLabel: string
-    previousProjectLabel: string
-    projectTitleLabel: string
+    pageLabel: string
+    previousPageLabel: string
+    projectInteractionHint: string
+    projects: {
+        blockPill: IProjectContentTexts
+        talariaPrimary: IProjectContentTexts
+        talariaSecondary: IProjectContentTexts
+        ticTacToe: IProjectContentTexts
+    }
+    sectionLabel: string
+    selectedProjectLabel: string
+    technologiesLabel: string
 }

@@ -52,14 +52,36 @@ export const enToastTexts: IToastTexts = {
 }
 
 export const enProjectsTexts: IProjectsTexts = {
-    carouselLabel: "Personal projects",
     closeDialogLabel: "Close project",
+    deckLabel: "Project Deck",
     dialogDescription: "Interactive preview of the selected project.",
     iframeTitlePrefix: "Project application",
     loadingLabel: "Loading project",
-    nextProjectLabel: "Next project",
+    nextPageLabel: "Next projects page",
     openInNewTabLabel: "Open in new tab",
     openProjectLabel: "Open project",
-    previousProjectLabel: "Previous project",
-    projectTitleLabel: "Project",
+    pageLabel: "Page",
+    previousPageLabel: "Previous projects page",
+    projectInteractionHint: "Navigate through the keys to learn about each project. Activate one to explore.",
+    projects: {
+        blockPill: {
+            description: "A web application with its own recognizable visual identity.",
+            title: "Block Pill",
+        },
+        talariaPrimary: {
+            description: "A web experience built around Talaria's visual identity.",
+            title: "Talaria",
+        },
+        talariaSecondary: {
+            description: "Another project from the Talaria universe, ready to explore inside the portfolio.",
+            title: "Talaria",
+        },
+        ticTacToe: {
+            description: "A realtime multiplayer Tic-Tac-Toe game for quick matches on the web.",
+            title: "Tic Tac Toe",
+        },
+    },
+    sectionLabel: "Personal projects",
+    selectedProjectLabel: "Featured project",
+    technologiesLabel: "Technologies",
 }
