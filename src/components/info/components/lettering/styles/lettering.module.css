@@ -6,7 +6,7 @@
 
 .gradientText,
 .animatedText {
-    background: -webkit-linear-gradient(0deg, var(--color-blue) 0%, var(--color-yellow) 100%) text;
+    background: -webkit-linear-gradient(0deg, var(--color-blue) 15%, var(--color-yellow) 70%) text;
     background-clip: text;
     color: transparent;
     font-family: var(--font-inter), sans-serif;

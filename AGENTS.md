@@ -1,22 +1,19 @@
-# Contexto Do Refactor Para Next
+# Contexto Arquitetural Do Portfolio
 
 ## Objetivo Geral
 
-Este portfolio esta sendo refatorado para Next.js na branch `feat/refactor`.
+Este portfolio usa Next.js App Router e evolui de forma incremental.
 
-A ideia maior do projeto e migrar a arquitetura para permitir SDUI no futuro, evitando deploys para alteracoes volateis como curriculo, links, textos, projetos pessoais e artigos.
-
-O refactor esta sendo feito por etapas. Nesta fase, o foco foi a infraestrutura visual e o Header.
+O objetivo arquitetural e permitir SDUI no futuro, evitando deploys para alteracoes volateis como curriculo, links, textos, projetos pessoais e artigos.
 
 ## Direcoes De Arquitetura
 
 - O projeto deve seguir Next.js App Router.
 - Componentes devem ser Server Components por padrao.
 - Componentes devem virar Client Components apenas quando precisarem de interacao, estado, browser APIs ou primitives client-side.
-- O Header e Client Component porque usa tema, menu, dialog e toast.
-- A estrategia futura de idioma deve ser por rota, por exemplo `/pt-BR` e `/en-US`.
+- O idioma deve ser resolvido pela rota, por exemplo `/pt-BR` e `/en-US`.
 - O SDUI futuro deve ser resolvido no server a partir do `locale`, nao por um `LanguageContext` global client-side.
-- Textos devem caminhar para props/dicionarios por rota quando a estrutura i18n for criada.
+- Textos localizados devem ser resolvidos no server e enviados aos componentes por props serializaveis.
 
 ### Padrao De Logica JS/TS
 
@@ -25,7 +22,7 @@ Ao escrever logica em JavaScript/TypeScript, preferir condicionais declarativas 
 Regras:
 
 - evitar condicionais compostas diretamente no `if` quando a intencao de negocio nao estiver imediata.
-- extrair condicoes para `consts` com nomes que expliquem a regra, como `hasScrolledUp`, `shouldHideHeader` ou `shouldSkipVisibilityUpdate`.
+- extrair condicoes para `consts` com nomes que expliquem a regra, como `hasResults`, `shouldRenderSection` ou `shouldSkipUpdate`.
 - preferir nomes que expressem a decisao ou estado real, nao apenas a comparacao tecnica.
 - manter comparacoes triviais inline quando elas forem obvias e nao reduzirem legibilidade.
 - early returns devem ser inline quando a unica acao for `return`, por exemplo `if (shouldSkipUpdate) return;`.
@@ -104,13 +101,6 @@ Regras atuais:
 - evitar colocar estilos especificos de componente em `globals.css`.
 - usar `focus-ring` para foco visual de elementos interativos.
 - usar `hover-highlight` para hover com cor de destaque.
-
-Exemplos atuais:
-
-- `src/components/header/styles/header-client.module.css`: estilo especifico do `HeaderClient`, mantido no `styles/` da raiz do dominio.
-- `src/components/header/styles/nav-link.module.css`: estilo compartilhado por varios componentes do Header.
-- `src/components/header/components/mobile/styles/mobile-header.module.css`: estilo especifico do `MobileHeader`.
-- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`: estilo especifico do `DesktopDropdown`.
 
 ### Dark Mode
 
@@ -237,12 +227,17 @@ Componentes existentes:
 - `ChevronIcon`
 - `CloseIcon`
 - `DiscordIcon`
+- `ElgatoIcon`
 - `FigmaIcon`
 - `GithubIcon`
 - `HamburgerIcon`
 - `InstagramIcon`
 - `LinkedinIcon`
 - `MoonIcon`
+- `NextTrackIcon`
+- `PauseIcon`
+- `PlayIcon`
+- `PreviousTrackIcon`
 - `SpotifyIcon`
 - `SunIcon`
 - `TwitterIcon`
@@ -256,8 +251,6 @@ Regras de implementacao:
 - o tamanho deve ser controlado pelo consumidor com classes como `size-4`, `size-5` ou `size-8`
 - a cor e o Dark Mode devem ser controlados pelo container com classes de texto, por exemplo `text-black dark:text-white`
 - comportamento especifico do lugar de uso deve ficar no consumidor, nao dentro do icone generico
-- exemplo: a rotacao do `ChevronIcon` do dropdown fica em `DesktopDropdown`, nao em `ChevronIcon`
-- o `HamburgerIcon` e excecao parcial porque representa estado visual e recebe `isOpen`
 
 Exemplo de uso:
 
@@ -283,17 +276,22 @@ Assets estaticos copiados para `public`:
 
 ### UI Primitives
 
-Decisao: usar Radix como unica lib nova de UI primitive.
+Radix continua sendo a escolha preferencial para UI primitives genericas.
+
+Bibliotecas externas podem ser adicionadas quando resolverem uma necessidade especifica nao atendida pela stack atual. Devem ser modernas, mantidas, modulares e compativeis com SSR/Next.js.
+
+Regras para novas dependencias:
+
+- importar apenas os modulos e estilos necessarios.
+- evitar bibliotecas que dupliquem uma responsabilidade ja atendida pela stack.
+- preferir bibliotecas headless quando a interface precisar seguir um design proprio.
+- validar que a dependencia nao cause degradacao relevante no bundle, na hidratacao ou nas Core Web Vitals.
+- documentar o motivo da adicao e o escopo de uso.
+- manter os componentes como Server Components sempre que a dependencia client-side nao for necessaria.
 
 Nao usar Sonner.
 
-Uso atual:
-
-- `NavigationMenu` para dropdowns desktop com hover/focus
-- `Dialog` para modal Discord
-- `Toast` para aviso de certificados indisponiveis
-
-Dependencias adicionadas:
+Dependencias atuais relacionadas:
 
 - `next-themes`
 - `radix-ui`
@@ -316,154 +314,40 @@ Arquivos atuais:
 - `src/consts/language.consts.ts`
 - `src/consts/site.consts.ts`
 - `src/consts/url.consts.ts`
-- `src/utils/handle-lang.ts`
-- `src/utils/is-locale.ts`
-- `src/providers/theme-provider.tsx`
-
-## Header
-
-O Header foi portado da branch `dev` para Next + Tailwind.
-
-Arquivo principal:
-
-- `src/components/header/header.tsx`
-
-Status:
-
-- Desktop implementado.
-- Mobile implementado com botao hamburger acessivel.
-- Dropdowns desktop usam Radix `NavigationMenu`.
-- Modal Discord usa Radix `Dialog`.
-- Toast de certificados usa Radix `Toast`, mas o componente e o hook ficam fora do dominio `header`.
-- Toggle de tema usa `next-themes`.
-- Curriculo aponta para asset publico estavel.
-
-Componentes externos compostos pelo Header:
-
-- `src/components/discord-dialog/discord-dialog.tsx`
-- `src/components/toast/unavailable-toast.tsx`
-- `src/components/toast/hooks/use-toast.ts`
-- `src/components/header/types/header.types.ts`
-
-Asset do curriculo:
-
-- `public/documents/Joao_Teixeira_Mid-level_Fullstack_Developer.pdf`
-
-### Visual Do Header
-
-O objetivo visual e manter o Header equivalente ao site em producao:
-
-- Logo central
-- Links Linkedin e Github
-- Toggle de tema
-- Dropdown `Contact Me`
-- Dropdown `Me`
-- Toggle de idioma `PT`/`EN`
-
-Site de referencia:
-
-- `https://www.txjao.dev/`
-
-### Estilos Do Dropdown
-
-Os estilos especificos do dropdown desktop ficam em:
-
-- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`
-
-Padroes atuais:
-
-- o container do conteudo usa `clip-path`, `translate` e `opacity` para abrir/fechar.
-- os itens internos usam transicao de `opacity`.
-- o espacamento interno entre itens equivale a `gap-2.5` (`0.625rem`).
-- o gatilho do dropdown usa `focus-ring`.
-- a rotacao do `ChevronIcon` continua no consumidor, nao no icone generico.
-
-## Arquivos Alterados/Criados
-
-Arquivos principais alterados/criados ate agora:
-
-- `package.json`
-- `pnpm-lock.yaml`
-- `src/app/globals.css`
-- `src/app/[locale]/layout.tsx`
-- `src/app/[locale]/page.tsx`
-- `src/app/icon.svg`
-- `src/app/robots.ts`
-- `src/app/sitemap.ts`
-- `src/consts/url.consts.ts`
-- `src/consts/language.consts.ts`
-- `src/consts/site.consts.ts`
-- `src/lang/en-us.lang.ts`
-- `src/lang/pt-br.lang.ts`
-- `src/types/language-types.ts`
-- `src/utils/handle-lang.ts`
-- `src/utils/is-locale.ts`
-- `src/providers/theme-provider.tsx`
-
-Dominios/pastas criados ou reorganizados:
-
-- `src/app/[locale]/`
-- `src/components/header/header.tsx`
-- `src/components/header/header-client.tsx`
-- `src/components/header/types/header.types.ts`
-- `src/components/header/styles/header-client.module.css`
-- `src/components/header/styles/nav-link.module.css`
-- `src/components/header/components/desktop/desktop-header.tsx`
-- `src/components/header/components/desktop/components/desktop-dropdown.tsx`
-- `src/components/header/components/desktop/components/styles/desktop-dropdown.module.css`
-- `src/components/header/components/mobile/mobile-header.tsx`
-- `src/components/header/components/mobile/styles/mobile-header.module.css`
-- `src/components/header/components/language-toggle.tsx`
-- `src/components/header/components/theme-toggle.tsx`
-- `src/components/discord-dialog/discord-dialog.tsx`
-- `src/components/discord-dialog/styles/discord-dialog.module.css`
-- `src/components/toast/unavailable-toast.tsx`
-- `src/components/toast/styles/unavailable-toast.module.css`
-- `src/components/toast/hooks/use-toast.ts`
-- `public/documents/`
-- `public/images/`
-- `src/components/icons/`
-
-Possivel arquivo utilitario existente/criado durante o processo:
-
 - `src/utils/handle-age.ts`
+- `src/utils/handle-lang.ts`
+- `src/utils/is-locale.ts`
+- `src/utils/resolve-lettering-texts.ts`
+- `src/providers/theme-provider.tsx`
 
-Constantes de idioma reaproveitadas e reorganizadas:
+### Documentacao De Componentes
 
-- `src/consts/Languange.ts` foi dividido entre `src/lang/`, `src/types/language-types.ts`, `src/consts/language.consts.ts` e `src/utils/is-locale.ts`.
+O `AGENTS.md` deve conter apenas regras globais e decisoes transversais do projeto.
 
-## Pontos Importantes Para O Proximo Chat
+O harness local fica em:
 
-- O usuario prefere executar `pnpm lint` e `pnpm build` manualmente.
-- Evitar rodar lint/build sem necessidade.
-- O projeto esta no WSL, mas o Codex app acessa por UNC no Windows.
-- `apply_patch` pode falhar nesse workspace por causa do caminho UNC.
-- Quando isso acontecer, usar uma edicao pontual e cuidadosa via PowerShell/.NET ou WSL, mantendo UTF-8 sem BOM.
-- Houve um erro anterior do Turbopack lendo `package.json` como JSON invalido. O arquivo foi validado depois:
-  - JSON valido
-  - sem BOM
-  - sem byte nulo
-  - `radix-ui` e `next-themes` instalados no lockfile e em `node_modules`
-- Se o erro voltar, recomendar parar o dev server, remover `.next` e iniciar novamente.
+- `.agent-harness/README.md`
+
+Leitura progressiva obrigatoria:
+
+- para criar ou reorganizar componentes, ler `.agent-harness/COMPONENTS.md`.
+- para alterar conteudo remoto, contratos editoriais ou cache, ler `.agent-harness/SDUI-CMS.md`.
+- para alterar um dominio existente, ler tambem seu documento em `.agent-harness/components/`.
+- para alteracoes entre dominios, ler os documentos de todos os dominios afetados.
+
+Regras:
+
+- detalhes de implementacao, estado atual, comportamento e decisoes visuais ficam no documento exclusivo do dominio.
+- novos documentos representam dominios, nao cada arquivo `.tsx` individualmente.
+- um subdominio ganha documento proprio apenas quando possuir autonomia ou complexidade que justifique contexto adicional.
+- pedido explicito do usuario e codigo verificado prevalecem quando um documento estiver desatualizado; a divergencia deve ser informada e corrigida.
+- nao duplicar no `AGENTS.md` informacoes mantidas no harness.
 
 ## Comandos Uteis
-
-Validar JSON do `package.json`:
-
-```bash
-python3 -m json.tool package.json >/dev/null
-```
 
 Rodar o projeto:
 
 ```bash
-pnpm dev
-```
-
-Caso Turbopack mantenha cache antigo:
-
-```bash
-rm -rf .next
 pnpm dev
 ```
 
@@ -473,16 +357,6 @@ Testes que o usuario pretende rodar manualmente:
 pnpm lint
 pnpm build
 ```
-
-## Proximas Etapas Provaveis
-
-1. Refinar o Header ate ficar 1:1 com producao.
-2. Portar Hero/Info/Lettering/social links da branch `dev`.
-3. Adaptar textos para dicionarios server-side por locale.
-4. Criar base para SDUI no server.
-5. Adicionar carrossel de projetos pessoais.
-6. Adicionar secao de artigos consumindo Medium inicialmente.
-7. Avaliar no futuro ferramenta propria de escrita/artigos.
 
 ## Preferencias Do Usuario
 - Explicar as mudancas antes de executa-las, após explicar o usuário irá avalia-las e explicar o que deve ser feito em sequencia
@@ -495,6 +369,6 @@ pnpm build
 - Nao fazer mudancas fora do escopo combinado.
 - Manter visual atual do portfolio como referencia.
 - Manter icones proprios como componentes React/SVG.
-- Usar apenas Radix como UI primitive nova.
+- Preferir Radix para UI primitives genericas e permitir libs externas modernas, modulares e performaticas para necessidades especificas.
 - Nao usar Sonner.
 - Pensar em SDUI e i18n sem transformar a aplicacao inteira em client-side.

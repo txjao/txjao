@@ -38,3 +38,43 @@ export interface IToastTexts {
     description: string
     closeLabel: string
 }
+
+export interface IProjectContentTexts {
+    description: string
+    title: string
+}
+
+export interface IMusicPlayerTexts {
+    emptyTitle: string
+    nextTrackLabel: string
+    openOnSpotifyLabel: string
+    pauseLabel: string
+    playbackUnavailableLabel: string
+    playLabel: string
+    playerLabel: string
+    previousTrackLabel: string
+}
+
+export interface IProjectsTexts {
+    closeDialogLabel: string
+    deckLabel: string
+    dialogDescription: string
+    iframeTitlePrefix: string
+    loadingLabel: string
+    musicPlayer: IMusicPlayerTexts
+    nextPageLabel: string
+    openInNewTabLabel: string
+    openProjectLabel: string
+    pageLabel: string
+    previousPageLabel: string
+    projectInteractionHint: string
+    projects: {
+        blockPill: IProjectContentTexts
+        talariaPrimary: IProjectContentTexts
+        talariaSecondary: IProjectContentTexts
+        ticTacToe: IProjectContentTexts
+    }
+    sectionLabel: string
+    selectedProjectLabel: string
+    technologiesLabel: string
+}

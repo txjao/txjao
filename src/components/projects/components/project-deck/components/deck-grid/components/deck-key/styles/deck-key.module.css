@@ -1,0 +1,156 @@
+.key {
+  --key-radius: 4.3cqw;
+
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  cursor: pointer;
+  appearance: none;
+  color: var(--key-accent);
+  background: transparent;
+  border: 0;
+  border-radius: var(--key-radius);
+  transition:
+    translate 160ms ease,
+    filter 160ms ease;
+}
+
+.keySocket,
+.keyAcrylic,
+.keyDisplay,
+.keyReflection {
+  position: absolute;
+  display: block;
+  pointer-events: none;
+}
+
+.keySocket {
+  top: 4.3%;
+  left: 1.1%;
+  z-index: 0;
+  width: 97.8%;
+  height: 95.7%;
+  background: linear-gradient(150deg, #252b31 0%, #12161a 52%, #050709 100%);
+  border: 1px solid rgb(255 255 255 / 7%);
+  border-radius: 4.15cqw;
+  box-shadow:
+    0 0.4375rem 0 #020304,
+    0 0.75rem 1rem rgb(0 0 0 / 34%),
+    inset 0 1px rgb(255 255 255 / 10%),
+    inset 0 -0.25rem 0.5rem rgb(0 0 0 / 42%);
+}
+
+.keyAcrylic {
+  top: 4.3%;
+  left: 5.4%;
+  z-index: 1;
+  width: 89.2%;
+  height: 87%;
+  background:
+    linear-gradient(145deg,
+      rgb(255 255 255 / 27%),
+      rgb(255 255 255 / 8%) 42%,
+      rgb(255 255 255 / 4%) 68%,
+      rgb(255 255 255 / 15%));
+  border: 1px solid rgb(255 255 255 / 24%);
+  border-radius: 3.75cqw;
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 43%),
+    inset 1px 0 rgb(255 255 255 / 15%),
+    inset 0 -1px rgb(0 0 0 / 46%),
+    0 0.25rem 0.625rem rgb(0 0 0 / 30%);
+  backdrop-filter: blur(0.75rem) saturate(135%);
+  -webkit-backdrop-filter: blur(0.75rem) saturate(135%);
+}
+
+.keyDisplay {
+  top: 13%;
+  left: 14.1%;
+  z-index: 2;
+  display: grid;
+  width: 71.8%;
+  height: 69.6%;
+  color: var(--key-accent);
+  background:
+    radial-gradient(circle at 50% 30%,
+      color-mix(in srgb, var(--key-accent) 15%, transparent),
+      transparent 60%),
+    linear-gradient(145deg, #111821, #05080c 76%);
+  border: 1px solid color-mix(in srgb, var(--key-accent) 48%, #303943);
+  border-radius: 2.75cqw;
+  box-shadow:
+    0 0 1rem color-mix(in srgb, var(--key-accent) 16%, transparent),
+    inset 0 1px rgb(255 255 255 / 10%),
+    inset 0 -0.1875rem 0.625rem rgb(0 0 0 / 62%);
+  place-items: center;
+  overflow: hidden;
+}
+
+.keyReflection {
+  top: 10.8%;
+  left: 13%;
+  z-index: 3;
+  width: 74%;
+  height: 27.2%;
+  background:
+    linear-gradient(180deg,
+      rgb(255 255 255 / 28%),
+      rgb(255 255 255 / 7%) 55%,
+      transparent);
+  border-radius: 2.5cqw 2.5cqw 50% 50%;
+  filter: blur(0.0625rem);
+  opacity: 0.7;
+}
+
+.key[data-active="true"] .keyDisplay {
+  border-color: color-mix(in srgb, var(--key-accent) 78%, white);
+  box-shadow:
+    0 0 1.25rem color-mix(in srgb, var(--key-accent) 33%, transparent),
+    inset 0 1px rgb(255 255 255 / 16%),
+    inset 0 -0.1875rem 0.625rem color-mix(in srgb, var(--key-accent) 18%, #000);
+}
+
+.key:active {
+  filter: brightness(0.92);
+  translate: 0 0.25rem;
+}
+
+.key:active .keySocket {
+  box-shadow:
+    0 0.1875rem 0 #020304,
+    inset 0 0.25rem 0.625rem rgb(0 0 0 / 56%);
+}
+
+.key:focus-visible {
+  outline: 0.1875rem solid var(--color-blue);
+  outline-offset: 0.25rem;
+}
+
+:global(.dark) .key:focus-visible {
+  outline-color: var(--color-yellow);
+}
+
+@media (hover: hover) {
+  .key:hover:not(:active) {
+    filter:
+      brightness(1.08) drop-shadow(0 0 0.75rem color-mix(in srgb, var(--key-accent) 22%, transparent));
+    translate: 0 0.125rem;
+  }
+
+  .key:hover:not(:active) .keySocket {
+    box-shadow:
+      0 0.1875rem 0 #020304,
+      0 0.5rem 0.75rem rgb(0 0 0 / 28%),
+      inset 0 0.125rem 0.375rem rgb(0 0 0 / 48%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .key {
+    transition: none;
+  }
+}
