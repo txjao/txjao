@@ -1,7 +1,7 @@
 import type { IHeaderControlTexts, IHeaderTexts, ILetteringTexts, IMobileHeaderMenuTexts, IModalTexts, IProjectsTexts, IToastTexts } from "../types/language-types"
 
 
-export const enInfo = "I am a full-stack software engineer with extensive experience in front-end development. I am currently working on some AI projects and mentoring IT technical high school students."
+export const enInfo = "I am a web full-stack software engineer with extensive experience in front-end development. Currently creating and collaborating in Open Source Projects."
 
 export const enHeader: IHeaderTexts = {
     contactMe: "Contact Me",
