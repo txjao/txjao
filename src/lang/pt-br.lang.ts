@@ -75,11 +75,11 @@ export const ptProjectsTexts: IProjectsTexts = {
     projectInteractionHint: "Navegue pelas teclas para conhecer os projetos. Ative uma delas para explorar.",
     projects: {
         blockPill: {
-            description: "Uma aplicação web com uma identidade visual própria e reconhecível.",
+            description: "Extensão de navegador privada e filantrópica que reduz distrações com bloqueios locais e persistentes.",
             title: "Block Pill",
         },
         talariaPrimary: {
-            description: "Uma experiência web construída em torno da identidade visual do Talaria.",
+            description: "Plataforma comunitária e competitiva de Age of Mythology: Retold para analisar partidas profissionais e criar build orders.",
             title: "Talaria",
         },
         talariaSecondary: {

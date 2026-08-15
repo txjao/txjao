@@ -26,6 +26,14 @@ export function ProjectDisplay({
         <p className={styles.description}>{project.description}</p>
       </div>
 
+      <div className={styles.interactionCard}>
+        <span className={styles.interactionAccent} aria-hidden="true" />
+        <div>
+          <p className={styles.interactionTitle}>{openProjectLabel}</p>
+          <p className={styles.interactionHint}>{interactionHint}</p>
+        </div>
+      </div>
+
       {hasTechnologies && (
         <div className="mt-6">
           <p className={styles.technologiesLabel}>{technologiesLabel}</p>
@@ -38,14 +46,6 @@ export function ProjectDisplay({
           </ul>
         </div>
       )}
-
-      <div className={styles.interactionCard}>
-        <span className={styles.interactionAccent} aria-hidden="true" />
-        <div>
-          <p className={styles.interactionTitle}>{openProjectLabel}</p>
-          <p className={styles.interactionHint}>{interactionHint}</p>
-        </div>
-      </div>
     </article>
   );
 }
