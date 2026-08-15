@@ -1,0 +1,69 @@
+.navigation {
+  position: absolute;
+  right: 4.5%;
+  bottom: 2%;
+  left: 4.5%;
+  z-index: 5;
+  display: flex;
+  padding: 0.35rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgb(5 5 5 / 70%);
+  border: 1px solid rgb(255 255 255 / 8%);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(0.75rem);
+  -webkit-backdrop-filter: blur(0.75rem);
+}
+
+.navigationButton {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-white);
+  background: linear-gradient(145deg, #2b3239, #111519);
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 50%;
+  box-shadow:
+    0 0.1875rem 0 #050505,
+    inset 0 1px rgb(255 255 255 / 12%);
+  place-items: center;
+}
+
+.navigationButton:active:not(:disabled) {
+  box-shadow: inset 0 1px rgb(255 255 255 / 7%);
+  translate: 0 0.125rem;
+}
+
+.navigationButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.navigationButton:focus-visible {
+  outline: 0.1875rem solid var(--color-blue);
+  outline-offset: 0.25rem;
+}
+
+.pageIndicator {
+  min-width: 5.5rem;
+  color: rgb(255 255 255 / 62%);
+  font-family: var(--font-poppins);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+:global(.dark) .navigationButton:focus-visible {
+  outline-color: var(--color-yellow);
+}
+
+@media (hover: hover) {
+  .navigationButton:hover:not(:disabled) {
+    color: var(--project-accent);
+    border-color: var(--project-accent);
+  }
+}

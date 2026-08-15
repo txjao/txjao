@@ -44,12 +44,24 @@ export interface IProjectContentTexts {
     title: string
 }
 
+export interface IMusicPlayerTexts {
+    emptyTitle: string
+    nextTrackLabel: string
+    openOnSpotifyLabel: string
+    pauseLabel: string
+    playbackUnavailableLabel: string
+    playLabel: string
+    playerLabel: string
+    previousTrackLabel: string
+}
+
 export interface IProjectsTexts {
     closeDialogLabel: string
     deckLabel: string
     dialogDescription: string
     iframeTitlePrefix: string
     loadingLabel: string
+    musicPlayer: IMusicPlayerTexts
     nextPageLabel: string
     openInNewTabLabel: string
     openProjectLabel: string

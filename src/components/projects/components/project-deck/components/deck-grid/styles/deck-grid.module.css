@@ -1,0 +1,76 @@
+.grid {
+  position: absolute;
+  top: 12.32%;
+  left: 8.45%;
+  z-index: 2;
+  display: grid;
+  width: 83.1%;
+  height: 42.41%;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  column-gap: 3.3%;
+  row-gap: 9.8%;
+}
+
+.emptyKey {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(150deg, #1a1f24, #090c0f 70%);
+  border: 1px solid rgb(255 255 255 / 5%);
+  border-radius: 4.15cqw;
+  box-shadow:
+    0 0.4375rem 0 #020304,
+    0 0.625rem 0.875rem rgb(0 0 0 / 28%),
+    inset 0 1px rgb(255 255 255 / 7%);
+}
+
+.emptyKey::before {
+  position: absolute;
+  top: 4%;
+  left: 4.5%;
+  width: 91%;
+  height: 87%;
+  content: "";
+  background:
+    linear-gradient(
+      145deg,
+      rgb(255 255 255 / 13%),
+      rgb(255 255 255 / 3%) 52%,
+      rgb(255 255 255 / 7%)
+    );
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 3.75cqw;
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 16%),
+    inset 0 -1px rgb(0 0 0 / 48%);
+}
+
+.emptyDisplay {
+  position: absolute;
+  top: 13%;
+  left: 14.1%;
+  display: block;
+  width: 71.8%;
+  height: 69.6%;
+  background: linear-gradient(145deg, #090d11, #030506);
+  border: 1px solid rgb(79 92 105 / 32%);
+  border-radius: 2.75cqw;
+  box-shadow:
+    inset 0 1px rgb(255 255 255 / 4%),
+    inset 0 -0.25rem 0.625rem rgb(0 0 0 / 62%);
+}
+
+.emptyDisplay::after {
+  position: absolute;
+  right: 13%;
+  bottom: 12%;
+  width: 4%;
+  min-width: 0.125rem;
+  content: "";
+  background: rgb(104 121 137 / 40%);
+  border-radius: 50%;
+  box-shadow: 0 0 0.25rem rgb(104 121 137 / 22%);
+  aspect-ratio: 1;
+}

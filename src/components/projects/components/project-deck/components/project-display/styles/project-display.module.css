@@ -1,0 +1,169 @@
+.display {
+  width: 100%;
+  max-width: 22.9375rem;
+  min-width: 0;
+  padding-top: 1.625rem;
+  color: var(--color-black);
+}
+
+.displayLabel {
+  color: var(--color-blue);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.projectTitle {
+  margin-top: 0.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.4vw, 2.5rem);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+
+.description {
+  margin-top: 1.25rem;
+  color: rgb(5 5 5 / 68%);
+  font-family: var(--font-poppins);
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.technologiesLabel {
+  color: rgb(5 5 5 / 68%);
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.technology {
+  padding: 0.5rem 0.875rem;
+  color: rgb(5 5 5 / 74%);
+  font-family: var(--font-poppins);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1rem;
+  background: rgb(5 5 5 / 4%);
+  border: 1px solid rgb(5 5 5 / 11%);
+  border-radius: 999px;
+}
+
+.interactionCard {
+  display: grid;
+  min-height: 5.5rem;
+  margin-top: 2rem;
+  padding: 0.875rem 1rem;
+  align-items: center;
+  grid-template-columns: 0.5rem minmax(0, 1fr);
+  gap: 1rem;
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--project-accent) 12%, white),
+      rgb(255 255 255 / 94%)
+    );
+  border: 1px solid
+    color-mix(in srgb, var(--project-accent) 24%, transparent);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 0.75rem 1.75rem
+      color-mix(in srgb, var(--project-accent) 8%, transparent),
+    inset 0 1px rgb(255 255 255 / 72%);
+}
+
+.interactionAccent {
+  width: 0.5rem;
+  height: 2.625rem;
+  background: var(--project-accent);
+  border-radius: 999px;
+  box-shadow: 0 0 0.75rem
+    color-mix(in srgb, var(--project-accent) 30%, transparent);
+}
+
+.interactionTitle {
+  color: var(--color-black);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+}
+
+.interactionHint {
+  margin-top: 0.125rem;
+  color: rgb(5 5 5 / 60%);
+  font-size: 0.6875rem;
+  line-height: 1rem;
+}
+
+:global(.dark) .display {
+  color: var(--color-white);
+}
+
+:global(.dark) .displayLabel {
+  color: var(--color-yellow);
+}
+
+:global(.dark) .description,
+:global(.dark) .technologiesLabel {
+  color: rgb(255 255 255 / 68%);
+}
+
+:global(.dark) .technology {
+  color: rgb(255 255 255 / 74%);
+  background: rgb(255 255 255 / 6%);
+  border-color: rgb(255 255 255 / 12%);
+}
+
+:global(.dark) .interactionCard {
+  background:
+    linear-gradient(
+      100deg,
+      color-mix(in srgb, var(--project-accent) 13%, #11161b),
+      rgb(17 22 27 / 96%)
+    );
+  border-color: color-mix(
+    in srgb,
+    var(--project-accent) 28%,
+    transparent
+  );
+  box-shadow:
+    0 0.75rem 1.75rem rgb(0 0 0 / 18%),
+    inset 0 1px rgb(255 255 255 / 7%);
+}
+
+:global(.dark) .interactionTitle {
+  color: var(--color-white);
+}
+
+:global(.dark) .interactionHint {
+  color: rgb(255 255 255 / 58%);
+}
+
+@media (max-width: 1100px) {
+  .display {
+    max-width: 31.8125rem;
+    padding-top: 0;
+    justify-self: center;
+  }
+}
+
+@media (max-width: 767px) {
+  .display {
+    max-width: 100%;
+  }
+
+  .projectTitle {
+    font-size: clamp(2rem, 10vw, 2.5rem);
+  }
+
+  .description {
+    font-size: 1rem;
+    line-height: 1.625rem;
+  }
+
+  .interactionCard {
+    margin-top: 1.75rem;
+  }
+}
