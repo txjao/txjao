@@ -28,7 +28,9 @@
 }
 
 .description {
+  height: 112px;
   margin-top: 1.25rem;
+  overflow: hidden;
   color: rgb(5 5 5 / 68%);
   font-family: var(--font-poppins);
   font-size: 1.125rem;
