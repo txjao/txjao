@@ -1,9 +1,16 @@
-.musicPlayer {
+.deckPlayerAnchor {
   position: relative;
   top: 9%;
   z-index: 1;
   width: 100%;
   height: 80%;
+}
+
+.musicPlayer,
+.floatingPlayerSurface {
+  position: relative;
+  width: 100%;
+  height: 100%;
   color: var(--color-white);
   background:
     linear-gradient(112deg, rgb(7 12 15 / 94%), rgb(9 15 19 / 84%)),
@@ -12,7 +19,8 @@
   overflow: hidden;
 }
 
-.musicPlayer::before {
+.musicPlayer::before,
+.floatingPlayerSurface::before {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -33,6 +41,16 @@
     );
 }
 
+.spotifyIframeMount {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  opacity: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .musicVisualizer {
   position: absolute;
   inset: -30% -16%;
@@ -40,6 +58,7 @@
   color: var(--music-accent);
   opacity: 0.58;
   transform: rotate(-4deg);
+  transition: opacity 220ms ease;
 }
 
 .musicWave {
@@ -75,19 +94,23 @@
   animation-duration: 14s;
 }
 
-.musicPlayer[data-playing="true"] .musicVisualizer {
+.musicPlayer[data-playing="true"] .musicVisualizer,
+.floatingPlayerSurface[data-playing="true"] .musicVisualizer {
   opacity: 0.84;
 }
 
-.musicPlayer[data-playing="true"] .musicWave {
+.musicPlayer[data-playing="true"] .musicWave,
+.floatingPlayerSurface[data-playing="true"] .musicWave {
   animation-duration: 5.8s;
 }
 
-.musicPlayer[data-playing="true"] .musicWave:nth-child(2) {
+.musicPlayer[data-playing="true"] .musicWave:nth-child(2),
+.floatingPlayerSurface[data-playing="true"] .musicWave:nth-child(2) {
   animation-duration: 7s;
 }
 
-.musicPlayer[data-playing="true"] .musicWave:nth-child(3) {
+.musicPlayer[data-playing="true"] .musicWave:nth-child(3),
+.floatingPlayerSurface[data-playing="true"] .musicWave:nth-child(3) {
   animation-duration: 8.4s;
 }
 
@@ -102,10 +125,24 @@
   gap: clamp(0.5rem, 2cqw, 0.75rem);
 }
 
+.musicMetadata {
+  min-width: 0;
+}
+
+.musicMetadata[data-direction="next"] {
+  animation: metadataSlideNext 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.musicMetadata[data-direction="previous"] {
+  animation: metadataSlidePrevious 240ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 .musicTitleLink {
-  display: inline-flex;
-  max-width: 100%;
+  display: grid;
+  width: 100%;
+  min-width: 0;
   align-items: center;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: 0.5rem;
   color: var(--color-white);
   font-family: var(--font-heading);
@@ -121,21 +158,61 @@
   text-underline-offset: 0.25rem;
 }
 
-.musicTitleLink span {
+.musicTitleViewport,
+.musicArtistViewport {
+  display: block;
+  min-width: 0;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+}
+
+.musicTitleText,
+.musicArtist {
+  display: inline-block;
+  min-width: 100%;
+  white-space: nowrap;
+  transform: translate3d(0, 0, 0);
+  transition: transform 160ms ease;
+}
+
+.musicTitleLink:hover
+  .musicTitleViewport[data-overflow="true"]
+  .musicTitleText,
+.musicTitleLink:focus-visible
+  .musicTitleViewport[data-overflow="true"]
+  .musicTitleText,
+.musicArtistContainer:hover
+  .musicArtistViewport[data-overflow="true"]
+  .musicArtist,
+.musicArtistContainer:focus-visible
+  .musicArtistViewport[data-overflow="true"]
+  .musicArtist {
+  transform: translate3d(calc(var(--overflow-distance) * -1), 0, 0);
+  transition-duration: var(--overflow-duration);
+  transition-timing-function: linear;
+  transition-delay: 180ms;
 }
 
 .musicTitleLink:focus-visible,
+.musicArtistContainer:focus-visible,
 .musicControl:focus-visible {
   outline: 0.1875rem solid var(--color-blue);
   outline-offset: 0.1875rem;
 }
 
-.musicArtist,
-.musicError {
+.musicSecondaryRow {
+  display: grid;
+  min-width: 0;
   margin-top: 0.25rem;
+  align-items: baseline;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.5rem;
+}
+
+.musicArtistContainer,
+.musicError,
+.playbackTime {
+  min-width: 0;
   overflow: hidden;
   font-family: var(--font-poppins);
   font-size: clamp(0.625rem, 2.2cqw, 0.75rem);
@@ -144,24 +221,33 @@
   text-overflow: ellipsis;
 }
 
-.musicArtist {
-  color: rgb(255 255 255 / 60%);
+.musicArtistContainer,
+.musicError {
+  margin: 0;
+}
+
+.musicArtistContainer {
+  color: rgb(255 255 255 / 68%);
 }
 
 .musicError {
   color: #ff9c9c;
 }
 
+.playbackTime {
+  color: rgb(255 255 255 / 72%);
+  font-variant-numeric: tabular-nums;
+}
+
 .musicControls {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: clamp(0.25rem, 1.4cqw, 0.5rem);
 }
 
 .musicControl {
   display: grid;
-  width: clamp(2.5rem, 8.65cqw, 2.75rem);
-  height: clamp(2.5rem, 8.65cqw, 2.75rem);
   padding: 0;
   cursor: pointer;
   color: rgb(255 255 255 / 84%);
@@ -181,6 +267,11 @@
     transform 140ms ease;
 }
 
+.musicControl {
+  width: clamp(2.5rem, 8.65cqw, 2.75rem);
+  height: clamp(2.5rem, 8.65cqw, 2.75rem);
+}
+
 .musicControlPrimary {
   color: #07110a;
   background: var(--music-accent);
@@ -198,9 +289,9 @@
 }
 
 .musicControl:disabled {
-  cursor: not-allowed;
+  cursor: wait;
   filter: saturate(0.4);
-  opacity: 0.34;
+  opacity: 0.48;
 }
 
 .musicControlIcon {
@@ -208,9 +299,242 @@
   height: 1.125rem;
 }
 
+.controlSpinner,
+.loadingSpinner {
+  border: 0.125rem solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: loadingSpinner 720ms linear infinite;
+}
+
+.controlSpinner {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.loadingOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.625rem;
+  color: rgb(255 255 255 / 84%);
+  font-family: var(--font-poppins);
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: rgb(6 10 13 / 92%);
+}
+
+.loadingSpinner {
+  width: 1rem;
+  height: 1rem;
+  color: var(--music-accent);
+}
+
+.floatingPlayer {
+  --music-accent: #1ed760;
+
+  position: fixed;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: max(1rem, env(safe-area-inset-left));
+  z-index: 40;
+  width: min(23rem, calc(100vw - 2rem));
+  height: 9rem;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate3d(calc(-100% - 2rem), 0, 0);
+  transition:
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 300ms ease,
+    visibility 0s linear 360ms;
+}
+
+.floatingPlayer[data-visible="true"] {
+  opacity: 1;
+  visibility: visible;
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0s;
+}
+
+.floatingPlayer[data-visible="false"] .musicWave {
+  animation-play-state: paused;
+}
+
+.floatingLauncher {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
+  display: grid;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  color: var(--color-black);
+  background: var(--color-white-secondary);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  place-items: center;
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    opacity 220ms ease,
+    transform 220ms ease,
+    visibility 0s linear 0s;
+}
+
+:global(.dark) .floatingLauncher {
+  color: var(--color-white);
+  background: var(--color-black-secondary);
+  border-color: currentColor;
+}
+
+.floatingLauncherIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.floatingPlayer[data-expanded="true"] .floatingLauncher {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(0.82);
+  transition:
+    color 160ms ease,
+    background-color 160ms ease,
+    opacity 220ms ease,
+    transform 300ms cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 280ms;
+}
+
+.floatingPlayerSurface {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: auto;
+  min-height: 8.75rem;
+  border: 1px solid rgb(255 255 255 / 14%);
+  border-radius: 1rem;
+  box-shadow:
+    0 1.125rem 2.5rem rgb(0 0 0 / 48%),
+    0 0.375rem 0.875rem rgb(0 0 0 / 28%),
+    inset 0 1px rgb(255 255 255 / 12%);
+  clip-path: circle(1.625rem at 1.625rem calc(100% - 1.625rem));
+  pointer-events: none;
+  transition: clip-path 440ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floatingPlayer[data-expanded="true"] .floatingPlayerSurface {
+  clip-path: inset(0 round 1rem);
+  pointer-events: auto;
+}
+
+.floatingPanelContent {
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  transform: translate3d(-0.625rem, 0.5rem, 0);
+  transition:
+    opacity 120ms ease,
+    transform 180ms ease;
+}
+
+.floatingPlayer[data-expanded="true"] .floatingPanelContent {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition:
+    opacity 180ms ease 90ms,
+    transform 280ms cubic-bezier(0.16, 1, 0.3, 1) 60ms;
+}
+
+.floatingHeader {
+  position: relative;
+  display: grid;
+  min-height: 4.75rem;
+  padding: 0.75rem 3rem 0.75rem 0.75rem;
+  align-items: center;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.floatingPlayer .musicTitleLink {
+  font-size: 0.9375rem;
+}
+
+.floatingPlayer .musicArtist,
+.floatingPlayer .musicError,
+.floatingPlayer .playbackTime {
+  font-size: 0.6875rem;
+}
+
+.minimizeControl {
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+  z-index: 3;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  cursor: pointer;
+  color: rgb(255 255 255 / 72%);
+  background: transparent;
+  border: 0;
+  place-items: center;
+  transition:
+    color 140ms ease,
+    transform 140ms ease;
+}
+
+.minimizeControl:active {
+  transform: translateY(0.0625rem) scale(0.94);
+}
+
+.minimizeControlIcon {
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.floatingControls {
+  display: flex;
+  min-height: 4rem;
+  padding: 0.625rem 0.75rem 0.75rem;
+  align-items: center;
+  justify-content: center;
+  border-top: 1px solid rgb(255 255 255 / 10%);
+}
+
+.floatingControls .musicControl {
+  width: 2.625rem;
+  height: 2.625rem;
+}
+
+.floatingLauncher:active {
+  transform: scale(0.96);
+}
+
 :global(.dark) .musicControl:focus-visible,
-:global(.dark) .musicTitleLink:focus-visible {
+:global(.dark) .musicTitleLink:focus-visible,
+:global(.dark) .musicArtistContainer:focus-visible {
   outline-color: var(--color-yellow);
+}
+
+@keyframes metadataSlideNext {
+  from {
+    opacity: 0;
+    transform: translate3d(1rem, 0, 0);
+  }
+}
+
+@keyframes metadataSlidePrevious {
+  from {
+    opacity: 0;
+    transform: translate3d(-1rem, 0, 0);
+  }
 }
 
 @keyframes musicWaveDrift {
@@ -227,6 +551,12 @@
   }
 }
 
+@keyframes loadingSpinner {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
 @media (hover: hover) {
   .musicTitleLink:hover {
     color: var(--music-accent);
@@ -235,6 +565,30 @@
   .musicControl:hover:not(:disabled) {
     border-color: color-mix(in srgb, var(--music-accent) 48%, white);
     transform: translateY(0.0625rem);
+  }
+
+  .floatingLauncher:hover {
+    color: var(--color-blue);
+    background: color-mix(
+      in srgb,
+      var(--color-blue) 10%,
+      var(--color-white-secondary)
+    );
+    transform: scale(1.04);
+  }
+
+  :global(.dark) .floatingLauncher:hover {
+    color: var(--color-yellow);
+    background: color-mix(
+      in srgb,
+      var(--color-yellow) 8%,
+      var(--color-black-secondary)
+    );
+  }
+
+  .minimizeControl:hover {
+    color: var(--music-accent);
+    transform: translateY(-0.0625rem);
   }
 }
 
@@ -254,18 +608,70 @@
     height: 2.25rem;
   }
 
-  .musicControlIcon {
+  .musicControlIcon,
+  .controlSpinner {
     width: 1rem;
     height: 1rem;
+  }
+
+  .musicSecondaryRow {
+    gap: 0.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .floatingPlayer {
+    right: max(0.75rem, env(safe-area-inset-right));
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    left: max(0.75rem, env(safe-area-inset-left));
+    width: auto;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .musicControl {
-    transition: none;
+  .musicControl,
+  .minimizeControl,
+  .floatingLauncher,
+  .floatingPanelContent,
+  .floatingPlayerSurface,
+  .musicTitleText,
+  .musicArtist,
+  .musicVisualizer {
+    transition-duration: 1ms;
+    transition-delay: 0s;
   }
 
-  .musicWave {
+  .musicTitleLink:hover
+    .musicTitleViewport[data-overflow="true"]
+    .musicTitleText,
+  .musicTitleLink:focus-visible
+    .musicTitleViewport[data-overflow="true"]
+    .musicTitleText,
+  .musicArtistContainer:hover
+    .musicArtistViewport[data-overflow="true"]
+    .musicArtist,
+  .musicArtistContainer:focus-visible
+    .musicArtistViewport[data-overflow="true"]
+    .musicArtist {
+    transform: none;
+  }
+
+  .musicMetadata,
+  .musicWave,
+  .controlSpinner,
+  .loadingSpinner {
     animation: none;
+  }
+
+  .floatingPlayer,
+  .floatingPlayer[data-visible="true"] {
+    transform: none;
+    transition:
+      opacity 120ms ease,
+      visibility 0s linear 120ms;
+  }
+
+  .floatingPlayer[data-visible="true"] {
+    transition-delay: 0s;
   }
 }
