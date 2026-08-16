@@ -233,7 +233,9 @@ Componentes existentes:
 - `HamburgerIcon`
 - `InstagramIcon`
 - `LinkedinIcon`
+- `MinimizeIcon`
 - `MoonIcon`
+- `MusicNoteIcon`
 - `NextTrackIcon`
 - `PauseIcon`
 - `PlayIcon`

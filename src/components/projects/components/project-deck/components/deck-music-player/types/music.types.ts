@@ -1,7 +1,5 @@
 export interface MusicTrack {
-  artist?: string;
-  audioUrl?: string;
-  id: string;
-  spotifyUrl: string;
+  artist: string;
+  spotifyId: string;
   title: string;
 }
