@@ -45,7 +45,11 @@ export interface IProjectContentTexts {
 }
 
 export interface IMusicPlayerTexts {
-    emptyTitle: string
+    bufferingLabel: string
+    collapsePlayerLabel: string
+    expandPlayerLabel: string
+    floatingPlayerLabel: string
+    loadingLabel: string
     nextTrackLabel: string
     openOnSpotifyLabel: string
     pauseLabel: string

@@ -36,7 +36,7 @@ export const PROJECT_DEFINITIONS = [
   },
   {
     accent: "#ff4b4b",
-    applicationUrl: "https://talaria-woad.vercel.app/",
+    applicationUrl: "https://block-pill-web.vercel.app/",
     contentKey: "blockPill",
     id: "project-block-pill",
     technologies: [
